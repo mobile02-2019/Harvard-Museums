@@ -14,7 +14,17 @@ public class SplashHarvardMuseusm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_harvard_museusm);
 
-        new Timer();
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                irParaLogin();
+            }
+        }, 3000);
+    }
+
+    public void irParaLogin(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
 

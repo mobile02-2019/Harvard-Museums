@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/email"
+                    android:id="@+id/email_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
@@ -60,7 +60,7 @@
 
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/password_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -75,7 +75,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/email_sign_in_button"
+                android:id="@+id/login_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,12 +83,13 @@
                 android:backgroundTint="@color/harvard"
                 android:text="@string/Login"
                 android:textColor="@color/branco"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="loginClicado"/>
             <TextView
-                android:id="@+id/cadastre"
+                android:id="@+id/register_now_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cadastre-se"
+                android:text="Register now"
                 android:gravity="right"/>
 
             <TextView
