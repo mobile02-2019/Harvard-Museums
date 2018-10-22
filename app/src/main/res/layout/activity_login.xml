@@ -85,12 +85,14 @@
                 android:textColor="@color/branco"
                 android:textStyle="bold"
                 android:onClick="loginClicado"/>
+
             <TextView
                 android:id="@+id/register_now_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Register now"
-                android:gravity="right"/>
+                android:gravity="right"
+                android:onClick="registerNow"/>
 
             <TextView
                 android:layout_width="match_parent"

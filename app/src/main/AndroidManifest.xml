@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".HarvardMuseumsMainActivity"></activity>
+        <activity android:name=".CadastroActivity"></activity>
 
     </application>
 

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#89070C</color>
     <color name="colorPrimaryDark">#89070C</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#89070C</color>
     <color name="harvard">#A2070D</color>
     <color name="cinza">#47525E</color>
     <color name="google">#ce2a15</color>
