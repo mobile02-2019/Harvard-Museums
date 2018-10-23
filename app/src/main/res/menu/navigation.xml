@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_museum"
+        android:icon="@drawable/icon_museum"
+        android:title="Museum"/>
+
+    <item
+        android:id="@+id/navigation_gallery"
+        android:icon="@drawable/icon_galley"
+        android:title="Galery"/>
+
+    <item
+    android:id="@+id/navigation_artwork"
+    android:icon="@drawable/icon_artwork"
+    android:title="Artwork"/>
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/icon_user"
+        android:title="User"/>
+
+</menu>
