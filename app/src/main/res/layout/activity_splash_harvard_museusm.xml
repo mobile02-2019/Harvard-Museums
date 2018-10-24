@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HarvardMuseumsMainActivity"
-    android:backgroundTint="@color/colorPrimaryDark"
+    android:background="@color/colorPrimaryDark"
     >
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/hmtwo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo_white"
         />
 
 </FrameLayout>

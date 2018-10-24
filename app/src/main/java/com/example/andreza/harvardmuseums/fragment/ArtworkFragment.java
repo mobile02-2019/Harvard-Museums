@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
@@ -70,6 +71,14 @@ public class ArtworkFragment extends Fragment {
         Artwork artwork5 = new Artwork();
         artwork5.setTitle("Obra 5");
         artworkList.add(artwork5);
+
+        Artwork artwork6 = new Artwork();
+        artwork6.setTitle("Obra 6");
+        artworkList.add(artwork6);
+
+        Artwork artwork7 = new Artwork();
+        artwork7.setTitle("Obra 7");
+        artworkList.add(artwork7);
 
 
         return artworkList;

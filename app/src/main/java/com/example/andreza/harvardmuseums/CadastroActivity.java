@@ -20,7 +20,7 @@ public class CadastroActivity extends Activity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), HarvardMuseumsMainActivity.class);
+                Intent intent = new Intent(v.getContext(), HomeActivity.class);
                 startActivity(intent);
             }
         });
