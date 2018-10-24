@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -16,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         navigationView = (BottomNavigationView) findViewById(R.id.navigationView);
-        showFragment(new ExhibitionFragment());
+        showFragment(new ArtworkFragment());
 
     }
 
@@ -27,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-   /*   public void showMuseum(Fragment museumFragment) {
+     public void showMuseum(Fragment museumFragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.container_id, museumFragment);
@@ -47,5 +49,5 @@ public class HomeActivity extends AppCompatActivity {
         transaction.replace(R.id.container_id, userFragment);
         transaction.commit();
     }
-   */
+
 }
