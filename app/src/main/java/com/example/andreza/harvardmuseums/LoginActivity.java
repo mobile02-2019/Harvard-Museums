@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         loginClicado.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), HarvardMuseumsMainActivity.class);
+                Intent intent = new Intent(v.getContext(), MuseumActivity.class);
 
                 Bundle bundle = new Bundle();
 

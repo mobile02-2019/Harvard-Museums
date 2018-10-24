@@ -16,10 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".HarvardMuseumsMainActivity"></activity>
-        <activity android:name=".CadastroActivity"></activity>
-
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".HarvardMuseumsMainActivity" />
+        <activity android:name=".CadastroActivity" />
+        <activity android:name=".MuseumActivity"></activity>
     </application>
 
 </manifest>
