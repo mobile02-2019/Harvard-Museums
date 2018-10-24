@@ -18,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         navigationView = (BottomNavigationView) findViewById(R.id.navigationView);
-        showFragment(new ArtworkFragment());
+        showFragment(new ExhibitionFragment());
 
     }
 
@@ -29,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-     public void showMuseum(Fragment museumFragment) {
+    /* public void showMuseum(Fragment museumFragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.container_id, museumFragment);
@@ -50,4 +50,5 @@ public class HomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+*/
 }
