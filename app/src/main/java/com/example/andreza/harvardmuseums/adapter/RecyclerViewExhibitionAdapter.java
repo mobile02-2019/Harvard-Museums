@@ -6,12 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.model.Exhibition;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<RecyclerViewExhibitionAdapter.ViewHolder> {
@@ -25,7 +21,6 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
     @NonNull
     @Override
     public RecyclerViewExhibitionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.content_exhibition_item, viewGroup, false);
         return new ViewHolder(view);
     }
@@ -48,17 +43,15 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             name = itemView.findViewById(R.id.textView_nameExhibition_id);
             date = itemView.findViewById(R.id.textView_dateExhibition_id);
-
         }
 
         public void bind (Exhibition exhibition) {
-
             name.setText(exhibition.getTitle());
             date.setText(exhibition.getDate());
-
         }
+
     }
+
 }

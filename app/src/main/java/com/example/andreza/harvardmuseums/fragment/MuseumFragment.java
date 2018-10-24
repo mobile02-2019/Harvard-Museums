@@ -1,4 +1,4 @@
-package com.example.andreza.harvardmuseums.Fragment;
+package com.example.andreza.harvardmuseums.fragment;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.example.andreza.harvardmuseums.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MuseusFragment extends Fragment {
+public class MuseumFragment extends Fragment {
 
 
-    public MuseusFragment() {
+    public MuseumFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class MuseusFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_museus, container, false);
+        return inflater.inflate(R.layout.fragment_museum, container, false);
     }
 
 }

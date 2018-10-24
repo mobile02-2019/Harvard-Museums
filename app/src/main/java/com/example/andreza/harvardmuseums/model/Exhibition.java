@@ -1,5 +1,4 @@
 package com.example.andreza.harvardmuseums.model;
-
 import java.io.Serializable;
 
 public class Exhibition implements Serializable {
@@ -20,11 +19,6 @@ public class Exhibition implements Serializable {
     }
 
     public void setDate(String date) {
-        this.date = date;
-    }
-
-    public Exhibition(String title, String date) {
-        this.title = title;
         this.date = date;
     }
 
