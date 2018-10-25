@@ -21,10 +21,24 @@
         android:layout_marginTop="8dp">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/edit_text_name_id"
+            android:id="@+id/edit_text_firstname_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name*"
+            android:hint="First Name*"
+            android:inputType="textShortMessage"
+            android:lines="1"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_text_lastname_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last name*"
             android:inputType="textShortMessage"
             android:lines="1"/>
     </android.support.design.widget.TextInputLayout>
@@ -80,5 +94,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/harvard"
         android:id="@+id/register_button_id"
-        android:textColor="@color/branco"/>
+        android:textColor="@color/branco"
+
+        />
 </LinearLayout>
