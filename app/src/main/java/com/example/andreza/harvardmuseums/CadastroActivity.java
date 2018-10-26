@@ -18,7 +18,6 @@ public class CadastroActivity extends Activity {
     private TextInputEditText email;
     private TextInputEditText password;
     private TextInputEditText passwordConfirm;
-    private List<User> registeredUsers = new ArrayList<>();
 
 
     @Override
@@ -38,7 +37,7 @@ public class CadastroActivity extends Activity {
             public void onClick(View v) {
 
                 if (validateUserInfo(firstName, lastName, email, password, passwordConfirm)){
-                    registeredUsers.add(new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), password.getText().toString()));
+                    BancoDeDados.userList.add(new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), password.getText().toString()));
                     Toast.makeText(CadastroActivity.this, "Successfully registered! Enjoy our Gallery!", Toast.LENGTH_SHORT).show();
                     goToHomeActivity();
                 }
@@ -51,17 +50,17 @@ public class CadastroActivity extends Activity {
     public boolean validateUserInfo(TextInputEditText firstName, TextInputEditText lastName, TextInputEditText email, TextInputEditText password, TextInputEditText passwordConfirm){
         boolean infoIsValid = true;
 
-        if (firstName.getText().toString().contains(" ")){
-            Toast.makeText(CadastroActivity.this, "Your First Name is invalid. It cannot contain space.", Toast.LENGTH_LONG).show();
+        if (firstName.getText().toString().contains(" ") || firstName.getText().toString().length()==0){
+            Toast.makeText(CadastroActivity.this, "Your First Name is invalid. It cannot contain spaces nor be empty.", Toast.LENGTH_LONG).show();
             infoIsValid = false;
         }
 
-        if (lastName.getText().toString().contains(" ")){
-            Toast.makeText(CadastroActivity.this, "Your Last Name is invalid. It cannot contain space.", Toast.LENGTH_LONG).show();
+        if (lastName.getText().toString().contains(" ") || lastName.getText().toString().length()==0){
+            Toast.makeText(CadastroActivity.this, "Your Last Name is invalid. It cannot contain spaces nor be empty.", Toast.LENGTH_LONG).show();
             infoIsValid = false;
         }
 
-        if (!email.getText().toString().contains("@")){
+        if (!email.getText().toString().contains("@") || !email.getText().toString().contains(".")){
             Toast.makeText(CadastroActivity.this, "The email is invalid. Example: (yourname@domain.com)", Toast.LENGTH_LONG).show();
             infoIsValid = false;
         }
@@ -72,7 +71,7 @@ public class CadastroActivity extends Activity {
         }
 
         if (!passwordConfirm.getText().toString().equals(password.getText().toString())){
-            Toast.makeText(this, "Password Confirm is invalid. It must match the Password.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please confirm your password.", Toast.LENGTH_LONG).show();
             infoIsValid = false;
         }
 
