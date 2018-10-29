@@ -1,4 +1,4 @@
-package com.example.andreza.harvardmuseums;
+package com.example.andreza.harvardmuseums.activity;
 
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
@@ -11,6 +11,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.andreza.harvardmuseums.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), CadastroActivity.class);
+                Intent intent = new Intent(v.getContext(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -69,41 +71,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
-//    public void loginClicado(View view) {
-//        Intent intent = new Intent(this, HarvardMuseumsMainActivity.class);
-//
-//        Bundle bundle = new Bundle();
-//
-//        final AutoCompleteTextView emailDigitado = findViewById(R.id.email_id);
-//        final EditText passwordDigitado = findViewById(R.id.password_id);
-//
-//        Button buttonLogin = findViewById(R.id.login_button);
-//
-//        if (emailDigitado.getText().toString().equals(passwordDigitado.getText().toString())) {
-//            bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
-//            intent.putExtras(bundle);
-//            startActivity(intent);
-//        } else {
-//            emailDigitado.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-//            passwordDigitado.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-//
-//            Snackbar.make(buttonLogin, "Email e/ou senha incorreto(s)", Snackbar.LENGTH_INDEFINITE)
-//                    .setAction("Ok, entendi.", new View.OnClickListener(){
-//                        @Override
-//                        public void onClick(View view) {
-//                            emailDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                            passwordDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                        }
-//                    })
-//                    .show();
-//        }
-//
-//    }
-
-
     public void registerNow(View view) {
-        Intent intent = new Intent(this,CadastroActivity.class);
+        Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
     }
 }

@@ -14,7 +14,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp">
 
-
         <ImageView
             android:id="@+id/imagem_obra_id"
             android:layout_width="wrap_content"
@@ -28,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            card_view:srcCompat="@drawable/image_exhibition_1" />
+            app:srcCompat="@drawable/image_exhibition" />
 
         <TextView
             android:id="@+id/titulo_obra_id"

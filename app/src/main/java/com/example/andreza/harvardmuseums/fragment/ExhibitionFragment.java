@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewExhibitionAdapter;
 import com.example.andreza.harvardmuseums.model.Exhibition;
@@ -15,6 +17,11 @@ import java.util.List;
 
 public class ExhibitionFragment extends Fragment {
 
+    public Listener listener;
+
+    public interface Listener {
+        void goToExhibitionDetail();
+    }
 
     public ExhibitionFragment() {
     }
@@ -22,6 +29,7 @@ public class ExhibitionFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        listener = (Listener) context;
     }
 
     @Override
@@ -29,6 +37,13 @@ public class ExhibitionFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exhibition, container, false);
         setupRecyclerView(view);
+        ImageView image = view.findViewById(R.id.imageView_exhibition_id);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.goToExhibitionDetail();
+            }
+        });
         return view;
     }
 

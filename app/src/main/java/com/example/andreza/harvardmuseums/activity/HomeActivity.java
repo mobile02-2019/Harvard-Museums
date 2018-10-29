@@ -1,4 +1,4 @@
-package com.example.andreza.harvardmuseums;
+package com.example.andreza.harvardmuseums.activity;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -8,12 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
+import com.example.andreza.harvardmuseums.fragment.ExhibitionDetailFragment;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
+import com.example.andreza.harvardmuseums.fragment.Museum1DetailFragment;
+import com.example.andreza.harvardmuseums.fragment.Museum2DetailFragment;
+import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
+import com.google.android.gms.common.data.ExclusionFilterable;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener, ExhibitionFragment.Listener {
+
     private BottomNavigationView navigationView;
 
     @Override
@@ -47,51 +54,35 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         showFragment(new MuseumFragment());
+
     }
 
     public void showFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.container_id, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    /* public void showMuseum(Fragment museumFragment) {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.container_id, museumFragment);
-        transaction.commit();
-    }
+    @Override
+    public void goToMuseumDetail(int museumID) {
 
-    public void showArtwork(Fragment artworkFragment) {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.container_id, artworkFragment);
-        transaction.commit();
-    }
-
-    public void showUser(Fragment userFragment) {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.container_id, userFragment);
-        transaction.commit();
-    }
-<<<<<<< HEAD
-
-*/
-
-
-    /*      loadFragment(new EmailFragment());
-
-            BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bnvMenu);
-
-
-        private void loadFragment(Fragment fragment) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.flContainer, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+        if (museumID == 1) {
+            showFragment(new Museum1DetailFragment());
         }
-    }*/
+        if (museumID == 2) {
+            showFragment(new Museum2DetailFragment());
+        }
+        if (museumID == 3) {
+            showFragment(new Museum3DetailFragment());
+        }
+
+    }
+
+    @Override
+    public void goToExhibitionDetail() {
+        showFragment(new ExhibitionDetailFragment());
+    }
 
 }
