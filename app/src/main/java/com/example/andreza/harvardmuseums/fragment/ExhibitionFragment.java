@@ -2,6 +2,7 @@ package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,6 +36,8 @@ public class ExhibitionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+
         View view = inflater.inflate(R.layout.fragment_exhibition, container, false);
         setupRecyclerView(view);
         ImageView image = view.findViewById(R.id.imageView_exhibition_id);
