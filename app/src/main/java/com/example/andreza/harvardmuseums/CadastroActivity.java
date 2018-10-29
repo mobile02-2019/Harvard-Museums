@@ -38,7 +38,7 @@ public class CadastroActivity extends Activity {
 
                 if (validateUserInfo(firstName, lastName, email, password, passwordConfirm)){
                     BancoDeDados.userList.add(new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), password.getText().toString()));
-                    Toast.makeText(CadastroActivity.this, "Successfully registered! Enjoy our Gallery!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CadastroActivity.this, "Successfully registered! Enjoy our Gallery!", Toast.LENGTH_LONG).show();
                     goToHomeActivity();
                 }
             }
@@ -63,6 +63,13 @@ public class CadastroActivity extends Activity {
         if (!email.getText().toString().contains("@") || !email.getText().toString().contains(".")){
             Toast.makeText(CadastroActivity.this, "The email is invalid. Example: (yourname@domain.com)", Toast.LENGTH_LONG).show();
             infoIsValid = false;
+        }
+
+        for (User user: BancoDeDados.userList) {
+            if (email.getText().toString().equals(user.getEmail())){
+                Toast.makeText(CadastroActivity.this, "There is already an account registered with that email, try another one.", Toast.LENGTH_LONG).show();
+                infoIsValid = false;
+            }
         }
 
         if (password.getText().toString().length()<8 || password.getText().toString().length()>20){

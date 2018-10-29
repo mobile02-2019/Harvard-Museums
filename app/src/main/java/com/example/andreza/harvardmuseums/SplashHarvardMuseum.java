@@ -7,7 +7,7 @@ import android.os.Bundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SplashHarvardMuseusm extends AppCompatActivity {
+public class SplashHarvardMuseum extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

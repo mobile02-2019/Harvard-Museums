@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
-    private List<User> userList = new ArrayList<>();
 
 
     public static final String CHAVE_EMAIL = "chave_email";
@@ -121,12 +120,5 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
-    }
 }
 
