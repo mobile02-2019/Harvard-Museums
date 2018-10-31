@@ -9,17 +9,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.fragment.UserFragment;
 import com.example.andreza.harvardmuseums.model.Artwork;
 
 import java.util.List;
 
 public class RecyclerViewUserAdapter extends RecyclerView.Adapter<RecyclerViewUserAdapter.ViewHolder> {
 
-
+    private UserFragment.Listener listener;
     private List<Artwork> favoriteList;
 
-    public RecyclerViewUserAdapter(List<Artwork> favoriteList) {
+    public RecyclerViewUserAdapter(List<Artwork> favoriteList, UserFragment.Listener listener) {
         this.favoriteList = favoriteList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -30,7 +32,15 @@ public class RecyclerViewUserAdapter extends RecyclerView.Adapter<RecyclerViewUs
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewUserAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerViewUserAdapter.ViewHolder viewHolder, int position) {
+        Artwork artwork = favoriteList.get(position);
+        viewHolder.bind(artwork);
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.goToArtworkDetail();
+            }
+        });
 
     }
 

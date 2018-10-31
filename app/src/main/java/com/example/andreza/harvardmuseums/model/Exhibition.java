@@ -9,6 +9,15 @@ public class Exhibition implements Serializable {
     private String local;
     private String description;
     private String image;
+    private int imagemDetalhes;
+
+    public int getImagemDetalhes() {
+        return imagemDetalhes;
+    }
+
+    public void setImagemDetalhes(int imagemDetalhes) {
+        this.imagemDetalhes = imagemDetalhes;
+    }
 
     public String getTitle() {
         return title;

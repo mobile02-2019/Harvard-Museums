@@ -1,46 +1,40 @@
 package com.example.andreza.harvardmuseums.fragment;
-
-
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
-import com.example.andreza.harvardmuseums.adapter.RecyclerViewExhibitionAdapter;
 import com.example.andreza.harvardmuseums.model.Artwork;
-import com.example.andreza.harvardmuseums.model.Exhibition;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ArtworkFragment extends Fragment {
 
+    private Listener listener;
 
-    public ArtworkFragment() {
-        // Required empty public constructor
+    public interface Listener {
+        void goToArtworkDetail();
     }
 
+    public ArtworkFragment() {
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.listener = (Listener) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setLogo(R.drawable.logo_white);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayUseLogoEnabled(true);
-
-        // Inflate the layout for this fragment
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_artwork, container, false);
         setupRecyclerView(view);
         return view;
@@ -48,7 +42,7 @@ public class ArtworkFragment extends Fragment {
 
     private void setupRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_artwork_id);
-        RecyclerViewArtworkAdapter adapter = new RecyclerViewArtworkAdapter(createArtworkList());
+        RecyclerViewArtworkAdapter adapter = new RecyclerViewArtworkAdapter(createArtworkList(), listener);
         recyclerView.setAdapter(adapter);
         int columns = 2;
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),columns));
@@ -85,7 +79,6 @@ public class ArtworkFragment extends Fragment {
         Artwork artwork7 = new Artwork();
         artwork7.setTitle("Obra 7");
         artworkList.add(artwork7);
-
 
         return artworkList;
     }

@@ -15,12 +15,19 @@ import java.util.List;
 
 public class ExhibitionDetailFragment extends Fragment {
 
+    private Listener listener;
+
+    public interface Listener {
+        void goToArtworkDetail();
+    }
+
     public ExhibitionDetailFragment() {
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        this.listener = (Listener) context;
     }
 
     @Override
@@ -34,7 +41,7 @@ public class ExhibitionDetailFragment extends Fragment {
     private void setupRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_exhibitionDetail_id);
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        RecyclerViewExhibitionDetailAdapter adapter = new RecyclerViewExhibitionDetailAdapter(createGalleryList());
+        RecyclerViewExhibitionDetailAdapter adapter = new RecyclerViewExhibitionDetailAdapter(createGalleryList(), listener);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(horizontalLayoutManager);
     }
@@ -43,28 +50,36 @@ public class ExhibitionDetailFragment extends Fragment {
         List<Exhibition> galleryList = new ArrayList<>();
 
         Exhibition exhibition1 = new Exhibition();
-        exhibition1.setImage("https://ids.lib.harvard.edu/ids/iiif/18483392/full/full/0/native.jpg");
+        exhibition1.setImagemDetalhes(R.drawable.image_exhibition);
+        galleryList.add(exhibition1);
 
         Exhibition exhibition2 = new Exhibition();
-        exhibition2.setImage("https://ids.lib.harvard.edu/ids/iiif/18483392/full/full/0/native.jpg");
+        exhibition2.setImagemDetalhes(R.drawable.image_exhibition);
+        galleryList.add(exhibition2);
 
         Exhibition exhibition3 = new Exhibition();
-        exhibition3.setImage("https://ids.lib.harvard.edu/ids/iiif/18483392/full/full/0/native.jpg");
+        exhibition3.setImagemDetalhes(R.drawable.image_exhibition);
+        galleryList.add(exhibition3);
 
         Exhibition exhibition4 = new Exhibition();
-        exhibition4.setImage("https://ids.lib.harvard.edu/ids/iiif/18483392/full/full/0/native.jpg");
+        exhibition4.setImagemDetalhes(R.drawable.image_exhibition);
+        galleryList.add(exhibition4);
 
         Exhibition exhibition5 = new Exhibition();
-        exhibition5.setImage("https://ids.lib.harvard.edu/ids/iiif/18483392/full/full/0/native.jpg");
+        exhibition5.setImagemDetalhes(R.drawable.image_exhibition);
+        galleryList.add(exhibition5);
 
         Exhibition exhibition6 = new Exhibition();
-        exhibition6.setImage("https://ids.lib.harvard.edu/ids/iiif/18483392/full/full/0/native.jpg");
+        exhibition6.setImagemDetalhes(R.drawable.image_exhibition);
+        galleryList.add(exhibition6);
 
         Exhibition exhibition7 = new Exhibition();
-        exhibition7.setImage("https://ids.lib.harvard.edu/ids/iiif/18483392/full/full/0/native.jpg");
+        exhibition7.setImagemDetalhes(R.drawable.image_exhibition);
+        galleryList.add(exhibition7);
 
         Exhibition exhibition8 = new Exhibition();
-        exhibition8.setImage("https://ids.lib.harvard.edu/ids/iiif/18483392/full/full/0/native.jpg");
+        exhibition8.setImagemDetalhes(R.drawable.image_exhibition);
+        galleryList.add(exhibition8);
 
         return galleryList;
     }
