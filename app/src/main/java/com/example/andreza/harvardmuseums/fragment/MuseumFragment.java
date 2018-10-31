@@ -29,6 +29,7 @@ public class MuseumFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_museum, container, false);
         ImageView iconMap1 = view.findViewById(R.id.imageView_museum1_home);
         iconMap1.setOnClickListener(new View.OnClickListener() {

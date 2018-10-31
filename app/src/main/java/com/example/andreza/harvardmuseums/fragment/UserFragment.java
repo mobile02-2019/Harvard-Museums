@@ -1,6 +1,5 @@
 package com.example.andreza.harvardmuseums.fragment;
-
-
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -9,24 +8,28 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewUserAdapter;
 import com.example.andreza.harvardmuseums.model.Artwork;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class UserFragment extends Fragment {
 
+    private Listener listener;
 
-    public UserFragment() {
-        // Required empty public constructor
+    public interface Listener {
+        void goToArtworkDetail();
     }
 
+    public UserFragment() {
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (Listener) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,18 +41,16 @@ public class UserFragment extends Fragment {
         return view;
     }
 
-
     public void setupRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_user_id);
-        RecyclerViewUserAdapter adapter = new RecyclerViewUserAdapter(creatFavoriteList());
+        RecyclerViewUserAdapter adapter = new RecyclerViewUserAdapter(createFavoriteList(), listener);
         recyclerView.setAdapter(adapter);
         int columns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),columns));
 
     }
 
-
-    public List<Artwork> creatFavoriteList() {
+    public List<Artwork> createFavoriteList() {
         List<Artwork> favoriteList = new ArrayList<>();
 
         Artwork artwork = new Artwork();

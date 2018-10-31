@@ -11,23 +11,28 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="Login">Login</string>
-    <string name="arthur_museum_detail">
+    <string name="exhibition_detail">
 
-        In 1912, Langdon Warner taught the first courses in Asian art at Harvard, and the first at
-        any American university.
+        Animal-Shaped Vessels from the Ancient World: Feasting with Gods, Heroes, and Kings brings
+        together nearly 60 elaborate vessels of animal shape from collections in the United States
+        and Europe. While the songs, speeches, and prayers that enlivened ancient feasts are now
+        largely lost to us, these vessels have survived, offering a glimpse into the rich symbolism
+        and communal practices that found expression at these gatherings. Taking animal-shaped vessels
+        as performative props in the multifaceted world of feasting, the exhibition not only introduces
+        the social and ceremonial functions of these ritual occasions, but also highlights the essential
+        and universal role played by food and drink—and by the highly imaginative containers used to
+        enjoy these refreshments.
 
-        By 1977, Harvard’s collections of Asian, ancient, and Islamic and later Indian art had grown
-        sufficiently in size and importance to require a larger space for their display and study.
-
-        With the generosity of Dr. Arthur M. Sackler, a leading psychiatrist, entrepreneur, art
-        collector, and philanthropist, the Harvard Art Museums founded a museum dedicated to works
-        from Asia, the Middle East, and the Mediterranean.
-
-        The Arthur M. Sackler Museum, a new museum building at 485 Broadway designed by James Stirling,
-        opened in 1985.
-
-        This structure remains the home of the History of Art and Architecture Department and the
-        Media Slide Library.
+        The exhibition includes vessels in the shape of standing or reclining animals, animal-headed
+        cups and beakers, drinking horns, and animated pitchers. Various creatures, real and imagined,
+        give these objects their shapes: powerful bulls and rams, majestic lions and mythical griffins,
+        wild boars and goats, deer and gazelles, graceful birds, and braying donkeys, among others.
+        Assembling such a range of vessels for the first time, the exhibition presents a cross-cultural
+        and cross-disciplinary examination of how they spanned geography and time, across three
+        continents and over three millennia. The international menagerie of drinking and pouring
+        vessels vividly illustrates not just how shapes and artistic forms crossed borders, but how
+        ideas as well were exchanged among cultures—tangible evidence of close contact and the
+        intermingling of traditions.
 
     </string>
     <string name="hello_blank_fragment">Hello World</string>

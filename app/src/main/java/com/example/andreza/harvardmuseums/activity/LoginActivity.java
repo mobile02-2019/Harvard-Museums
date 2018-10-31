@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import com.example.andreza.harvardmuseums.User;
 import android.widget.TextView;
 import com.example.andreza.harvardmuseums.BancoDeDados;
 import com.example.andreza.harvardmuseums.R;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
 
         TextView register = findViewById(R.id.register_now_id);
         register.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +74,9 @@ public class LoginActivity extends AppCompatActivity {
                                 .show();
                     }
                 }
-
-
             }
         });
     }
-
-
 
     public void registerNow(View view) {
         Intent intent = new Intent(this,RegisterActivity.class);
@@ -86,4 +84,3 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
-

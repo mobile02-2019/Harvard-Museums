@@ -6,15 +6,16 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Button;
-
+import com.example.andreza.harvardmuseums.User;
 import com.example.andreza.harvardmuseums.BancoDeDados;
 import com.example.andreza.harvardmuseums.R;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+import android.support.v7.app.AppCompatActivity;
 
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText firstName;
     private TextInputEditText lastName;
     private TextInputEditText email;
@@ -26,6 +27,9 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().hide();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firstName = findViewById(R.id.edit_text_firstname_id);
         lastName = findViewById(R.id.edit_text_lastname_id);

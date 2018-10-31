@@ -1,5 +1,4 @@
 package com.example.andreza.harvardmuseums.adapter;
-
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,19 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
 import com.example.andreza.harvardmuseums.model.Artwork;
-import com.example.andreza.harvardmuseums.model.Exhibition;
-
 import java.util.List;
 
 public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder> {
 
+    private ArtworkFragment.Listener listener;
     private List<Artwork> artworkList;
 
-    public RecyclerViewArtworkAdapter(List<Artwork> artworkList) {
+    public RecyclerViewArtworkAdapter(List<Artwork> artworkList, ArtworkFragment.Listener listener) {
         this.artworkList = artworkList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,6 +33,12 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(@NonNull RecyclerViewArtworkAdapter.ViewHolder viewHolder, int position) {
         Artwork artwork = artworkList.get(position);
         viewHolder.bind(artwork);
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.goToArtworkDetail();
+            }
+        });
     }
 
     @Override

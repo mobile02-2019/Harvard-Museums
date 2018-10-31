@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.fragment.ArtworkDetailFragment;
 import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionDetailFragment;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
@@ -17,9 +17,9 @@ import com.example.andreza.harvardmuseums.fragment.Museum2DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
-import com.google.android.gms.common.data.ExclusionFilterable;
 
-public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener, ExhibitionFragment.Listener {
+public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
+        ExhibitionFragment.Listener, ArtworkFragment.Listener, ExhibitionDetailFragment.Listener, UserFragment.Listener {
 
     private BottomNavigationView navigationView;
 
@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = findViewById(R.id.navigationView);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -83,6 +84,11 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     @Override
     public void goToExhibitionDetail() {
         showFragment(new ExhibitionDetailFragment());
+    }
+
+    @Override
+    public void goToArtworkDetail() {
+        showFragment(new ArtworkDetailFragment());
     }
 
 }
