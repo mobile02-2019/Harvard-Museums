@@ -17,12 +17,13 @@
             android:background="@color/colorPrimary"/>
 
         <ImageView
+            android:onClick="goToFilter"
+            android:id="@+id/imageView_filter_id"
             android:layout_width="25dp"
             android:layout_height="match_parent"
             android:layout_marginRight="12.5dp"
             android:src="@drawable/icon_filter_white"
             android:layout_gravity="right"
-
             />
 
     </FrameLayout>

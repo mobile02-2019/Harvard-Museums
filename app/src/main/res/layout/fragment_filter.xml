@@ -26,6 +26,16 @@
             android:layout_gravity="center"
             android:layout_marginLeft="16dp"
             />
+
+        <ImageView
+            android:onClick="goToArtwork"
+            android:id="@+id/imageView_close_id"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="200dp"
+            android:src="@drawable/icons_filter_close" />
+
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -18,14 +18,9 @@ import com.example.andreza.harvardmuseums.model.Gallery;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class FilterFragment extends Fragment {
-
+public class FilterFragment extends android.support.v4.app.Fragment {
 
     public FilterFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -40,7 +35,6 @@ public class FilterFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_filter, container, false);
         setupRecyclerView(view);
-
         return view;
 
     }

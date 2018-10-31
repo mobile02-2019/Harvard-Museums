@@ -14,9 +14,8 @@
         <ImageView
             android:id="@+id/imageView_museumDetail_id"
             android:layout_width="match_parent"
-            android:layout_height="135dp"
-            android:src="@drawable/image_museum"
-            />
+            android:layout_height="125dp"
+            android:src="@drawable/image_museum" />
 
         <TextView
             android:id="@+id/textView_museum1_title_id"

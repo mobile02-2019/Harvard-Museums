@@ -7,11 +7,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkDetailFragment;
 import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionDetailFragment;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
+import com.example.andreza.harvardmuseums.fragment.FilterFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum1DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum2DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
@@ -19,7 +22,8 @@ import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
-        ExhibitionFragment.Listener, ArtworkFragment.Listener, ExhibitionDetailFragment.Listener, UserFragment.Listener {
+        ExhibitionFragment.Listener, ArtworkFragment.Listener, ExhibitionDetailFragment.Listener,
+        UserFragment.Listener {
 
     private BottomNavigationView navigationView;
 
@@ -91,4 +95,11 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         showFragment(new ArtworkDetailFragment());
     }
 
+    public void goToFilter(View view) {
+        showFragment(new FilterFragment());
+    }
+
+    public void goToArtwork(View view) {
+        showFragment(new ArtworkFragment());
+    }
 }
