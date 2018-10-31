@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            card_view:srcCompat="@drawable/image_exhibition_1" />
+            card_view:srcCompat="@drawable/image_exhibition" />
 
         <TextView
             android:id="@+id/titulo_obra_fav_id"

@@ -16,6 +16,11 @@ import java.util.List;
 
 public class ExhibitionFragment extends Fragment {
 
+    private Listener listener;
+
+    public interface Listener {
+        void goToExhibitionDetail();
+    }
 
     public ExhibitionFragment() {
     }
@@ -23,13 +28,13 @@ public class ExhibitionFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        listener = (Listener) context;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_exhibition, container, false);
         setupRecyclerView(view);
         return view;
@@ -37,7 +42,7 @@ public class ExhibitionFragment extends Fragment {
 
     private void setupRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_exhibition_id);
-        RecyclerViewExhibitionAdapter adapter = new RecyclerViewExhibitionAdapter(createExhibitionList());
+        RecyclerViewExhibitionAdapter adapter = new RecyclerViewExhibitionAdapter(createExhibitionList(), listener);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }

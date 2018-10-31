@@ -1,5 +1,4 @@
 package com.example.andreza.harvardmuseums.adapter;
-
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,15 +7,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
 import com.example.andreza.harvardmuseums.model.Exhibition;
 import java.util.List;
 
 public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<RecyclerViewExhibitionAdapter.ViewHolder> {
 
+    private ExhibitionFragment.Listener listener;
     private List<Exhibition> exhibitionList;
 
-    public RecyclerViewExhibitionAdapter(List<Exhibition> exhibitionList) {
+
+
+    public RecyclerViewExhibitionAdapter(List<Exhibition> exhibitionList, ExhibitionFragment.Listener listener) {
         this.exhibitionList = exhibitionList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -30,6 +34,12 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
     public void onBindViewHolder(@NonNull RecyclerViewExhibitionAdapter.ViewHolder viewHolder, int position) {
         Exhibition exhibition = exhibitionList.get(position);
         viewHolder.bind(exhibition);
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.goToExhibitionDetail();
+            }
+        });
     }
 
     @Override

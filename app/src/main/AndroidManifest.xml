@@ -7,23 +7,26 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label=""
+        android:label="HM"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashHarvardMuseum">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".HarvardMuseumsMainActivity" />
-        <activity android:name=".CadastroActivity" />
-        <activity android:name=".HomeActivity" />
-
+        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.RegisterActivity"
+            android:parentActivityName=".activity.LoginActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.LoginActivity"/>
+        </activity>
+        <activity android:name=".activity.HomeActivity">
+            android:parentActivityName=".activity.RegisterActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.RegisterActivity"/>
+        </activity>
     </application>
 
 </manifest>

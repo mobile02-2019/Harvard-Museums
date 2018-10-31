@@ -9,4 +9,5 @@
     <color name="facebook">#2f66ab</color>
     <color name="branco">#ffff</color>
     <color name="backgroundFilter">#ffff</color>
+    <color name="black">#000000</color>
 </resources>

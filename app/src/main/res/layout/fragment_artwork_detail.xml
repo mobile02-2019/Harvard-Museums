@@ -1,14 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".fragment.ArtworkDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="517dp"
+            android:src="@drawable/image_exhibition" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TITLE"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_margin="4dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ram head mug depicting a symposium"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CLASSIFICATION"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_margin="4dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vessels"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WORK TYPE"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_margin="4dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vessel"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DATE"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_margin="4dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="480-470 BCE"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PLACES"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_margin="4dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Creation Place: Europe, Greece"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PERIOD"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_margin="4dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Classical period, Early"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CULTURE"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_margin="4dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Greek"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+
+</ScrollView>
