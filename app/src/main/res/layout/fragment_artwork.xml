@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ArtworkFragment">
+    tools:context=".fragment.ArtworkFragment"
+    android:orientation="vertical"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="12.5dp"
+            android:src="@drawable/icon_filter_white"
+            android:layout_gravity="right"
+
+            />
+
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_artwork_id"
@@ -11,4 +33,4 @@
         android:layout_height="match_parent"
         />
 
-</FrameLayout>
+</LinearLayout>
