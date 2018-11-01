@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MuseumFragment">
+    tools:context=".fragment.MuseumFragment"
+    android:background="@drawable/background_museus">
 
     <ImageView
         android:id="@+id/imageView_museum1_home"
@@ -22,10 +23,10 @@
         android:src="@drawable/icon_map_home"
         app:layout_constraintBottom_toTopOf="@+id/imageView_museum3_home"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintHorizontal_bias="0.245"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.652" />
+        app:layout_constraintVertical_bias="0.558" />
 
     <ImageView
         android:id="@+id/imageView_museum2_home"
@@ -40,10 +41,10 @@
         android:src="@drawable/icon_map_home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.702"
+        app:layout_constraintHorizontal_bias="0.721"
         app:layout_constraintStart_toEndOf="@+id/imageView_museum1_home"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintVertical_bias="0.132" />
 
     <ImageView
         android:id="@+id/imageView_museum3_home"
@@ -53,11 +54,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginBottom="112dp"
         android:src="@drawable/icon_map_home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintHorizontal_bias="0.572"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
