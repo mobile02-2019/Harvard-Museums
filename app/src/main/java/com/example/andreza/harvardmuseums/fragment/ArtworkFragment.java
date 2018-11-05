@@ -1,6 +1,7 @@
 package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,13 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.Service.ServiceListener;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
 import com.example.andreza.harvardmuseums.model.Artwork;
+import com.example.andreza.harvardmuseums.model.dao.ArtworkDAO;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtworkFragment extends Fragment {
+public class ArtworkFragment extends Fragment implements ServiceListener {
 
+    private RecyclerView recyclerView;
+    private RecyclerViewArtworkAdapter adapter;
     private Listener listener;
 
     public interface Listener {
@@ -41,15 +47,19 @@ public class ArtworkFragment extends Fragment {
     }
 
     private void setupRecyclerView(View view) {
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_artwork_id);
-        RecyclerViewArtworkAdapter adapter = new RecyclerViewArtworkAdapter(createArtworkList(), listener);
+        recyclerView = view.findViewById(R.id.recyclerview_artwork_id);
+
+        final ArtworkDAO dao = new ArtworkDAO();
+
+        adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(), this), listener);
+        //RecyclerViewArtworkAdapter adapter = new RecyclerViewArtworkAdapter(createArtworkList(), listener);
         recyclerView.setAdapter(adapter);
         int columns = 2;
-        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),columns));
+        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), columns));
 
     }
 
-    private List<Artwork> createArtworkList(){
+    private List<Artwork> createArtworkList() {
         List<Artwork> artworkList = new ArrayList<>();
 
         Artwork artwork = new Artwork();
@@ -81,6 +91,17 @@ public class ArtworkFragment extends Fragment {
         artworkList.add(artwork7);
 
         return artworkList;
+    }
+
+    @Override
+    public void onSucess(Object object) {
+        List<Artwork> artworkList = (List<Artwork>) object;
+        adapter.setArtworkList(artworkList);
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        Snackbar.make(recyclerView,throwable.getMessage(),Snackbar.LENGTH_LONG).show();
     }
 
 }
