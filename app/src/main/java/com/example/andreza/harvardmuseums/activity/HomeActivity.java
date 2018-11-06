@@ -20,10 +20,14 @@ import com.example.andreza.harvardmuseums.fragment.Museum2DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
+import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
+import com.example.andreza.harvardmuseums.model.Artwork;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
         ExhibitionFragment.Listener, ArtworkFragment.Listener, ExhibitionDetailFragment.Listener,
-        UserFragment.Listener {
+        UserFragment.Listener{
+
+    public static final String TITULO = "titulo";
 
     private BottomNavigationView navigationView;
 
@@ -102,4 +106,5 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     public void goToArtwork(View view) {
         showFragment(new ArtworkFragment());
     }
+
 }

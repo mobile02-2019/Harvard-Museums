@@ -1,5 +1,6 @@
 package com.example.andreza.harvardmuseums.Service;
 
+import com.example.andreza.harvardmuseums.model.Artwork;
 import com.example.andreza.harvardmuseums.model.Exhibition;
 
 import java.util.List;
@@ -11,6 +12,9 @@ public interface API {
 
     @GET("/posts")
     Call<List<Exhibition>> getExhibibtions();
+
+    @GET("/posts")
+    Call<List<Artwork>> getArtworks();
 
 
 }

@@ -3,7 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ArtworkDetailFragment">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="5dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TITLE"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="16dp"
             android:layout_margin="4dp"
@@ -39,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CLASSIFICATION"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="16dp"
             android:layout_margin="4dp"
@@ -59,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="WORK TYPE"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="16dp"
             android:layout_margin="4dp"
@@ -79,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DATE"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="16dp"
             android:layout_margin="4dp"
@@ -99,6 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PLACES"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="16dp"
             android:layout_margin="4dp"
@@ -119,6 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PERIOD"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="16dp"
             android:layout_margin="4dp"
@@ -139,6 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CULTURE"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="16dp"
             android:layout_margin="4dp"
@@ -156,5 +172,5 @@
             />
 
     </LinearLayout>
-
+    </android.support.v7.widget.CardView>
 </ScrollView>

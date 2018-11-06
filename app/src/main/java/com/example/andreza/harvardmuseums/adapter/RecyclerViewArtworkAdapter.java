@@ -10,16 +10,24 @@ import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
 import com.example.andreza.harvardmuseums.model.Artwork;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder> {
 
     private ArtworkFragment.Listener listener;
     private List<Artwork> artworkList;
+    private Artwork artwork;
 
     public RecyclerViewArtworkAdapter(List<Artwork> artworkList, ArtworkFragment.Listener listener) {
         this.artworkList = artworkList;
         this.listener = listener;
+    }
+
+    public RecyclerViewArtworkAdapter(List<Artwork> artworkList) {
+        this.artworkList = artworkList;
+
     }
 
     @NonNull
@@ -30,8 +38,8 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewArtworkAdapter.ViewHolder viewHolder, int position) {
-        Artwork artwork = artworkList.get(position);
+    public void onBindViewHolder(@NonNull RecyclerViewArtworkAdapter.ViewHolder viewHolder, final int position) {
+        final Artwork artwork = artworkList.get(position);
         viewHolder.bind(artwork);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +54,16 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
         return artworkList.size();
     }
 
+    public void setArtworkList (List<Artwork> artworkList){
+        this.artworkList = artworkList;
+        notifyDataSetChanged();
+    }
+
+    //Criei esse método para poder usar no ArtworkDetailFragment
+    public void setArtwork (Artwork artwork){
+        this.artwork = artwork;
+        notifyDataSetChanged();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView title;
@@ -61,6 +79,7 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
         @SuppressLint("ResourceType")
         public void bind(Artwork artwork) {
             title.setText(artwork.getTitle());
+            Picasso.get().load(artwork.getPicture()).into(picture);
         }
     }
 }
