@@ -22,6 +22,7 @@ import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
 import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
 import com.example.andreza.harvardmuseums.model.Artwork;
+import com.example.andreza.harvardmuseums.model.Exhibition;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
         ExhibitionFragment.Listener, ArtworkFragment.Listener, ExhibitionDetailFragment.Listener,
@@ -47,6 +48,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
                         showFragment(fragment);
                         break;
                     case R.id.navigation_exhibition:
+                       //TODO
                         fragment = new ExhibitionFragment();
                         showFragment(fragment);
                         break;
@@ -89,22 +91,25 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
 
     }
 
-    @Override
-    public void goToExhibitionDetail() {
-        showFragment(new ExhibitionDetailFragment());
-    }
 
-    @Override
-    public void goToArtworkDetail() {
+  @Override
+    public void goToExhibitionDetail(){
+        showFragment(new ExhibitionDetailFragment());
+  }
+
+  @Override
+  public void goToArtworkDetail(){
         showFragment(new ArtworkDetailFragment());
     }
 
-    public void goToFilter(View view) {
+    public void goToFilter(){
         showFragment(new FilterFragment());
     }
 
-    public void goToArtwork(View view) {
+    public void goToArtwork(){
         showFragment(new ArtworkFragment());
     }
+
+
 
 }

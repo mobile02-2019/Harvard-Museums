@@ -7,7 +7,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
-    private static  final String BASE_URL = "https://digitalhouse.herokuapp.com/";
+
+    private static final String BASE_URL = "https://api.harvardartmuseums.org/";
+
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofit(){
@@ -25,6 +27,13 @@ public class RetrofitService {
 
         }
         return retrofit;
+
+    }
+
+
+    public static API getAPI(){
+
+        return getRetrofit().create(API.class);
     }
 
     public static API getPostApi(){

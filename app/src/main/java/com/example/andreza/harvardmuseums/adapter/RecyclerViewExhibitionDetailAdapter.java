@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionDetailFragment;
 import com.example.andreza.harvardmuseums.model.Exhibition;
 import java.util.List;
