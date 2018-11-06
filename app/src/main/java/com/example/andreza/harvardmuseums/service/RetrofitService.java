@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
 
-    private static final String BASE_URL = "https://api.harvardartmuseums.org/RESOURCE_TYPE?apikey=e1a9eef62eef24833db25f0491f893c7";
+    private static final String BASE_URL = "https://api.harvardartmuseums.org/";
 
     private static Retrofit retrofit;
 
@@ -27,5 +27,12 @@ public class RetrofitService {
 
         }
         return retrofit;
+
+    }
+
+
+    public static API getAPI(){
+
+        return getRetrofit().create(API.class);
     }
 }

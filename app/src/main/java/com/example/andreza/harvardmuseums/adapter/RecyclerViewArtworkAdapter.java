@@ -12,6 +12,7 @@ import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
 import com.example.andreza.harvardmuseums.model.Artwork;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder> {
@@ -23,11 +24,6 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
     public RecyclerViewArtworkAdapter(List<Artwork> artworkList, ArtworkFragment.Listener listener) {
         this.artworkList = artworkList;
         this.listener = listener;
-    }
-
-    public RecyclerViewArtworkAdapter(List<Artwork> artworkList) {
-        this.artworkList = artworkList;
-
     }
 
     @NonNull

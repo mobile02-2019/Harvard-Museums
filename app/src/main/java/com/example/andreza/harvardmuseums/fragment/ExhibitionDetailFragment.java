@@ -15,20 +15,25 @@ import java.util.List;
 
 public class ExhibitionDetailFragment extends Fragment {
 
-    private Listener listener;
+   private Listener listener;
 
-    public interface Listener {
-        void goToArtworkDetail();
+
+   public interface Listener{
+       void goToArtworkDetail();
+
+   }
+
+   public ExhibitionDetailFragment() {
+
     }
 
-    public ExhibitionDetailFragment() {
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.listener = (Listener) context;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

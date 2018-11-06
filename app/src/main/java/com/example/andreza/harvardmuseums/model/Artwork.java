@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 public class Artwork implements Serializable {
 
-    @SerializedName("title")
+    @SerializedName("copyright")
     private String title;
-    @SerializedName("imageUrl")
+    @SerializedName("baseimageurl")
     private String picture; //Mudei aqui de ImageView para String para poder utilizar a URL
 
     public String getPicture() {

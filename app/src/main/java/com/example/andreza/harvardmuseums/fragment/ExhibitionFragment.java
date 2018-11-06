@@ -1,7 +1,11 @@
 package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,41 +15,47 @@ import android.view.ViewGroup;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewExhibitionAdapter;
 import com.example.andreza.harvardmuseums.model.Exhibition;
+import com.example.andreza.harvardmuseums.model.dao.ExhibitionDAO;
+import com.example.andreza.harvardmuseums.service.ServiceListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExhibitionFragment extends Fragment {
+public class ExhibitionFragment extends Fragment  {
+
 
     private Listener listener;
 
-    public interface Listener {
+    public interface Listener{
         void goToExhibitionDetail();
-    }
 
-    public ExhibitionFragment() {
+
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Context context){
         super.onAttach(context);
         listener = (Listener) context;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState){
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-        View view = inflater.inflate(R.layout.fragment_exhibition, container, false);
-        setupRecyclerView(view);
+        View view = inflater.inflate(R.layout.fragment_exhibition,container,false);
+        setUpRecyclerView(view);
         return view;
+
+
     }
 
-    private void setupRecyclerView(View view) {
+    private void setUpRecyclerView(View view){
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_exhibition_id);
-        RecyclerViewExhibitionAdapter adapter = new RecyclerViewExhibitionAdapter(createExhibitionList(), listener);
+        RecyclerViewExhibitionAdapter adapter = new RecyclerViewExhibitionAdapter(createExhibitionList(),listener);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
+
+
 
     private List<Exhibition> createExhibitionList(){
         List<Exhibition> exhibitionList = new ArrayList<>();
@@ -68,4 +78,12 @@ public class ExhibitionFragment extends Fragment {
         return exhibitionList;
     }
 
-}
+    }
+
+
+
+
+
+
+
+

@@ -9,19 +9,24 @@ import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
 import com.example.andreza.harvardmuseums.model.Exhibition;
+import com.example.andreza.harvardmuseums.service.ServiceListener;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<RecyclerViewExhibitionAdapter.ViewHolder> {
 
+
     private ExhibitionFragment.Listener listener;
     private List<Exhibition> exhibitionList;
-
-
 
     public RecyclerViewExhibitionAdapter(List<Exhibition> exhibitionList, ExhibitionFragment.Listener listener) {
         this.exhibitionList = exhibitionList;
         this.listener = listener;
+
     }
+
+
 
     @NonNull
     @Override
@@ -32,7 +37,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewExhibitionAdapter.ViewHolder viewHolder, int position) {
-        Exhibition exhibition = exhibitionList.get(position);
+         Exhibition exhibition = exhibitionList.get(position);
         viewHolder.bind(exhibition);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,22 +52,29 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
         return exhibitionList.size();
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
         private TextView date;
+        private ImageView imagem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textView_nameExhibition_id);
             date = itemView.findViewById(R.id.textView_dateExhibition_id);
+            imagem = itemView.findViewById(R.id.imageView_exhibition_id);
+
         }
 
         public void bind (Exhibition exhibition) {
             name.setText(exhibition.getTitle());
             date.setText(exhibition.getDate());
+            Picasso.get().load(exhibition.getImage()).into(imagem);
         }
 
-    }
 
+
+    }
 }

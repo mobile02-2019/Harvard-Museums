@@ -1,7 +1,8 @@
-package com.example.andreza.harvardmuseums.Service;
+package com.example.andreza.harvardmuseums.service;
 
 import com.example.andreza.harvardmuseums.model.Artwork;
 import com.example.andreza.harvardmuseums.model.Exhibition;
+import com.example.andreza.harvardmuseums.model.MuseumResponse;
 
 import java.util.List;
 
@@ -13,8 +14,8 @@ public interface API {
     @GET("/posts")
     Call<List<Exhibition>> getExhibibtions();
 
-    @GET("/posts")
-    Call<List<Artwork>> getArtworks();
+    @GET("/image"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3")
+    Call<MuseumResponse> getArtworks();
 
 
 }
