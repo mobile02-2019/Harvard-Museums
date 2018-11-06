@@ -38,8 +38,8 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewArtworkAdapter.ViewHolder viewHolder, int position) {
-        Artwork artwork = artworkList.get(position);
+    public void onBindViewHolder(@NonNull RecyclerViewArtworkAdapter.ViewHolder viewHolder, final int position) {
+        final Artwork artwork = artworkList.get(position);
         viewHolder.bind(artwork);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

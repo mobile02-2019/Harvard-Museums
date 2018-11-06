@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.Service.ServiceListener;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
@@ -14,11 +16,14 @@ import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
 import com.example.andreza.harvardmuseums.model.Artwork;
 import com.example.andreza.harvardmuseums.model.dao.ArtworkDAO;
 
-public class ArtworkDetailFragment extends Fragment implements ServiceListener {
+public class ArtworkDetailFragment extends Fragment implements ArtworkFragment.Listener {
 
     private RecyclerViewArtworkAdapter adapter;
     private RecyclerView recyclerView;
     private ComunicacaoArtwork comunicacaoArtwork;
+    private TextView titulo;
+    private ArtworkDAO dao = new ArtworkDAO();
+    private ServiceListener listener;
 
     public ArtworkDetailFragment() {
     }
@@ -26,7 +31,7 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.comunicacaoArtwork = (ComunicacaoArtwork) context;
+//        this.comunicacaoArtwork = (ComunicacaoArtwork) context;
     }
 
     @Override
@@ -34,37 +39,17 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_artwork_detail, container, false);
 
-        setupDAO();
-
-        Bundle bundle = getArguments();
+       // Bundle bundle = getArguments();
 
 
-        comunicacaoArtwork.enviarMensagens();
+        //comunicacaoArtwork.enviarMensagens();
 
         return view;
     }
 
-    public void setupDAO(){
-
-        final ArtworkDAO dao = new ArtworkDAO();
-
-        dao.getArtList(getContext(),this);
-
-        //recyclerView = view.findViewById(R.id.recyclerview_artwork_id);
-        //adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(),this));
-
-        //recyclerView.setAdapter(adapter);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-    }
 
     @Override
-    public void onSucess(Object object) {
-        Artwork artwork = (Artwork) object;
-        //adapter.setArtwork(artwork);
-    }
-
-    @Override
-    public void onError(Throwable throwable) {
-        Snackbar.make(recyclerView,throwable.getMessage(),Snackbar.LENGTH_LONG).show();
+    public void goToArtworkDetail() {
+        titulo.setText(dao.getArtList(getContext(),listener).get(0).getTitle());
     }
 }

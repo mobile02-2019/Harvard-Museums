@@ -25,7 +25,7 @@ import com.example.andreza.harvardmuseums.model.Artwork;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
         ExhibitionFragment.Listener, ArtworkFragment.Listener, ExhibitionDetailFragment.Listener,
-        UserFragment.Listener, ComunicacaoArtwork {
+        UserFragment.Listener{
 
     public static final String TITULO = "titulo";
 
@@ -107,12 +107,4 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         showFragment(new ArtworkFragment());
     }
 
-    @Override
-    public void enviarMensagens(Artwork artwork) {
-        ArtworkDetailFragment detailFragment = new ArtworkDetailFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putString(TITULO,"titulo");
-        detailFragment.setArguments(bundle);
-    }
 }
