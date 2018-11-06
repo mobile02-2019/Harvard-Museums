@@ -1,4 +1,4 @@
-package com.example.andreza.harvardmuseums.Service;
+package com.example.andreza.harvardmuseums.service;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,4 +1,4 @@
-package com.example.andreza.harvardmuseums.Service;
+package com.example.andreza.harvardmuseums.service;
 
 import com.example.andreza.harvardmuseums.model.Artwork;
 import com.example.andreza.harvardmuseums.model.Exhibition;

@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.andreza.harvardmuseums.R;
-import com.example.andreza.harvardmuseums.Service.ServiceListener;
+import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
 import com.example.andreza.harvardmuseums.model.Artwork;
 import com.example.andreza.harvardmuseums.model.dao.ArtworkDAO;

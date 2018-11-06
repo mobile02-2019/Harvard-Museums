@@ -1,7 +1,6 @@
 package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.andreza.harvardmuseums.R;
-import com.example.andreza.harvardmuseums.Service.ServiceListener;
+import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
 import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
-import com.example.andreza.harvardmuseums.model.Artwork;
 import com.example.andreza.harvardmuseums.model.dao.ArtworkDAO;
 
 public class ArtworkDetailFragment extends Fragment implements ArtworkFragment.Listener {

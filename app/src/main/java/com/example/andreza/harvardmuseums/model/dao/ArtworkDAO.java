@@ -2,8 +2,8 @@ package com.example.andreza.harvardmuseums.model.dao;
 
 import android.content.Context;
 
-import com.example.andreza.harvardmuseums.Service.RetrofitService;
-import com.example.andreza.harvardmuseums.Service.ServiceListener;
+import com.example.andreza.harvardmuseums.service.RetrofitService;
+import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.model.Artwork;
 
 import java.util.ArrayList;
@@ -12,7 +12,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class ArtworkDAO {
 
