@@ -1,7 +1,7 @@
-package com.example.andreza.harvardmuseums.service;
+package com.example.andreza.harvardmuseums.Service;
 
 public interface ServiceListener {
     void onSucess(Object object);
-    void onError(Throwable throwable);
 
+    void onError(Throwable throwable);
 }
