@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
 import com.example.andreza.harvardmuseums.model.Exhibition;
-import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,7 +24,6 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
         this.listener = listener;
 
     }
-
 
 
     @NonNull
@@ -45,6 +43,11 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
                 listener.goToExhibitionDetail();
             }
         });
+    }
+
+    public void setExhibitionList (List<Exhibition> exhibitionList){
+        this.exhibitionList = exhibitionList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -70,7 +73,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
 
         public void bind (Exhibition exhibition) {
             name.setText(exhibition.getTitle());
-            date.setText(exhibition.getDate());
+            date.setText(exhibition.getBeginDate());
             Picasso.get().load(exhibition.getImage()).into(imagem);
         }
 

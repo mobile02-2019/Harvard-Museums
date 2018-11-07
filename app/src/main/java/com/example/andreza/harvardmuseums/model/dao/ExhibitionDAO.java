@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.util.Log;
 
 import com.example.andreza.harvardmuseums.model.Exhibition;
+import com.example.andreza.harvardmuseums.model.ExhibitionResponse;
 import com.example.andreza.harvardmuseums.service.RetrofitService;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.google.gson.Gson;
@@ -24,15 +25,15 @@ import retrofit2.Response;
 public class ExhibitionDAO {
 
     public List<Exhibition> getExhibitionList(Context context, final ServiceListener listener){
-        List<Exhibition> exhibitionList = new ArrayList<>();
 
-        Call<List<Exhibition>> call = RetrofitService.getAPI().getExhibibtions();
 
-        call.enqueue(new Callback<List<Exhibition>>() {
+        Call<ExhibitionResponse> call = RetrofitService.getAPI().getExhibition();
+
+        call.enqueue(new Callback<ExhibitionResponse>() {
 
 
             @Override
-            public void onResponse(Call<List<Exhibition>> call, Response<List<Exhibition>> response) {
+            public void onResponse(Call<ExhibitionResponse> call, Response <ExhibitionResponse> response) {
                 if(response.body() != null){
                     listener.onSucess(response.body());
                 }
@@ -40,14 +41,14 @@ public class ExhibitionDAO {
             }
 
             @Override
-            public void onFailure(Call<List<Exhibition>> call, Throwable t) {
+            public void onFailure(Call<ExhibitionResponse> call, Throwable t) {
                 listener.onError(t);
 
             }
         });
-        return exhibitionList;
+        return new ArrayList<>();
     }
-
+/*
     private List<Exhibition> getLocalExhibition(Context context){
         try{
             AssetManager manager = context.getAssets();
@@ -66,5 +67,5 @@ public class ExhibitionDAO {
             Log.e("ExhibitionDAO","Erro ao ler arquivo");
         }
         return new ArrayList<>();
-    }
+    }*/
 }

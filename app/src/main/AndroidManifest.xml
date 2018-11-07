@@ -24,7 +24,6 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.LoginActivity"/>
         </activity>
         <activity android:name=".activity.HomeActivity">
-            android:parentActivityName=".activity.RegisterActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.RegisterActivity"/>
         </activity>
     </application>

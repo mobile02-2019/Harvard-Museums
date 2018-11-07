@@ -1,11 +1,15 @@
 package com.example.andreza.harvardmuseums.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Exhibition implements Serializable {
 
+    @SerializedName("title")
     private String title;
-    private String date;
+    @SerializedName("begindate")
+    private String beginDate;
     private String local;
     private String description;
     private String image;
@@ -27,12 +31,12 @@ public class Exhibition implements Serializable {
         this.title = title;
     }
 
-    public String getDate() {
-        return date;
+    public String getBeginDate() {
+        return beginDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBeginDate(String beginDate) {
+        this.beginDate = beginDate;
     }
 
     public String getLocal() {
