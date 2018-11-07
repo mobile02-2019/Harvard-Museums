@@ -8,7 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
-import com.example.andreza.harvardmuseums.model.Exhibition;
+import com.example.andreza.harvardmuseums.model.ExhibitionResponse;
+import com.example.andreza.harvardmuseums.pojo.Exhibition;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -74,7 +75,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
         public void bind (Exhibition exhibition) {
             name.setText(exhibition.getTitle());
             date.setText(exhibition.getBeginDate());
-            Picasso.get().load(exhibition.getImage()).into(imagem);
+            Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
         }
 
 

@@ -1,11 +1,7 @@
 package com.example.andreza.harvardmuseums.service;
 
-import com.example.andreza.harvardmuseums.model.Artwork;
-import com.example.andreza.harvardmuseums.model.Exhibition;
 import com.example.andreza.harvardmuseums.model.ExhibitionResponse;
 import com.example.andreza.harvardmuseums.model.MuseumResponse;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

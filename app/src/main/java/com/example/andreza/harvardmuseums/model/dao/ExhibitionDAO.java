@@ -1,21 +1,13 @@
 package com.example.andreza.harvardmuseums.model.dao;
 
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.util.Log;
 
-import com.example.andreza.harvardmuseums.model.Exhibition;
+import com.example.andreza.harvardmuseums.pojo.Exhibition;
 import com.example.andreza.harvardmuseums.model.ExhibitionResponse;
 import com.example.andreza.harvardmuseums.service.RetrofitService;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
-import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;

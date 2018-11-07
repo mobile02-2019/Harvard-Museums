@@ -9,10 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
-import com.example.andreza.harvardmuseums.model.Artwork;
+import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder> {

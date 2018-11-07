@@ -1,8 +1,10 @@
-package com.example.andreza.harvardmuseums.model;
+package com.example.andreza.harvardmuseums.pojo;
 
+import com.example.andreza.harvardmuseums.pojo.ImageExhibition;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Exhibition implements Serializable {
 
@@ -12,7 +14,9 @@ public class Exhibition implements Serializable {
     private String beginDate;
     private String local;
     private String description;
-    private String image;
+    @SerializedName("images")
+    private List<ImageExhibition> image;
+
     private int imagemDetalhes;
 
     public int getImagemDetalhes() {
@@ -55,11 +59,12 @@ public class Exhibition implements Serializable {
         this.description = description;
     }
 
-    public String getImage() {
+
+    public List<ImageExhibition> getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(List<ImageExhibition> image) {
         this.image = image;
     }
 }

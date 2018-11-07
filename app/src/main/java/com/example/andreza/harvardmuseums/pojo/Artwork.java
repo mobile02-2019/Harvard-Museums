@@ -1,4 +1,4 @@
-package com.example.andreza.harvardmuseums.model;
+package com.example.andreza.harvardmuseums.pojo;
 
 import android.widget.ImageView;
 

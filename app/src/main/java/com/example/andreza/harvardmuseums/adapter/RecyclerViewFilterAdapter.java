@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.andreza.harvardmuseums.R;
-import com.example.andreza.harvardmuseums.model.Gallery;
+import com.example.andreza.harvardmuseums.pojo.Gallery;
 
 import java.util.List;
 

@@ -1,5 +1,7 @@
 package com.example.andreza.harvardmuseums.model;
 
+import com.example.andreza.harvardmuseums.pojo.Artwork;
+
 import java.util.List;
 
 public class MuseumResponse {

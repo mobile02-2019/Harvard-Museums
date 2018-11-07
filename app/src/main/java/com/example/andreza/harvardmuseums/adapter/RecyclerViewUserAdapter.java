@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
-import com.example.andreza.harvardmuseums.model.Artwork;
+import com.example.andreza.harvardmuseums.pojo.Artwork;
 
 import java.util.List;
 

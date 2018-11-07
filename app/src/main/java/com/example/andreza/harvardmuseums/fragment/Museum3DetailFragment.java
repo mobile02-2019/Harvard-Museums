@@ -1,16 +1,13 @@
 package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
-import com.example.andreza.harvardmuseums.model.Museum;
-import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
+import com.example.andreza.harvardmuseums.pojo.Museum;
 
 public class Museum3DetailFragment extends Fragment {
 

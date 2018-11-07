@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.andreza.harvardmuseums.model.MuseumResponse;
 import com.example.andreza.harvardmuseums.service.RetrofitService;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
-import com.example.andreza.harvardmuseums.model.Artwork;
+import com.example.andreza.harvardmuseums.pojo.Artwork;
 
 import java.util.ArrayList;
 import java.util.List;
