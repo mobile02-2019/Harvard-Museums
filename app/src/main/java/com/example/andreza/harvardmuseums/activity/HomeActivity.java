@@ -30,6 +30,8 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
 
     private BottomNavigationView navigationView;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
