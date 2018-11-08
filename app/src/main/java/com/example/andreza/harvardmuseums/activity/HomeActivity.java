@@ -19,12 +19,14 @@ import com.example.andreza.harvardmuseums.fragment.Museum2DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
+import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
         ExhibitionFragment.Listener, ArtworkFragment.Listener, ExhibitionDetailFragment.Listener,
-        UserFragment.Listener{
+        UserFragment.Listener {
 
     public static final String TITULO = "titulo";
+    public static final String ID_ARTWORK = "id";
 
     private BottomNavigationView navigationView;
 
@@ -107,5 +109,12 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     }
 
 
+    /*@Override
+    public void enviarMensagens(int artworkID) {
+        ArtworkDetailFragment detailFragment = new ArtworkDetailFragment();
 
+        Bundle bundle = new Bundle();
+        bundle.putInt(ID_ARTWORK, artworkID);
+        detailFragment.setArguments(bundle);
+    }*/
 }

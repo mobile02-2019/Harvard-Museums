@@ -2,7 +2,7 @@ package com.example.andreza.harvardmuseums.model.dao;
 
 import android.content.Context;
 
-import com.example.andreza.harvardmuseums.model.MuseumResponse;
+import com.example.andreza.harvardmuseums.model.ArtworkResponse;
 import com.example.andreza.harvardmuseums.service.RetrofitService;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
@@ -18,23 +18,43 @@ public class ArtworkDAO {
 
     public List<Artwork> getArtList (Context context, final ServiceListener listener){
 
-        Call<MuseumResponse> call = RetrofitService.getAPI().getArtworks();
+        Call<ArtworkResponse> call = RetrofitService.getAPI().getArtworks();
 
-        call.enqueue(new Callback<MuseumResponse>() {
+        call.enqueue(new Callback<ArtworkResponse>() {
             @Override
-            public void onResponse(Call<MuseumResponse> call, Response<MuseumResponse> response) {
+            public void onResponse(Call<ArtworkResponse> call, Response<ArtworkResponse> response) {
                 if (response.body() != null){
                     listener.onSucess(response.body().getRecords());
                 }
             }
 
             @Override
-            public void onFailure(Call<MuseumResponse> call, Throwable t) {
+            public void onFailure(Call<ArtworkResponse> call, Throwable t) {
                     listener.onError(t);
             }
         });
 
         return new ArrayList<>();
+    }
+    public Artwork getArtDetailList (Context context, final ServiceListener listener){
+
+        Call<ArtworkResponse> call = RetrofitService.getAPI().getArtworks();
+
+        call.enqueue(new Callback<ArtworkResponse>() {
+            @Override
+            public void onResponse(Call<ArtworkResponse> call, Response<ArtworkResponse> response) {
+                if (response.body() != null){
+                    listener.onSucess(response.body().getRecords());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArtworkResponse> call, Throwable t) {
+                listener.onError(t);
+            }
+        });
+
+        return new Artwork();
     }
 
 }

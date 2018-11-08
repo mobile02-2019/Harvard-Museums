@@ -9,12 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
+import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder> {
+public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder>{
 
     private ArtworkFragment.Listener listener;
     private List<Artwork> artworkList;
@@ -73,8 +74,12 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
 
         @SuppressLint("ResourceType")
         public void bind(Artwork artwork) {
+            final int id = artwork.getId();
             title.setText(artwork.getTitle());
-            Picasso.get().load(artwork.getPicture()).into(picture);
+            if (artwork.getPicture() != null) {
+                Picasso.get().load(artwork.getPicture()).into(picture);
+            }
+
         }
     }
 }

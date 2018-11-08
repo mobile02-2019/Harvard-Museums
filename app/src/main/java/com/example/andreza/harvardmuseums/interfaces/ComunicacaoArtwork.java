@@ -4,5 +4,5 @@ import com.example.andreza.harvardmuseums.pojo.Artwork;
 
 public interface ComunicacaoArtwork {
 
-    void enviarMensagens (Artwork artwork);
+    void enviarMensagens (int artworkID);
 }

@@ -4,7 +4,7 @@ import com.example.andreza.harvardmuseums.pojo.Artwork;
 
 import java.util.List;
 
-public class MuseumResponse {
+public class ArtworkResponse {
     private List<Artwork> records;
 
     public List<Artwork> getRecords() {

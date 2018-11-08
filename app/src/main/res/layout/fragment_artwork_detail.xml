@@ -20,11 +20,13 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/image_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="480dp"
             android:src="@drawable/image_exhibition" />
 
         <TextView
+            android:id="@+id/title_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TITLE"
@@ -36,6 +38,7 @@
             />
 
         <TextView
+            android:id="@+id/text_title_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ram head mug depicting a symposium"
@@ -46,6 +49,7 @@
             />
 
         <TextView
+            android:id="@+id/classification_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CLASSIFICATION"
@@ -57,6 +61,7 @@
             />
 
         <TextView
+            android:id="@+id/text_classification_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Vessels"
@@ -67,6 +72,7 @@
             />
 
         <TextView
+            android:id="@+id/worktype_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="WORK TYPE"
@@ -78,6 +84,7 @@
             />
 
         <TextView
+            android:id="@+id/text_worktype_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Vessel"
@@ -88,6 +95,7 @@
             />
 
         <TextView
+            android:id="@+id/date_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DATE"
@@ -99,6 +107,7 @@
             />
 
         <TextView
+            android:id="@+id/text_date_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="480-470 BCE"
@@ -109,6 +118,7 @@
             />
 
         <TextView
+            android:id="@+id/places_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PLACES"
@@ -120,6 +130,7 @@
             />
 
         <TextView
+            android:id="@+id/text_places_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Creation Place: Europe, Greece"
@@ -130,6 +141,7 @@
             />
 
         <TextView
+            android:id="@+id/period_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PERIOD"
@@ -141,6 +153,7 @@
             />
 
         <TextView
+            android:id="@+id/text_period_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Classical period, Early"
@@ -151,6 +164,7 @@
             />
 
         <TextView
+            android:id="@+id/culture_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CULTURE"
@@ -162,6 +176,7 @@
             />
 
         <TextView
+            android:id="@+id/text_culture_detail_artwork_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Greek"
