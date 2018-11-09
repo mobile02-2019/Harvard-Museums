@@ -49,28 +49,25 @@ public class LoginActivity extends AppCompatActivity {
         loginFacebook.setReadPermissions("email");
         callbackManager = CallbackManager.Factory.create();
         loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Intent intent = new Intent(loginFacebook.getContext(),HomeActivity.class);
-                startActivity(intent);
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Intent intent = new Intent(loginFacebook.getContext(), HomeActivity.class);
+                        startActivity(intent);
 
-            }
+                    }
 
-            @Override
-            public void onCancel() {
-
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
+                    @Override
+                    public void onCancel() {
 
 
-            }
-        });
+                    }
 
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        final boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+                    @Override
+                    public void onError(FacebookException error) {
+
+
+                    }
+                });
 
         loginFacebook.setOnClickListener(new OnClickListener() {
             @Override
