@@ -75,7 +75,8 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
         public void bind (Exhibition exhibition) {
             name.setText(exhibition.getTitle());
             date.setText(exhibition.getBeginDate());
-            Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
+            //TODO se não deixar comentado aqui a exibição crasha
+//            Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
         }
 
 
