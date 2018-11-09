@@ -12,18 +12,71 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.example.andreza.harvardmuseums.User;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.andreza.harvardmuseums.BancoDeDados;
 import com.example.andreza.harvardmuseums.R;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookActivity;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
 
     public static final String CHAVE_EMAIL = "chave_email";
+    private LoginButton loginFacebook;
+    private CallbackManager callbackManager;
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        callbackManager.onActivityResult(requestCode,resultCode,data);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginFacebook = findViewById(R.id.login_facebook);
+        loginFacebook.setReadPermissions("email");
+        callbackManager = CallbackManager.Factory.create();
+        loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Intent intent = new Intent(loginFacebook.getContext(), HomeActivity.class);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+
+
+                    }
+                });
+
+        loginFacebook.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+
+            }
+        });
+
         getSupportActionBar().hide();
 
         TextView register = findViewById(R.id.register_now_id);
@@ -34,6 +87,9 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
 
         Button loginClicado = findViewById(R.id.login_button);
         loginClicado.setOnClickListener(new OnClickListener() {
@@ -82,5 +138,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
     }
+
+
 
 }

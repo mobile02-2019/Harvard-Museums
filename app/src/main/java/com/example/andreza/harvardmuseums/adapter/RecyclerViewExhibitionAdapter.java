@@ -61,22 +61,27 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
-        private TextView date;
-        private ImageView imagem;
+        private TextView begindate;
+        private TextView endDate;
+
+
+      //  private ImageView imagem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textView_nameExhibition_id);
-            date = itemView.findViewById(R.id.textView_dateExhibition_id);
-            imagem = itemView.findViewById(R.id.imageView_exhibition_id);
+            begindate = itemView.findViewById(R.id.begin_date_set);
+            endDate = itemView.findViewById(R.id.end_date_set);
+          //  imagem = itemView.findViewById(R.id.imageView_exhibition_id);
 
         }
 
         public void bind (Exhibition exhibition) {
             name.setText(exhibition.getTitle());
-            date.setText(exhibition.getBeginDate());
-            //TODO se não deixar comentado aqui a exibição crasha
-//            Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
+           begindate.setText(exhibition.getBeginDate());
+           endDate.setText(exhibition.getEndDate());
+           // Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
+
         }
 
 

@@ -12,6 +12,8 @@ public class Exhibition implements Serializable {
     private String title;
     @SerializedName("begindate")
     private String beginDate;
+    @SerializedName( "enddate")
+    private String endDate;
     private String local;
     private String description;
     @SerializedName("images")
@@ -66,5 +68,13 @@ public class Exhibition implements Serializable {
 
     public void setImage(List<ImageExhibition> image) {
         this.image = image;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }
