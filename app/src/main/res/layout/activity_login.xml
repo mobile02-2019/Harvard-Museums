@@ -116,18 +116,15 @@
 
 
             <com.facebook.login.widget.LoginButton
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="345dp"
-                android:layout_height="40dp"
+                android:id="@+id/login_facebook"
+                android:layout_width="340dp"
+                android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/facebook"
-                android:drawableLeft="@drawable/ic_facebook"
-                android:paddingLeft="17dp"
-                android:text="login with facebook"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:textSize="18sp"
-                android:textStyle="normal"
-                android:textAllCaps="true"
-                android:id="@+id/login_facebook" />
+                android:paddingLeft="17dp"
+                />
 
         </LinearLayout>
     </ScrollView>
