@@ -1,14 +1,24 @@
-package com.example.andreza.harvardmuseums.model;
+package com.example.andreza.harvardmuseums.pojo;
+
+import com.example.andreza.harvardmuseums.pojo.ImageExhibition;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Exhibition implements Serializable {
 
+    @SerializedName("title")
     private String title;
-    private String date;
+    @SerializedName("begindate")
+    private String beginDate;
+    @SerializedName( "enddate")
+    private String endDate;
     private String local;
     private String description;
-    private String image;
+    @SerializedName("images")
+    private List<ImageExhibition> image;
+
     private int imagemDetalhes;
 
     public int getImagemDetalhes() {
@@ -27,12 +37,12 @@ public class Exhibition implements Serializable {
         this.title = title;
     }
 
-    public String getDate() {
-        return date;
+    public String getBeginDate() {
+        return beginDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBeginDate(String beginDate) {
+        this.beginDate = beginDate;
     }
 
     public String getLocal() {
@@ -51,11 +61,20 @@ public class Exhibition implements Serializable {
         this.description = description;
     }
 
-    public String getImage() {
+
+    public List<ImageExhibition> getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(List<ImageExhibition> image) {
         this.image = image;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }

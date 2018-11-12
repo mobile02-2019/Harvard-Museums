@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewUserAdapter;
-import com.example.andreza.harvardmuseums.model.Artwork;
+import com.example.andreza.harvardmuseums.pojo.Artwork;
 import java.util.ArrayList;
 import java.util.List;
 

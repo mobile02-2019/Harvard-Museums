@@ -27,10 +27,11 @@
         android:layout_height="121dp"
         app:srcCompat="@drawable/logo_dark" />
 
+    <!--//TODO Altura do ScrollView estava 397 dp-->
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="397dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -84,7 +85,7 @@
                 android:text="@string/Login"
                 android:textColor="@color/branco"
                 android:textStyle="bold"
-                android:onClick="loginClicado"/>
+                />
 
             <TextView
                 android:id="@+id/register_now_id"
@@ -105,19 +106,25 @@
 
             <Button
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="345dp"
+                android:layout_height="40dp"
                 android:backgroundTint="@color/google"
+                android:layout_gravity="center_horizontal"
                 android:drawableLeft="@drawable/ic_google"
-                android:text="login with google" />
+                android:text="login with google"
+                android:textSize="18sp"/>
 
-            <Button
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/facebook"
-                android:drawableLeft="@drawable/ic_facebook"
-                android:text="login with facebook" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_facebook"
+                android:layout_width="340dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:textSize="18sp"
+                android:paddingLeft="17dp"
+                />
 
         </LinearLayout>
     </ScrollView>

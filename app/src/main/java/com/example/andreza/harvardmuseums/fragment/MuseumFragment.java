@@ -31,21 +31,21 @@ public class MuseumFragment extends Fragment {
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_museum, container, false);
-        ImageView iconMap1 = view.findViewById(R.id.imageView_museum1_home);
+        ImageView iconMap1 = view.findViewById(R.id.imageView_busch_id);
         iconMap1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.goToMuseumDetail(1);
             }
         });
-        ImageView iconMap2 = view.findViewById(R.id.imageView_museum2_home);
+        ImageView iconMap2 = view.findViewById(R.id.imageView_arthur_id);
         iconMap2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.goToMuseumDetail(2);
             }
         });
-        ImageView iconMap3 = view.findViewById(R.id.imageView_museum3_home);
+        ImageView iconMap3 = view.findViewById(R.id.imageView_fogg_id);
         iconMap3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

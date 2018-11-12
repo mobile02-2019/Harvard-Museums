@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkDetailFragment;
@@ -21,16 +20,17 @@ import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
 import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
-import com.example.andreza.harvardmuseums.model.Artwork;
-import com.example.andreza.harvardmuseums.model.Exhibition;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
         ExhibitionFragment.Listener, ArtworkFragment.Listener, ExhibitionDetailFragment.Listener,
-        UserFragment.Listener{
+        UserFragment.Listener {
 
     public static final String TITULO = "titulo";
+    public static final String ID_ARTWORK = "id";
 
     private BottomNavigationView navigationView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,5 +111,12 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     }
 
 
+    /*@Override
+    public void enviarMensagens(int artworkID) {
+        ArtworkDetailFragment detailFragment = new ArtworkDetailFragment();
 
+        Bundle bundle = new Bundle();
+        bundle.putInt(ID_ARTWORK, artworkID);
+        detailFragment.setArguments(bundle);
+    }*/
 }
