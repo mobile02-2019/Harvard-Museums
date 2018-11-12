@@ -12,8 +12,8 @@ public class RetrofitService {
 
     private static Retrofit retrofit;
 
-    public static Retrofit getRetrofit() {
-        if (retrofit == null) {
+    public static Retrofit getRetrofit(){
+        if(retrofit == null){
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
             httpClient.connectTimeout(30, TimeUnit.SECONDS);
             httpClient.readTimeout(30, TimeUnit.SECONDS);
@@ -35,4 +35,11 @@ public class RetrofitService {
 
         return getRetrofit().create(API.class);
     }
+
+    public static API getPostApi(){
+
+        return getRetrofit().create(API.class);
+    }
+
+
 }
