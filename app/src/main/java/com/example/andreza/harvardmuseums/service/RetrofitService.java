@@ -35,11 +35,5 @@ public class RetrofitService {
 
         return getRetrofit().create(API.class);
     }
-
-    public static API getPostApi(){
-
-        return getRetrofit().create(API.class);
-    }
-
-
+    
 }
