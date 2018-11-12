@@ -1,10 +1,15 @@
 package com.example.andreza.harvardmuseums.activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
@@ -21,11 +26,18 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookActivity;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Array;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
@@ -37,26 +49,30 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
         callbackManager.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode,resultCode,data);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginFacebook = findViewById(R.id.login_facebook);
+
+        loginFacebook = (LoginButton) findViewById(R.id.login_facebook);
         loginFacebook.setReadPermissions("email");
+
         callbackManager = CallbackManager.Factory.create();
         loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
+
                         Intent intent = new Intent(loginFacebook.getContext(), HomeActivity.class);
                         startActivity(intent);
 
                     }
 
-                    @Override
+            @Override
                     public void onCancel() {
 
 
@@ -65,17 +81,16 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onError(FacebookException error) {
 
-
                     }
                 });
 
-        loginFacebook.setOnClickListener(new OnClickListener() {
+        /*loginFacebook.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 
 
             }
-        });
+        });*/
 
         getSupportActionBar().hide();
 
@@ -132,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     public void registerNow(View view) {

@@ -27,10 +27,11 @@
         android:layout_height="121dp"
         app:srcCompat="@drawable/logo_dark" />
 
+    <!--//TODO Altura do ScrollView estava 397 dp-->
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="397dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -105,20 +106,27 @@
 
             <Button
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="500dp"
+                android:layout_width="345dp"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/google"
+                android:layout_gravity="center_horizontal"
                 android:drawableLeft="@drawable/ic_google"
-                android:text="login with google" />
+                android:text="login with google"
+                android:textSize="18sp"/>
 
 
             <com.facebook.login.widget.LoginButton
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="345dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
                 android:backgroundTint="@color/facebook"
                 android:drawableLeft="@drawable/ic_facebook"
+                android:paddingLeft="17dp"
                 android:text="login with facebook"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:textAllCaps="true"
                 android:id="@+id/login_facebook" />
 
         </LinearLayout>

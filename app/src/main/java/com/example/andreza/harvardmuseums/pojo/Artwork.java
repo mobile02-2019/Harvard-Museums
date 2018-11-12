@@ -8,8 +8,8 @@ import java.io.Serializable;
 
 public class Artwork implements Serializable {
 
+    @SerializedName("relatedto")
     private int id;
-
     @SerializedName("title")
     private String title;
     @SerializedName("primaryimageurl")
