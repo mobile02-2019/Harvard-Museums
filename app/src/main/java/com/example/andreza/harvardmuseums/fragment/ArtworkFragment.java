@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
+import com.example.andreza.harvardmuseums.interfaces.ListenerArtwork;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
@@ -20,16 +21,17 @@ import com.example.andreza.harvardmuseums.model.dao.ArtworkDAO;
 
 import java.util.List;
 
-public class ArtworkFragment extends Fragment implements ServiceListener {
+public class ArtworkFragment extends Fragment implements ServiceListener, ListenerArtwork {
 
     private RecyclerView recyclerView;
     private RecyclerViewArtworkAdapter adapter;
-    private Listener listener;
+    private ListenerArtwork listener;
     private ComunicacaoArtwork comunicacaoArtwork;
     private Artwork artwork;
 
-    public interface Listener {
-        void goToArtworkDetail();
+    @Override
+    public void goToArtworkDetail(int objId) {
+
     }
 
     public ArtworkFragment() {
@@ -38,7 +40,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.listener = (Listener) context;
+        this.listener = (ListenerArtwork) context;
 
        //comunicacaoArtwork = (ComunicacaoArtwork)context;
     }
@@ -69,7 +71,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener {
 
         final ArtworkDAO dao = new ArtworkDAO();
 
-        adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(), this), listener);
+        adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(),this), listener);
 
         recyclerView.setAdapter(adapter);
         int columns = 2;

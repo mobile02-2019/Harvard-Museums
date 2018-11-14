@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkDetailFragment;
@@ -20,10 +21,11 @@ import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
 import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
+import com.example.andreza.harvardmuseums.interfaces.ListenerArtwork;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
-        ExhibitionFragment.Listener, ArtworkFragment.Listener, ExhibitionDetailFragment.Listener,
-        UserFragment.Listener {
+        ExhibitionFragment.Listener, ExhibitionDetailFragment.Listener,
+        UserFragment.Listener, ListenerArtwork {
 
     public static final String TITULO = "titulo";
     public static final String ID_ARTWORK = "id";
@@ -97,10 +99,6 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         showFragment(new ExhibitionDetailFragment());
   }
 
-  @Override
-  public void goToArtworkDetail(){
-        showFragment(new ArtworkDetailFragment());
-    }
 
     public void goToFilter(){
         showFragment(new FilterFragment());
@@ -109,6 +107,29 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     public void goToArtwork(){
         showFragment(new ArtworkFragment());
     }
+
+    /*@Override
+    public void goToArtworkDetail(int objId) {
+
+
+
+    }*/
+
+    @Override
+    public void goToArtworkDetail() {
+    }
+
+    @Override
+    public void goToArtworkDetail(int objId) {
+        ArtworkDetailFragment detailFragment = new ArtworkDetailFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt(ID_ARTWORK, objId);
+        detailFragment.setArguments(bundle);
+        showFragment(detailFragment);
+    }
+
+    //todo remover isso e talvez a interface tbm
 
 
     /*@Override

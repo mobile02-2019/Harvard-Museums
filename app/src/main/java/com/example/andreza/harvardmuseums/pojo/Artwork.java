@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class Artwork implements Serializable {
 
-    @SerializedName("relatedto")
+    @SerializedName(value = "objectid", alternate = "id")
     private int id;
     @SerializedName("title")
     private String title;

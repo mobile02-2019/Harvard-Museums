@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!--Código de login do facebook-->
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
@@ -27,6 +28,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <!--Qualquer coisa relacionada ao login no facebook acaba aqui-->
 
         <activity android:name=".activity.SplashActivity">
             <intent-filter>

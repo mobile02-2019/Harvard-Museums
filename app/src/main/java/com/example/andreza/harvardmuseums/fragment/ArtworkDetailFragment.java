@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.activity.HomeActivity;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
@@ -20,7 +21,7 @@ import java.util.List;
 
 import static com.example.andreza.harvardmuseums.activity.HomeActivity.ID_ARTWORK;
 
-public class ArtworkDetailFragment extends Fragment implements ArtworkFragment.Listener,ServiceListener {
+public class ArtworkDetailFragment extends Fragment implements ServiceListener {
 
     private ComunicacaoArtwork comunicacaoArtwork;
     private TextView titulo;
@@ -49,26 +50,28 @@ public class ArtworkDetailFragment extends Fragment implements ArtworkFragment.L
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_artwork_detail, container, false);
 
-        /*List<Artwork> lstArt= dao.getArtList(getContext(), this);
+        Toast.makeText(getContext(), "teste" + getArguments().getInt(HomeActivity.ID_ARTWORK), Toast.LENGTH_SHORT).show();
+
+//        List<Artwork> lstArt= dao.getArtList(getContext(), this);
 
         title = view.findViewById(R.id.text_title_detail_artwork_id);
-        classification = view.findViewById(R.id.text_classification_detail_artwork_id);
+        /*classification = view.findViewById(R.id.text_classification_detail_artwork_id);
         date = view.findViewById(R.id.text_date_detail_artwork_id);
         places = view.findViewById(R.id.text_places_detail_artwork_id);
         period = view.findViewById(R.id.text_period_detail_artwork_id);
-        culture = view.findViewById(R.id.text_culture_detail_artwork_id);
+        culture = view.findViewById(R.id.text_culture_detail_artwork_id);*/
 
-        Bundle bundle = new Bundle();
+        /*Bundle bundle = new Bundle();
         int id = bundle.getInt(ID_ARTWORK);
         Artwork artDetail  = new Artwork();
         for (Artwork art : lstArt) {
             if (art.getId() == id){
                 artDetail = art;
             }
-        }
+        }*/
 
-        title.setText(artDetail.getTitle());
-        classification.setText(artDetail.getClassification());
+        //title.setText(artDetail.getTitle());
+        /*classification.setText(artDetail.getClassification());
         date.setText(artDetail.getDate());
         places.setText(artDetail.getPlaceCreation());
         period.setText(artDetail.getPeriod());
@@ -77,11 +80,6 @@ public class ArtworkDetailFragment extends Fragment implements ArtworkFragment.L
         return view;
     }
 
-
-    @Override
-    public void goToArtworkDetail() {
-        titulo.setText(dao.getArtList(getContext(),listener).get(0).getTitle());
-    }
 
     @Override
     public void onSucess(Object object) {

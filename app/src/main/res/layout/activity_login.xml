@@ -10,6 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:id="@+id/login_layout_id"
     tools:context=".activity.LoginActivity">
 
     <!-- Login progress -->
@@ -105,6 +106,7 @@
                 android:textColor="@color/cinza" />
 
             <Button
+                android:id="@+id/login_google_id"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="345dp"
                 android:layout_height="40dp"

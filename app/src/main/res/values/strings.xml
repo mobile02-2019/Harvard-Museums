@@ -11,10 +11,8 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="Login">Login</string>
-    <!--
-    //TODO aqui é o do João
-    <string name="facebook_app_id">485527248633347</string> <string name="fb_login_protocol_scheme">fb485527248633347</string>-->
 
+    <!--Aqui se coloca o id pego no site developers.facebook >> O código do site já vem setado com o id-->
     <string name="facebook_app_id">295659717955281</string> <string name="fb_login_protocol_scheme">fb295659717955281</string>
 
     <string name="exhibition_detail">

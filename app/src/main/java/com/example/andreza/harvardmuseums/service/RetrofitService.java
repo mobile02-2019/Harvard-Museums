@@ -30,10 +30,9 @@ public class RetrofitService {
 
     }
 
-
     public static API getAPI(){
 
         return getRetrofit().create(API.class);
     }
-    
+
 }
