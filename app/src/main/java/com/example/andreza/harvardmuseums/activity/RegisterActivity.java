@@ -1,26 +1,35 @@
 package com.example.andreza.harvardmuseums.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.example.andreza.harvardmuseums.User;
 import com.example.andreza.harvardmuseums.BancoDeDados;
 import com.example.andreza.harvardmuseums.R;
-import android.widget.TextView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import android.widget.EditText;
 import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.List;
 import android.support.v7.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
-    private TextInputEditText firstName;
-    private TextInputEditText lastName;
-    private TextInputEditText email;
-    private TextInputEditText password;
-    private TextInputEditText passwordConfirm;
+    private static final String TAG = "Register";
+    private TextInputEditText firstNameInput;
+    private TextInputEditText lastNameInput;
+    private TextInputEditText emailInput;
+    private TextInputEditText passwordInput;
+    private TextInputEditText passwordConfirmInput;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -29,66 +38,52 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         getSupportActionBar().hide();
 
+        mAuth = FirebaseAuth.getInstance();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        firstName = findViewById(R.id.edit_text_firstname_id);
-        lastName = findViewById(R.id.edit_text_lastname_id);
-        email = findViewById(R.id.edit_text_email_id);
-        password = findViewById(R.id.edit_text_password_id);
-        passwordConfirm = findViewById(R.id.edit_text_password_confirm_id);
+        firstNameInput = findViewById(R.id.edit_text_firstname_id);
+        lastNameInput = findViewById(R.id.edit_text_lastname_id);
+        emailInput = findViewById(R.id.edit_text_email_id);
+        passwordInput = findViewById(R.id.edit_text_password_id);
+        passwordConfirmInput = findViewById(R.id.edit_text_password_confirm_id);
 
         Button register = findViewById(R.id.register_button_id);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (validateUserInfo(firstName, lastName, email, password, passwordConfirm)){
-                    BancoDeDados.userList.add(new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), password.getText().toString()));
-                    Toast.makeText(RegisterActivity.this, "Successfully registered! Enjoy our Gallery!", Toast.LENGTH_LONG).show();
+                if(passwordConfirmInput.getText().toString().equals(passwordInput.getText().toString())){
+                    mAuth.createUserWithEmailAndPassword(emailInput.getText().toString(), passwordInput.getText().toString()).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    createUserWithEmailAndPassword();
+                                    goToHomeActivity();
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                    Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     goToHomeActivity();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Both passwords must match.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
     }
 
+    private void createUserWithEmailAndPassword() {
+        // Sign in success, update UI with the signed-in user's information
+        FirebaseUser user = mAuth.getCurrentUser();
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
 
-    public boolean validateUserInfo(TextInputEditText firstName, TextInputEditText lastName, TextInputEditText email, TextInputEditText password, TextInputEditText passwordConfirm){
-        boolean infoIsValid = true;
-
-        if (firstName.getText().toString().contains(" ") || firstName.getText().toString().length()==0){
-            Toast.makeText(RegisterActivity.this, "Your First Name is invalid. It cannot contain spaces nor be empty.", Toast.LENGTH_LONG).show();
-            infoIsValid = false;
-        }
-
-        if (lastName.getText().toString().contains(" ") || lastName.getText().toString().length()==0){
-            Toast.makeText(RegisterActivity.this, "Your Last Name is invalid. It cannot contain spaces nor be empty.", Toast.LENGTH_LONG).show();
-            infoIsValid = false;
-        }
-
-        if (!email.getText().toString().contains("@") || !email.getText().toString().contains(".")){
-            Toast.makeText(RegisterActivity.this, "The email is invalid. Example: (yourname@domain.com)", Toast.LENGTH_LONG).show();
-            infoIsValid = false;
-        }
-
-        for (User user: BancoDeDados.userList) {
-            if (email.getText().toString().equals(user.getEmail())){
-                Toast.makeText(RegisterActivity.this, "There is already an account registered with that email, try another one.", Toast.LENGTH_LONG).show();
-                infoIsValid = false;
-            }
-        }
-
-        if (password.getText().toString().length()<8 || password.getText().toString().length()>20){
-            Toast.makeText(this, "Your password is invalid. It must contain 8 to 20 digits and may include symbols, numbers, and uppercase/lowercase letters.", Toast.LENGTH_LONG).show();
-            infoIsValid = false;
-        }
-
-        if (!passwordConfirm.getText().toString().equals(password.getText().toString())){
-            Toast.makeText(this, "Please confirm your password.", Toast.LENGTH_LONG).show();
-            infoIsValid = false;
-        }
-
-        return infoIsValid;
+        myRef.setValue("Hello, World!");
     }
 
     public void goToHomeActivity(){
@@ -96,4 +91,18 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    private void criarUsuario() {
+        User userCreated = new User(firstNameInput.getText().toString(),
+                lastNameInput.getText().toString(), emailInput.getText().toString());
+        registrarDados("User: "+userCreated.getFirstName()+" "+userCreated.getLastName()+" - UID: "+FirebaseAuth.getInstance().getUid(), userCreated);
+        Log.d(TAG, "createUserWithEmail:success");
+        Toast.makeText(RegisterActivity.this, "Successfully registered! Enjoy our Gallery!", Toast.LENGTH_LONG).show();
+    }
+
+    private void registrarDados(String path, Object value){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference currentRef = database.getReference(path);
+        currentRef.setValue(value);
+    }
 }

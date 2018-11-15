@@ -1,15 +1,10 @@
 package com.example.andreza.harvardmuseums.activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,20 +17,13 @@ import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.BancoDeDados;
 import com.example.andreza.harvardmuseums.R;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookActivity;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -43,14 +31,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.reflect.Array;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -85,6 +65,11 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // LOGIN COM EMAIL E SENHA
+
+        mAuth = FirebaseAuth.getInstance();
+
 
         //TODO Login Facebook
         loginFacebook = (LoginButton) findViewById(R.id.login_facebook);
@@ -146,41 +131,49 @@ public class LoginActivity extends AppCompatActivity {
         loginClicado.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (BancoDeDados.userList.size()==0){
-                    BancoDeDados.userList.add(new User("Ad", "Min", "00", "000"));
-                }
-                Intent intent = new Intent(v.getContext(), HomeActivity.class);
+                final Intent intent = new Intent(v.getContext(), HomeActivity.class);
+                final Bundle bundle = new Bundle();
 
-                Bundle bundle = new Bundle();
+                final AutoCompleteTextView emailDigitado = findViewById(R.id.login_email_id);
+                final EditText passwordDigitado = findViewById(R.id.login_password_id);
 
-                final AutoCompleteTextView emailDigitado = findViewById(R.id.email_id);
-                final EditText passwordDigitado = findViewById(R.id.password_id);
+                final Button buttonLogin = findViewById(R.id.login_button);
 
-                Button buttonLogin = findViewById(R.id.login_button);
+                mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    Toast.makeText(LoginActivity.this, "Authentication successful! Enjoy our gallery!", Toast.LENGTH_LONG).show();
+                                    goToHome();
+                                } else {
+                                    final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
+                                    final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
+                                    emailDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
+                                    passwordDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
 
-                for (User user: BancoDeDados.userList) {
-                    if (emailDigitado.getText().toString().equals(user.getEmail()) && passwordDigitado.getText().toString().equals(user.getPassword())){
-                        bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    } else {
-                        final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
-                        final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
-
-                        emailDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
-                        passwordDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
-
-                        Snackbar.make(buttonLogin, "Invalid email and/or password.", Snackbar.LENGTH_INDEFINITE)
-                                .setAction("Got it.", new View.OnClickListener(){
-                                    @Override
-                                    public void onClick(View view) {
-                                        emailDigitado.setTextColor(colorDefaultEmail);
-                                        passwordDigitado.setTextColor(colorDefaultPassword);
-                                    }
-                                })
-                                .show();
-                    }
-                }
+                                    Snackbar.make(buttonLogin, "Invalid email and/or password.", Snackbar.LENGTH_INDEFINITE)
+                                            .setAction("Got it.", new View.OnClickListener(){
+                                                @Override
+                                                public void onClick(View view) {
+                                                    emailDigitado.setTextColor(colorDefaultEmail);
+                                                    passwordDigitado.setTextColor(colorDefaultPassword);
+                                                }
+                                            })
+                                            .show();
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 
@@ -190,6 +183,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        // JA ESTA LOGADO COM EMAIL E SENHA
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+        if(mAuth.getCurrentUser()!=null){
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            goToHome();
+        }
+
+
         //GMAIL
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -199,6 +202,11 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this,HomeActivity.class);
             startActivity(intent);
         }*/
+    }
+
+    private void goToHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
