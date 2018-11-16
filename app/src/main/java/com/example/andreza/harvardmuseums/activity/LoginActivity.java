@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
         loginClicado.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(LoginActivity.this, "Estou no loginClicado.OnClick", Toast.LENGTH_SHORT).show();
                 final Intent intent = new Intent(v.getContext(), HomeActivity.class);
                 final Bundle bundle = new Bundle();
 
@@ -143,20 +143,23 @@ public class LoginActivity extends AppCompatActivity {
                 final Button buttonLogin = findViewById(R.id.login_button);
 
                 if (!emailDigitado.getText().toString().equals("") && !passwordDigitado.getText().toString().equals("")){
+                    Toast.makeText(LoginActivity.this, "email e senha tem conteudo, dentro do if de prevencao de NullPointerException", Toast.LENGTH_SHORT).show();
                     mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                    Toast.makeText(LoginActivity.this, "onComplete", Toast.LENGTH_SHORT).show();
                                     if (task.isSuccessful()) {
-                                        bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
-                                        intent.putExtras(bundle);
-                                        startActivity(intent);
+                                        Toast.makeText(LoginActivity.this, "task is successful, auth complete", Toast.LENGTH_SHORT).show();
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "signInWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Toast.makeText(LoginActivity.this, "Authentication successful! Enjoy our gallery!", Toast.LENGTH_LONG).show();
-                                        goToHome();
+                                        bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
+                                        intent.putExtras(bundle);
+                                        startActivity(intent);
                                     } else {
+                                        Toast.makeText(LoginActivity.this, "task is not successful, auth failed", Toast.LENGTH_SHORT).show();
                                         emailDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
                                         passwordDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
 
@@ -167,8 +170,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         emailDigitado.setTextColor(colorDefaultEmail);
                                                         passwordDigitado.setTextColor(colorDefaultPassword);
                                                     }
-                                                })
-                                                .show();
+                                                }).show();
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                                     }

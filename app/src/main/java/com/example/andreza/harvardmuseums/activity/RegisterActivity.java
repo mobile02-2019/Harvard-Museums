@@ -8,17 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.example.andreza.harvardmuseums.User;
-import com.example.andreza.harvardmuseums.BancoDeDados;
 import com.example.andreza.harvardmuseums.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import android.widget.EditText;
 import android.widget.Toast;
 import android.support.v7.app.AppCompatActivity;
 
@@ -57,8 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    createUserWithEmailAndPassword();
-                                    goToHomeActivity();
+                                    criarUsuario();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -76,16 +72,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void createUserWithEmailAndPassword() {
-        // Sign in success, update UI with the signed-in user's information
-        FirebaseUser user = mAuth.getCurrentUser();
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
-
-        myRef.setValue("Hello, World!");
-    }
-
     public void goToHomeActivity(){
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
@@ -93,9 +79,9 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void criarUsuario() {
-        User userCreated = new User(firstNameInput.getText().toString(),
+        User usuarioCriado = new User(firstNameInput.getText().toString(),
                 lastNameInput.getText().toString(), emailInput.getText().toString());
-        registrarDados("User: "+userCreated.getFirstName()+" "+userCreated.getLastName()+" - UID: "+FirebaseAuth.getInstance().getUid(), userCreated);
+        registrarDados("User: "+usuarioCriado.getFirstName()+" "+usuarioCriado.getLastName()+" - UID: "+FirebaseAuth.getInstance().getUid(), usuarioCriado);
         Log.d(TAG, "createUserWithEmail:success");
         Toast.makeText(RegisterActivity.this, "Successfully registered! Enjoy our Gallery!", Toast.LENGTH_LONG).show();
     }
@@ -104,5 +90,6 @@ public class RegisterActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference currentRef = database.getReference(path);
         currentRef.setValue(value);
+        goToHomeActivity();
     }
 }
