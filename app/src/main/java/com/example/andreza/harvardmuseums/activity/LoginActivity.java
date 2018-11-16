@@ -66,7 +66,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // LOGIN COM EMAIL E SENHA
+        final AutoCompleteTextView emailDigitado = findViewById(R.id.login_email_id);
+        final EditText passwordDigitado = findViewById(R.id.login_password_id);
+        final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
+        final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -126,54 +129,54 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //TODO Login do nosso banco de dados
+        // LOGIN COM EMAIL E SENHA
+
         Button loginClicado = findViewById(R.id.login_button);
         loginClicado.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final Intent intent = new Intent(v.getContext(), HomeActivity.class);
                 final Bundle bundle = new Bundle();
 
-                final AutoCompleteTextView emailDigitado = findViewById(R.id.login_email_id);
-                final EditText passwordDigitado = findViewById(R.id.login_password_id);
 
                 final Button buttonLogin = findViewById(R.id.login_button);
 
-                mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
-                                    intent.putExtras(bundle);
-                                    startActivity(intent);
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(LoginActivity.this, "Authentication successful! Enjoy our gallery!", Toast.LENGTH_LONG).show();
-                                    goToHome();
-                                } else {
-                                    final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
-                                    final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
-                                    emailDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
-                                    passwordDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
+                if (!emailDigitado.getText().toString().equals("") && !passwordDigitado.getText().toString().equals("")){
+                    mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
+                                        intent.putExtras(bundle);
+                                        startActivity(intent);
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Toast.makeText(LoginActivity.this, "Authentication successful! Enjoy our gallery!", Toast.LENGTH_LONG).show();
+                                        goToHome();
+                                    } else {
+                                        emailDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
+                                        passwordDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
 
-                                    Snackbar.make(buttonLogin, "Invalid email and/or password.", Snackbar.LENGTH_INDEFINITE)
-                                            .setAction("Got it.", new View.OnClickListener(){
-                                                @Override
-                                                public void onClick(View view) {
-                                                    emailDigitado.setTextColor(colorDefaultEmail);
-                                                    passwordDigitado.setTextColor(colorDefaultPassword);
-                                                }
-                                            })
-                                            .show();
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                        Snackbar.make(buttonLogin, "Invalid email and/or password.", Snackbar.LENGTH_INDEFINITE)
+                                                .setAction("Got it.", new View.OnClickListener(){
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        emailDigitado.setTextColor(colorDefaultEmail);
+                                                        passwordDigitado.setTextColor(colorDefaultPassword);
+                                                    }
+                                                })
+                                                .show();
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    }
                                 }
-                            }
-                        });
+                            });
+                } else {
+                    Toast.makeText(LoginActivity.this, "You need to provide an email and a password in order to Log In.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
