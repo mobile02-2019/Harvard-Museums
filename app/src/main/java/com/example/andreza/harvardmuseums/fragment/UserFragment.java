@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.activity.HomeActivity;
@@ -17,6 +19,8 @@ import com.example.andreza.harvardmuseums.activity.LoginActivity;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewUserAdapter;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,10 @@ import java.util.List;
 public class UserFragment extends Fragment {
 
     private Listener listener;
+    private ImageView imageProfile;
+    private TextView username;
+    private TextView userEmail;
+    private FirebaseAuth mAuth;
 
     public interface Listener {
         void goToArtworkDetail();
@@ -46,6 +54,19 @@ public class UserFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+
+        imageProfile = view.findViewById(R.id.user_image_id);
+        username = view.findViewById(R.id.user_username_text_id);
+        userEmail = view.findViewById(R.id.user_email_id);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        Picasso.get().load(user.getPhotoUrl()).into(imageProfile);
+        username.setText(user.getDisplayName());
+        userEmail.setText(user.getEmail());
+
         setupRecyclerView(view);
 
         Button buttonLogout = view.findViewById(R.id.user_logout_button_id);
@@ -62,6 +83,15 @@ public class UserFragment extends Fragment {
     private void goToLogin() {
         Intent intent = new Intent(getContext(), LoginActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser()==null){
+            Intent backToLogin = new Intent(getContext(),LoginActivity.class);
+            startActivity(backToLogin);
+        }
     }
 
     public void setupRecyclerView(View view) {

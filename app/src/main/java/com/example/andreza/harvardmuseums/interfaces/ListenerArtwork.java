@@ -1,5 +1,7 @@
 package com.example.andreza.harvardmuseums.interfaces;
 
 public interface ListenerArtwork {
-    void goToArtworkDetail(int objId);
+
+    //TODO Acho que pode retirar
+    void goToArtworkDetail(Object object);
 }
