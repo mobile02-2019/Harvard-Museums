@@ -115,17 +115,14 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         showFragment(new ArtworkFragment());
     }
 
-    @Override
-    public void goToArtworkDetail() {
-    }
-
     @Override //TODO pelo que entendi essa interface pode ser deletada agora "goToArtwork"
-    public void goToArtworkDetail(Object obj) {
+    public void goToArtworkDetail() {
         /*ArtworkDetailFragment detailFragment = new ArtworkDetailFragment();
 
         Bundle bundle = new Bundle();
         bundle.putString(OBJ_ARTWORK,obj);
         detailFragment.setArguments(bundle);
+
         showFragment(detailFragment);*/
     }
 

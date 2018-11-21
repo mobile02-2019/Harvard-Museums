@@ -26,7 +26,6 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
     private Artwork artwork;
     private TextView title;
 
-    private TextView titulo;
     private TextView classification;
     //private TextView worktype;
     private TextView date;
@@ -74,7 +73,8 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
     }
 
     private void setArtworkDetail(){
-        detailArtwork.iniciarFragmentArtworkDetail(artwork);
+        title.setText(artwork.getTitle());
+
     }
 
     @Override

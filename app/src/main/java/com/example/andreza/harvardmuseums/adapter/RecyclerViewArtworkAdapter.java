@@ -93,17 +93,25 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
 
             title.setText(artwork.getTitle());
             if (artwork.getPicture() != null) {
+                /*GlideApp
+                        .with(myFragment)
+                        .load(url)
+                        .centerCrop()
+                        .placeholder(R.drawable.loading_spinner)
+                        .into(myImageView);*/
                 Picasso.get().load(artwork.getPicture()).into(picture);
             }
+
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //Esse listener era o antigo
-                    //listener.goToArtworkDetail(artwork);
-                    Toast.makeText(itemView.getContext(),"O título é: "+title.toString(),Toast.LENGTH_LONG).show();
-                    //recyclerListenerArtwork.onArtworkClicado(artwork);
+                    //listener.goToArtworkDetail();
+                    //Toast.makeText(v.getContext(),"O título é: "+title.getText().toString(),Toast.LENGTH_LONG).show();
+                    recyclerListenerArtwork.onArtworkClicado(artwork);
                 }
             });
+
 //            if (artwork.getPicture() != null){
 //                Picasso.get().load(artwork.getPicture()).into(photoDetail);
 //            }

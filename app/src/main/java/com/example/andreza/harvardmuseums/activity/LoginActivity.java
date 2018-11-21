@@ -104,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+
         //Botão oficial do google
         findViewById(R.id.login_gmail_id).setOnClickListener(new OnClickListener() {
             @Override
