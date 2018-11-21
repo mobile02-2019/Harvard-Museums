@@ -65,9 +65,11 @@ public class UserFragment extends Fragment {
 
         FirebaseUser user = mAuth.getCurrentUser();
 
-        Picasso.get().load(user.getPhotoUrl()).into(imageProfile);
-        username.setText(user.getDisplayName());
-        userEmail.setText(user.getEmail());
+        if (user != null) {
+            Picasso.get().load(user.getPhotoUrl()).into(imageProfile);
+            username.setText(user.getDisplayName());
+            userEmail.setText(user.getEmail());
+        }
 
         setupRecyclerView(view);
 

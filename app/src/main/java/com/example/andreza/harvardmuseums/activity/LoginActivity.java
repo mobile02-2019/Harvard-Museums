@@ -39,7 +39,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
-
     public static final String CHAVE_EMAIL = "chave_email";
     private static final String TAG = "Login" ;
     private static final int RC_SIGN_IN = 234;
@@ -51,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -60,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
         final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
 
-        //Pelo que entendi essa frase usa para todas as autenticações do firebase
         mAuth = FirebaseAuth.getInstance();
 
         //TODO Login Facebook
@@ -88,6 +85,13 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, "facebook:onError", error);
                     }
                 });
+
+        /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        if (isLoggedIn){
+            Intent intent = new Intent(this,HomeActivity.class);
+            startActivity(intent);
+        }*/
 
         getSupportActionBar().hide();
 
@@ -139,12 +143,12 @@ public class LoginActivity extends AppCompatActivity {
                 final Button buttonLogin = findViewById(R.id.login_button);
 
                 if (!emailDigitado.getText().toString().equals("") && !passwordDigitado.getText().toString().equals("")){
-
                     mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "signInWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Toast.makeText(LoginActivity.this, "Authentication successful! Enjoy our gallery!", Toast.LENGTH_LONG).show();
@@ -152,7 +156,6 @@ public class LoginActivity extends AppCompatActivity {
                                         intent.putExtras(bundle);
                                         startActivity(intent);
                                     } else {
-                                        Toast.makeText(LoginActivity.this, "task is not successful, auth failed", Toast.LENGTH_SHORT).show();
                                         emailDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
                                         passwordDigitado.setTextColor(getResources().getColor(R.color.colorPrimary));
 
@@ -164,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         passwordDigitado.setTextColor(colorDefaultPassword);
                                                     }
                                                 }).show();
-
+                                        // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                                     }
                                 }
@@ -177,7 +180,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    //TODO ativar esse método inteiro quando colocar o logout
     @Override
     protected void onStart() {
         super.onStart();
@@ -185,21 +187,6 @@ public class LoginActivity extends AppCompatActivity {
             FirebaseUser currentUser = mAuth.getCurrentUser();
             goToHome();
         }
-
-        //TODO essa parte do método é necessária para o facebook verificar se está logado, deixei comentado
-        //TODO até o user estar conectado com o facebook também para termos acesso ao logout.
-
-        /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        if (isLoggedIn){
-            Intent intent = new Intent(this,HomeActivity.class);
-            startActivity(intent);
-        }*/
-    }
-
-    private void goToHome() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
     }
 
     @Override
@@ -210,13 +197,17 @@ public class LoginActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
-
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 Log.w(TAG, "Google sign in failed", e);
             }
         }
+    }
+
+    private void goToHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
@@ -241,6 +232,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    //Sign do Google
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
