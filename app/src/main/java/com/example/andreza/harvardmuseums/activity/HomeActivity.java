@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.andreza.harvardmuseums.R;
@@ -21,17 +20,11 @@ import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
 import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
-import com.example.andreza.harvardmuseums.interfaces.ListenerArtwork;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
         ExhibitionFragment.Listener, ExhibitionDetailFragment.Listener,
-        UserFragment.Listener, ListenerArtwork, ArtworkListenerDetail {
+        UserFragment.Listener, ArtworkListenerDetail {
 
     public static final String TITULO = "titulo";
     public static final String OBJ_ARTWORK = "artwork";

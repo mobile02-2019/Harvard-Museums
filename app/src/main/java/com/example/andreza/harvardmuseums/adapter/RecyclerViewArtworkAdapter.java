@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
-import com.example.andreza.harvardmuseums.interfaces.ListenerArtwork;
 import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.squareup.picasso.Picasso;
@@ -20,7 +18,7 @@ import java.util.List;
 
 public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder>{
 
-    private ListenerArtwork listener;
+    //private ListenerArtwork listener;
     private List<Artwork> artworkList;
     private RecyclerListenerArtwork recyclerListenerArtwork;
 
@@ -83,7 +81,6 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
             photoDetail = itemView.findViewById(R.id.image_detail_artwork_id);
             classification = itemView.findViewById(R.id.text_classification_detail_artwork_id);
             date = itemView.findViewById(R.id.text_date_detail_artwork_id);
-            places = itemView.findViewById(R.id.text_places_detail_artwork_id);
             period = itemView.findViewById(R.id.text_period_detail_artwork_id);
             culture = itemView.findViewById(R.id.text_culture_detail_artwork_id);
         }
@@ -93,12 +90,6 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
 
             title.setText(artwork.getTitle());
             if (artwork.getPicture() != null) {
-                /*GlideApp
-                        .with(myFragment)
-                        .load(url)
-                        .centerCrop()
-                        .placeholder(R.drawable.loading_spinner)
-                        .into(myImageView);*/
                 Picasso.get().load(artwork.getPicture()).into(picture);
             }
 
@@ -112,15 +103,6 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
                 }
             });
 
-//            if (artwork.getPicture() != null){
-//                Picasso.get().load(artwork.getPicture()).into(photoDetail);
-//            }
-
-          /*  classification.setText(artwork.getClassification());
-            date.setText(artwork.getDate());
-            places.setText(artwork.getPlaceCreation());
-            period.setText(artwork.getPeriod());
-            culture.setText(artwork.getPeriod());*/
         }
     }
 }

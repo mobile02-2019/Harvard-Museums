@@ -18,6 +18,8 @@ import com.example.andreza.harvardmuseums.activity.HomeActivity;
 import com.example.andreza.harvardmuseums.activity.LoginActivity;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewUserAdapter;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
+import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -32,6 +34,9 @@ public class UserFragment extends Fragment {
     private TextView username;
     private TextView userEmail;
     private FirebaseAuth mAuth;
+
+    private GoogleSignIn googleSignIn;
+    private LoginButton loginFacebook;
 
     public interface Listener {
         void goToArtworkDetail();

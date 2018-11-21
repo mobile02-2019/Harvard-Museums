@@ -16,12 +16,8 @@ public class Artwork implements Serializable {
     private String picture; //Mudei aqui de ImageView para String para poder utilizar a URL
     @SerializedName("classification")
     private String classification;
-    /*@SerializedName("worktypes") //TODO erro: IllegalArgumentException: No suitable parent found from the given view. Please provide a valid view.
-    private String worktype;*/
-   @SerializedName("dated")
+    @SerializedName("dated")
     private String date;
-     // não encontrei place no /object da api
-    private String placeCreation;
     @SerializedName("period")
     private String period;
     @SerializedName("culture")
@@ -59,28 +55,12 @@ public class Artwork implements Serializable {
         this.classification = classification;
     }
 
-   /* public String getWorktype() {
-        return worktype;
-    }
-
-    public void setWorktype(String worktype) {
-        this.worktype = worktype;
-    }*/
-
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getPlaceCreation() {
-        return placeCreation;
-    }
-
-    public void setPlaceCreation(String placeCreation) {
-        this.placeCreation = placeCreation;
     }
 
     public String getPeriod() {

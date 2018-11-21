@@ -71,12 +71,6 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
         Snackbar.make(recyclerView,throwable.getMessage(),Snackbar.LENGTH_LONG).show();
     }
 
-
-    /*@Override
-    public void goToArtworkDetail(Object object) {
-
-    }*/
-
     @Override
     public void onArtworkClicado(Artwork artwork) {
         listenerArtwork.iniciarFragmentArtworkDetail(artwork);

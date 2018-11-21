@@ -58,7 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void criarUsuario() {
         firstNameInput = findViewById(R.id.edit_text_firstname_id);
-        lastNameInput = findViewById(R.id.edit_text_lastname_id);
         emailInput = findViewById(R.id.edit_text_email_id);
         passwordInput = findViewById(R.id.edit_text_password_id);
         passwordConfirmInput = findViewById(R.id.edit_text_password_confirm_id);
