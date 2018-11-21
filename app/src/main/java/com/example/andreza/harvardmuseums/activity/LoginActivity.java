@@ -62,31 +62,11 @@ public class LoginActivity extends AppCompatActivity {
         //Pelo que entendi essa frase usa para todas as autenticações do firebase
         mAuth = FirebaseAuth.getInstance();
 
-        //TODO Login Facebook
+        //TODO Login Facebook falta a verificacao !!!se esta loggado ou nao
         loginFacebook = (LoginButton) findViewById(R.id.login_facebook);
-        loginFacebook.setReadPermissions("email");
+        logginFacebboksetup();
 
-        callbackManager = CallbackManager.Factory.create();
-        loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
 
-                        Intent intent = new Intent(loginFacebook.getContext(), HomeActivity.class);
-                        startActivity(intent);
-                    }
-
-            @Override
-                    public void onCancel() {
-
-                    }
-
-                    @Override
-                    public void onError(FacebookException error) {
-
-                    }
-                });
-
-        getSupportActionBar().hide();
 
         //TODO Google Login
         Button buttonGoogle = findViewById(R.id.login_google_id);
@@ -135,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 final Button buttonLogin = findViewById(R.id.login_button);
 
+
                 if (!emailDigitado.getText().toString().equals("") && !passwordDigitado.getText().toString().equals("")){
 
                     mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
@@ -178,14 +159,20 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //verificacao firebase
         if(mAuth.getCurrentUser()!=null){
             FirebaseUser currentUser = mAuth.getCurrentUser();
             goToHome();
+
+
         }
+
+
+
 
         //TODO essa parte do método é necessária para o facebook verificar se está logado, deixei comentado
         //TODO até o user estar conectado com o facebook também para termos acesso ao logout.
-
+        //TODO falta arrumar o user só!!!!!!
         /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if (isLoggedIn){
@@ -246,5 +233,39 @@ public class LoginActivity extends AppCompatActivity {
     public void registerNow(View view) {
         Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
+    }
+
+    public boolean isLoggedIn() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return accessToken != null;
+    }
+
+
+    public void logginFacebboksetup(){
+        loginFacebook.setReadPermissions("email");
+        callbackManager = CallbackManager.Factory.create();
+        loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+                Intent intent = new Intent(loginFacebook.getContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+
+        getSupportActionBar().hide();
+
+
+
     }
 }
