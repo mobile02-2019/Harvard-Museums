@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "934920320628",
+    "firebase_url": "https://harvard-museums.firebaseio.com",
+    "project_id": "harvard-museums",
+    "storage_bucket": "harvard-museums.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934920320628:android:3b72dd174864daf8",
+        "android_client_info": {
+          "package_name": "com.example.andreza.harvardmuseums"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934920320628-mpcm9odjses09md55k7j1gu72frl2a8d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.andreza.harvardmuseums",
+            "certificate_hash": "e629baf67944d8c11722df55471af8f858701d2e"
+          }
+        },
+        {
+          "client_id": "934920320628-frlac96hd1tce8q4h11go8megjshp2o2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpyWP5ugxnkHuDZjGE8lBZw1oPC04jOHA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934920320628-frlac96hd1tce8q4h11go8megjshp2o2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

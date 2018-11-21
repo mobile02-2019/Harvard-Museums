@@ -35,9 +35,6 @@ public class UserFragment extends Fragment {
     private TextView userEmail;
     private FirebaseAuth mAuth;
 
-    private GoogleSignIn googleSignIn;
-    private LoginButton loginFacebook;
-
     public interface Listener {
         void goToArtworkDetail();
     }
