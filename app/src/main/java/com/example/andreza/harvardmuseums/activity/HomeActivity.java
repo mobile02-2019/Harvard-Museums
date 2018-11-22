@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkDetailFragment;
@@ -20,15 +19,16 @@ import com.example.andreza.harvardmuseums.fragment.Museum2DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
-import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
-import com.example.andreza.harvardmuseums.interfaces.ListenerArtwork;
+import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
+import com.example.andreza.harvardmuseums.pojo.Artwork;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
         ExhibitionFragment.Listener, ExhibitionDetailFragment.Listener,
-        UserFragment.Listener, ListenerArtwork {
+        UserFragment.Listener, ArtworkListenerDetail {
 
     public static final String TITULO = "titulo";
-    public static final String ID_ARTWORK = "id";
+    public static final String OBJ_ARTWORK = "artwork";
+    private static final String TAG = "HomeActivity";
 
     private BottomNavigationView navigationView;
 
@@ -108,36 +108,25 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         showFragment(new ArtworkFragment());
     }
 
-    /*@Override
-    public void goToArtworkDetail(int objId) {
-
-
-
-    }*/
-
-    @Override
+    @Override //TODO pelo que entendi essa interface pode ser deletada agora "goToArtwork"
     public void goToArtworkDetail() {
+        /*ArtworkDetailFragment detailFragment = new ArtworkDetailFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString(OBJ_ARTWORK,obj);
+        detailFragment.setArguments(bundle);
+
+        showFragment(detailFragment);*/
     }
 
     @Override
-    public void goToArtworkDetail(int objId) {
+    public void iniciarFragmentArtworkDetail(Artwork artwork) {
         ArtworkDetailFragment detailFragment = new ArtworkDetailFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putInt(ID_ARTWORK, objId);
+        bundle.putSerializable(OBJ_ARTWORK,artwork);
         detailFragment.setArguments(bundle);
+
         showFragment(detailFragment);
     }
-
-    //todo remover isso e talvez a interface tbm
-
-
-    /*@Override
-    public void enviarMensagens(int artworkID) {
-        ArtworkDetailFragment detailFragment = new ArtworkDetailFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putInt(ID_ARTWORK, artworkID);
-        detailFragment.setArguments(bundle);
-    }*/
 }

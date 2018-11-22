@@ -16,11 +16,15 @@
             android:background="@color/colorPrimary"
             android:textSize="24sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/user_image_id"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/icon_profile" />
+            android:src="@drawable/icon_profile"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"/>
 
         <Button
             android:id="@+id/user_logout_button_id"
@@ -34,18 +38,18 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/user_username_text_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/user_username_textv_id"
         android:text="Guilherme Sartori"
         android:gravity="center"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/user_email_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/user_email_id"
         android:text="gui@digitalhouse.com.br"
         android:gravity="center"
         />

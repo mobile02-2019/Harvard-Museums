@@ -8,7 +8,7 @@
         android:id="@+id/imagem_detalhe_exibicao_recycler-view"
         android:layout_width="105dp"
         android:layout_height="135dp"
-        android:src="@drawable/image_exhibition"
+        android:src="@drawable/loading_harvard"
         />
 
 

@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.andreza.harvardmuseums.R;
-import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
-import com.example.andreza.harvardmuseums.interfaces.ListenerArtwork;
+import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
+import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
@@ -21,18 +21,11 @@ import com.example.andreza.harvardmuseums.model.dao.ArtworkDAO;
 
 import java.util.List;
 
-public class ArtworkFragment extends Fragment implements ServiceListener, ListenerArtwork {
+public class ArtworkFragment extends Fragment implements ServiceListener, RecyclerListenerArtwork {
 
     private RecyclerView recyclerView;
     private RecyclerViewArtworkAdapter adapter;
-    private ListenerArtwork listener;
-    private ComunicacaoArtwork comunicacaoArtwork;
-    private Artwork artwork;
-
-    @Override
-    public void goToArtworkDetail(int objId) {
-
-    }
+    private ArtworkListenerDetail listenerArtwork;
 
     public ArtworkFragment() {
     }
@@ -40,9 +33,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Listen
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.listener = (ListenerArtwork) context;
-
-       //comunicacaoArtwork = (ComunicacaoArtwork)context;
+        this.listenerArtwork = (ArtworkListenerDetail) context;
     }
 
     @Override
@@ -51,18 +42,8 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Listen
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_artwork, container, false);
 
-        ImageView imageView = view.findViewById(R.id.imagem_obra_id);
-
-        /*imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int id = artwork.getId();
-                comunicacaoArtwork.enviarMensagens(id);
-            }
-        });*/
-
-
         setupRecyclerView(view);
+
         return view;
     }
 
@@ -71,7 +52,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Listen
 
         final ArtworkDAO dao = new ArtworkDAO();
 
-        adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(),this), listener);
+        adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(),this), this);
 
         recyclerView.setAdapter(adapter);
         int columns = 2;
@@ -90,6 +71,8 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Listen
         Snackbar.make(recyclerView,throwable.getMessage(),Snackbar.LENGTH_LONG).show();
     }
 
-
-
+    @Override
+    public void onArtworkClicado(Artwork artwork) {
+        listenerArtwork.iniciarFragmentArtworkDetail(artwork);
+    }
 }

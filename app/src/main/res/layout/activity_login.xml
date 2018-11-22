@@ -116,6 +116,10 @@
                 android:text="login with google"
                 android:textSize="18sp"/>
 
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/login_gmail_id"
+                android:layout_width="345dp"
+                android:layout_height="40dp"/>
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_facebook"

@@ -36,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/image_exhibition"
+            app:srcCompat="@drawable/loading_harvard"
             app:layout_constraintBottom_toTopOf="@+id/titulo_obra_id"
              />
 

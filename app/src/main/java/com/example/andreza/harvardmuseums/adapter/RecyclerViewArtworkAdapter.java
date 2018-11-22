@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.andreza.harvardmuseums.R;
-import com.example.andreza.harvardmuseums.interfaces.ComunicacaoArtwork;
-import com.example.andreza.harvardmuseums.interfaces.ListenerArtwork;
+import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.squareup.picasso.Picasso;
 
@@ -18,14 +18,19 @@ import java.util.List;
 
 public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder>{
 
-    private ListenerArtwork listener;
+    //private ListenerArtwork listener;
     private List<Artwork> artworkList;
-    private Artwork artwork;
+    private RecyclerListenerArtwork recyclerListenerArtwork;
 
-    public RecyclerViewArtworkAdapter(List<Artwork> artworkList, ListenerArtwork listener) {
+    public RecyclerViewArtworkAdapter(List<Artwork> artworkList, RecyclerListenerArtwork recyclerListenerArtwork) {
+        this.artworkList = artworkList;
+        this.recyclerListenerArtwork = recyclerListenerArtwork;
+    }
+
+    /*public RecyclerViewArtworkAdapter(List<Artwork> artworkList, ListenerArtwork listener) {
         this.artworkList = artworkList;
         this.listener = listener;
-    }
+    }*/
 
     @NonNull
     @Override
@@ -38,12 +43,6 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(@NonNull RecyclerViewArtworkAdapter.ViewHolder viewHolder, final int position) {
         final Artwork artwork = artworkList.get(position);
         viewHolder.bind(artwork);
-//        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                listener.goToArtworkDetail();
-//            }
-//        });
     }
 
     @Override
@@ -56,18 +55,13 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
         notifyDataSetChanged();
     }
 
-    //Criei esse método para poder usar no ArtworkDetailFragment
-    public void setArtwork (Artwork artwork){
-        this.artwork = artwork;
-        notifyDataSetChanged();
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView title;
         private ImageView picture;
         private CardView item;
 
         private TextView titulo;
+        private ImageView photoDetail;
         private TextView classification;
         //private TextView worktype;
         private TextView date;
@@ -77,39 +71,37 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            //Aqui são os elementos da ArtworkFragment
             title = itemView.findViewById(R.id.titulo_obra_id);
             picture = itemView.findViewById(R.id.imagem_obra_id);
             item = itemView.findViewById(R.id.card_item_id);
 
+            //Aqui são os elementos da ArtworkDetailFragment
             titulo = itemView.findViewById(R.id.text_title_detail_artwork_id);
+            photoDetail = itemView.findViewById(R.id.image_detail_artwork_id);
             classification = itemView.findViewById(R.id.text_classification_detail_artwork_id);
             date = itemView.findViewById(R.id.text_date_detail_artwork_id);
-            places = itemView.findViewById(R.id.text_places_detail_artwork_id);
             period = itemView.findViewById(R.id.text_period_detail_artwork_id);
             culture = itemView.findViewById(R.id.text_culture_detail_artwork_id);
-
         }
 
         @SuppressLint("ResourceType")
-        public void bind(Artwork artwork) {
-            final int id = artwork.getId();
+        public void bind(final Artwork artwork) {
+
             title.setText(artwork.getTitle());
             if (artwork.getPicture() != null) {
                 Picasso.get().load(artwork.getPicture()).into(picture);
             }
+
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.goToArtworkDetail(id);
+                    //Esse listener era o antigo
+                    //listener.goToArtworkDetail();
+                    //Toast.makeText(v.getContext(),"O título é: "+title.getText().toString(),Toast.LENGTH_LONG).show();
+                    recyclerListenerArtwork.onArtworkClicado(artwork);
                 }
             });
-          /*  classification.setText(artwork.getClassification());
-            date.setText(artwork.getDate());
-            places.setText(artwork.getPlaceCreation());
-            period.setText(artwork.getPeriod());
-            culture.setText(artwork.getPeriod());*/
-
-
 
         }
     }

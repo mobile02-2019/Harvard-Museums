@@ -2,7 +2,7 @@ package com.example.andreza.harvardmuseums.interfaces;
 
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 
-public interface ComunicacaoArtwork {
+public interface ArtworkListenerDetail {
 
-    void enviarMensagens (int artworkID);
+    void iniciarFragmentArtworkDetail(Artwork artwork);
 }

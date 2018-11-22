@@ -26,21 +26,7 @@
             android:id="@+id/edit_text_firstname_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="First Name*"
-            android:inputType="textShortMessage"
-            android:lines="1"/>
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/edit_text_lastname_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Last name*"
+            android:hint="Name*"
             android:inputType="textShortMessage"
             android:lines="1"/>
     </android.support.design.widget.TextInputLayout>
