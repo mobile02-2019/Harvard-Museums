@@ -18,7 +18,6 @@ import java.util.List;
 
 public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder>{
 
-    //private ListenerArtwork listener;
     private List<Artwork> artworkList;
     private RecyclerListenerArtwork recyclerListenerArtwork;
 

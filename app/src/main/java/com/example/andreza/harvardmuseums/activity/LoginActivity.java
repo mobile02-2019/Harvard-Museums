@@ -60,8 +60,9 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        //TODO Login Facebook
+        //TODO Login Facebook falta a verificacao !!!se esta loggado ou nao
         loginFacebook = (LoginButton) findViewById(R.id.login_facebook);
+
         loginFacebook.setReadPermissions("email","public_profile");
 
         callbackManager = CallbackManager.Factory.create();
@@ -85,13 +86,6 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, "facebook:onError", error);
                     }
                 });
-
-        /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        if (isLoggedIn){
-            Intent intent = new Intent(this,HomeActivity.class);
-            startActivity(intent);
-        }*/
 
         getSupportActionBar().hide();
 
@@ -142,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 final Button buttonLogin = findViewById(R.id.login_button);
 
+
                 if (!emailDigitado.getText().toString().equals("") && !passwordDigitado.getText().toString().equals("")){
                     mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -178,15 +173,28 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //TODO essa parte do método é necessária para o facebook verificar se está logado, deixei comentado
+        //TODO até o user estar conectado com o facebook também para termos acesso ao logout.
+        //TODO falta arrumar o user só!!!!!!
+        /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        if (isLoggedIn){
+            Intent intent = new Intent(this,HomeActivity.class);
+            startActivity(intent);
+        }*/
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        //verificacao firebase
         if(mAuth.getCurrentUser()!=null){
             FirebaseUser currentUser = mAuth.getCurrentUser();
             goToHome();
+
+
         }
+
     }
 
     @Override
@@ -265,5 +273,39 @@ public class LoginActivity extends AppCompatActivity {
     public void registerNow(View view) {
         Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
+    }
+
+    public boolean isLoggedIn() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return accessToken != null;
+    }
+
+
+    public void logginFacebboksetup(){
+        loginFacebook.setReadPermissions("email");
+        callbackManager = CallbackManager.Factory.create();
+        loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+                Intent intent = new Intent(loginFacebook.getContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+
+        getSupportActionBar().hide();
+
+
+
     }
 }

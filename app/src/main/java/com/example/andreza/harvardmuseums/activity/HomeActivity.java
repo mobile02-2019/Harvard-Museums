@@ -20,19 +20,21 @@ import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
 import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
+
+import com.example.andreza.harvardmuseums.interfaces.ExhibitionListener;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
+import com.example.andreza.harvardmuseums.pojo.Exhibition;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
-        ExhibitionFragment.Listener, ExhibitionDetailFragment.Listener,
-        UserFragment.Listener, ArtworkListenerDetail {
+        ExhibitionDetailFragment.Listener,
+        UserFragment.Listener, ArtworkListenerDetail,ExhibitionListener {
 
     public static final String TITULO = "titulo";
     public static final String OBJ_ARTWORK = "artwork";
     private static final String TAG = "HomeActivity";
+    public static final String OBJ_EXHIBITION = "Exhibition";
 
     private BottomNavigationView navigationView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         });
         showFragment(new MuseumFragment());
 
+
     }
 
     public void showFragment(Fragment fragment) {
@@ -94,10 +97,6 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     }
 
 
-  @Override
-    public void goToExhibitionDetail(){
-        showFragment(new ExhibitionDetailFragment());
-  }
 
 
     public void goToFilter(){
@@ -129,4 +128,18 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
 
         showFragment(detailFragment);
     }
+
+
+    @Override
+    public void iniciarExhibitioDetail(Exhibition exhibition) {
+        ExhibitionDetailFragment exhibitionDetailFragment = new ExhibitionDetailFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(OBJ_EXHIBITION, exhibition);
+        exhibitionDetailFragment.setArguments(bundle);
+        showFragment(exhibitionDetailFragment);
+
+    }
+
+
 }

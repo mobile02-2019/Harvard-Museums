@@ -12,7 +12,8 @@
     card_view:cardElevation="8dp"
     card_view:cardCornerRadius="4dp"
     card_view:cardPreventCornerOverlap="false"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardUseCompatPadding="true"
+    android:id="@+id/card_exhibition">
 
 
     <android.support.constraint.ConstraintLayout
