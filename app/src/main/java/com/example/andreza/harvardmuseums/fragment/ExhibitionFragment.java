@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewExhibitionAdapter;
+import com.example.andreza.harvardmuseums.interfaces.ExhibitionListener;
+import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerExhibiton;
 import com.example.andreza.harvardmuseums.pojo.Exhibition;
 import com.example.andreza.harvardmuseums.model.ExhibitionResponse;
 import com.example.andreza.harvardmuseums.model.dao.ExhibitionDAO;
@@ -20,18 +22,15 @@ import com.example.andreza.harvardmuseums.service.ServiceListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExhibitionFragment extends Fragment implements ServiceListener {
+public class ExhibitionFragment extends Fragment implements ServiceListener,RecyclerListenerExhibiton {
 
 
-    private Listener listener;
+    private ExhibitionListener listener;
     private RecyclerViewExhibitionAdapter adapter;
     private RecyclerView recyclerView;
     private List<Exhibition> exhibitionList = new ArrayList<>();
 
-    public interface Listener{
-        void goToExhibitionDetail();
 
-    }
 
     public ExhibitionFragment(){
 
@@ -40,7 +39,7 @@ public class ExhibitionFragment extends Fragment implements ServiceListener {
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
-        listener = (Listener) context;
+        listener = (ExhibitionListener) context;
     }
 
     @Override
@@ -48,6 +47,8 @@ public class ExhibitionFragment extends Fragment implements ServiceListener {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_exhibition,container,false);
         setUpRecyclerView(view);
+
+
         return view;
 
 
@@ -56,7 +57,7 @@ public class ExhibitionFragment extends Fragment implements ServiceListener {
     private void setUpRecyclerView(View view){
         recyclerView = view.findViewById(R.id.recyclerview_exhibition_id);
         ExhibitionDAO dao = new ExhibitionDAO();
-        adapter = new RecyclerViewExhibitionAdapter(dao.getExhibitionList(getContext(),this),listener);
+        adapter = new RecyclerViewExhibitionAdapter(dao.getExhibitionList(getContext(),this),this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
 
@@ -79,7 +80,15 @@ public class ExhibitionFragment extends Fragment implements ServiceListener {
 
     }
 
+    @Override
+    public void onExhibitionClicado(Exhibition exhibition) {
+        listener.iniciarExhibitioDetail(exhibition);
+
     }
+
+
+
+}
 
 
 

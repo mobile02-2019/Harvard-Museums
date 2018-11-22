@@ -173,12 +173,12 @@ public class LoginActivity extends AppCompatActivity {
         //TODO essa parte do método é necessária para o facebook verificar se está logado, deixei comentado
         //TODO até o user estar conectado com o facebook também para termos acesso ao logout.
         //TODO falta arrumar o user só!!!!!!
-        /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if (isLoggedIn){
             Intent intent = new Intent(this,HomeActivity.class);
             startActivity(intent);
-        }*/
+        }
     }
 
     private void goToHome() {

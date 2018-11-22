@@ -1,5 +1,6 @@
 package com.example.andreza.harvardmuseums.adapter;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
+import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerExhibiton;
 import com.example.andreza.harvardmuseums.model.ExhibitionResponse;
 import com.example.andreza.harvardmuseums.pojo.Exhibition;
 import com.squareup.picasso.Picasso;
@@ -17,12 +19,15 @@ import java.util.List;
 public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<RecyclerViewExhibitionAdapter.ViewHolder> {
 
 
-    private ExhibitionFragment.Listener listener;
+   // private ExhibitionFragment.Listener listener;
     private List<Exhibition> exhibitionList;
+    private RecyclerListenerExhibiton listenerExhibiton;
+    private CardView cardView;
 
-    public RecyclerViewExhibitionAdapter(List<Exhibition> exhibitionList, ExhibitionFragment.Listener listener) {
+
+    public RecyclerViewExhibitionAdapter(List<Exhibition> exhibitionList, RecyclerListenerExhibiton listenerExhibiton) {
         this.exhibitionList = exhibitionList;
-        this.listener = listener;
+        this.listenerExhibiton = listenerExhibiton;
 
     }
 
@@ -38,12 +43,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
     public void onBindViewHolder(@NonNull RecyclerViewExhibitionAdapter.ViewHolder viewHolder, int position) {
          Exhibition exhibition = exhibitionList.get(position);
         viewHolder.bind(exhibition);
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.goToExhibitionDetail();
-            }
-        });
+
     }
 
     public void setExhibitionList (List<Exhibition> exhibitionList){
@@ -72,14 +72,27 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
             name = itemView.findViewById(R.id.textView_nameExhibition_id);
             begindate = itemView.findViewById(R.id.begin_date_set);
             endDate = itemView.findViewById(R.id.end_date_set);
+            cardView = itemView.findViewById(R.id.card_exhibition);
           //  imagem = itemView.findViewById(R.id.imageView_exhibition_id);
+
 
         }
 
-        public void bind (Exhibition exhibition) {
+        public void bind (final Exhibition exhibition) {
             name.setText(exhibition.getTitle());
            begindate.setText(exhibition.getBeginDate());
            endDate.setText(exhibition.getEndDate());
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerExhibiton.onExhibitionClicado(exhibition);
+
+
+
+                }
+            });
+
            // Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
 
         }

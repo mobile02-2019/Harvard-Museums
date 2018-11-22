@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.andreza.harvardmuseums.R;
@@ -21,21 +20,18 @@ import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.MuseumFragment;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
 import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
-import com.example.andreza.harvardmuseums.interfaces.ListenerArtwork;
+import com.example.andreza.harvardmuseums.interfaces.ExhibitionListener;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.andreza.harvardmuseums.pojo.Exhibition;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
-        ExhibitionFragment.Listener, ExhibitionDetailFragment.Listener,
-        UserFragment.Listener, ListenerArtwork, ArtworkListenerDetail {
+        ExhibitionDetailFragment.Listener,
+        UserFragment.Listener, ArtworkListenerDetail,ExhibitionListener {
 
     public static final String TITULO = "titulo";
     public static final String OBJ_ARTWORK = "artwork";
     private static final String TAG = "HomeActivity";
+    public static final String OBJ_EXHIBITION = "Exhibition";
 
     private BottomNavigationView navigationView;
 
@@ -75,6 +71,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         });
         showFragment(new MuseumFragment());
 
+
     }
 
     public void showFragment(Fragment fragment) {
@@ -101,10 +98,6 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     }
 
 
-  @Override
-    public void goToExhibitionDetail(){
-        showFragment(new ExhibitionDetailFragment());
-  }
 
 
     public void goToFilter(){
@@ -136,4 +129,18 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
 
         showFragment(detailFragment);
     }
+
+
+    @Override
+    public void iniciarExhibitioDetail(Exhibition exhibition) {
+        ExhibitionDetailFragment exhibitionDetailFragment = new ExhibitionDetailFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(OBJ_EXHIBITION, exhibition);
+        exhibitionDetailFragment.setArguments(bundle);
+        showFragment(exhibitionDetailFragment);
+
+    }
+
+
 }

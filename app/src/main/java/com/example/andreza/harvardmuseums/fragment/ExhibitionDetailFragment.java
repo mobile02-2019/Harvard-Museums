@@ -7,7 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.activity.HomeActivity;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewExhibitionDetailAdapter;
 import com.example.andreza.harvardmuseums.pojo.Exhibition;
 import java.util.ArrayList;
@@ -16,6 +19,11 @@ import java.util.List;
 public class ExhibitionDetailFragment extends Fragment {
 
    private Listener listener;
+   private Exhibition exhibition;
+   private TextView titulo;
+   private TextView descricao;
+   private TextView data;
+
 
 
    public interface Listener{
@@ -32,6 +40,8 @@ public class ExhibitionDetailFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.listener = (Listener) context;
+        this.exhibition = (Exhibition) getArguments().getSerializable(HomeActivity.OBJ_EXHIBITION);
+
     }
 
 
@@ -40,6 +50,10 @@ public class ExhibitionDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exhibition_detail, container, false);
         setupRecyclerView(view);
+        titulo = view.findViewById(R.id.textView_title_exhibition_id);
+        descricao = view.findViewById(R.id.textView_exhibition_description_id);
+        data = view.findViewById(R.id.textView_date_exhibition_id);
+        settarExhibition();
         return view;
     }
 
@@ -88,5 +102,14 @@ public class ExhibitionDetailFragment extends Fragment {
 
         return galleryList;
     }
+
+   private void settarExhibition(){
+       titulo.setText(exhibition.getTitle());
+       descricao.setText(exhibition.getDescription());
+       data.setText(exhibition.getEndDate());
+
+
+   }
+
 
 }

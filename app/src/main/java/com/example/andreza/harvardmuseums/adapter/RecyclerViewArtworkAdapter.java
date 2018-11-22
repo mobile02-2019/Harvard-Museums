@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
-import com.example.andreza.harvardmuseums.interfaces.ListenerArtwork;
 import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.squareup.picasso.Picasso;
@@ -20,7 +18,7 @@ import java.util.List;
 
 public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder>{
 
-    private ListenerArtwork listener;
+   // private ListenerArtwork listener;
     private List<Artwork> artworkList;
     private RecyclerListenerArtwork recyclerListenerArtwork;
 
