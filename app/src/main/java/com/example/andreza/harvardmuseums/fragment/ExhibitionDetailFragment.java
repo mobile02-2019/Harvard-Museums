@@ -49,15 +49,15 @@ public class ExhibitionDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exhibition_detail, container, false);
-        setupRecyclerView(view);
-        titulo = view.findViewById(R.id.textView_title_exhibition_id);
-        descricao = view.findViewById(R.id.textView_exhibition_description_id);
-        data = view.findViewById(R.id.textView_date_exhibition_id);
+       // setupRecyclerView(view);
+        titulo = view.findViewById(R.id.titulo_detailExhibition_id);
+        descricao = view.findViewById(R.id.descrition_detailex_id);
+        data = view.findViewById(R.id.date_exhibition_id);
         settarExhibition();
         return view;
     }
 
-    private void setupRecyclerView(View view) {
+   /* private void setupRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_exhibitionDetail_id);
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerViewExhibitionDetailAdapter adapter = new RecyclerViewExhibitionDetailAdapter(createGalleryList(), listener);
@@ -101,7 +101,7 @@ public class ExhibitionDetailFragment extends Fragment {
         galleryList.add(exhibition8);
 
         return galleryList;
-    }
+    }*/
 
    private void settarExhibition(){
        titulo.setText(exhibition.getTitle());
