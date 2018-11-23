@@ -7,11 +7,12 @@
     tools:context=".fragment.Museum1DetailFragment"
     android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView_museumDetail_id"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:src="@drawable/image_museum" />
+    <ImageView
+        android:id="@+id/imageView_museumDetail_id"
+        android:layout_width="match_parent"
+        android:layout_height="138dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_museum" />
 
         <TextView
             android:id="@+id/textView_museum1_title_id"
@@ -19,17 +20,70 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:layout_margin="8dp"
-            android:textColor="@color/black"
-            />
+            android:textColor="@color/black"/>
 
-        <TextView
-            android:id="@+id/textView_museum1_description_id"
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:focusable="false" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_margin="8dp"
-            android:textColor="@color/black"
-            />
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:id="@+id/textView_museum1_description_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="gravity"
+                    android:textSize="16sp"
+                    android:padding="8dp"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/black"
+                    />
+            </TableLayout>
+        </ScrollView>
 
     <FrameLayout
         android:id="@+id/container_map_m1"
