@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context=".activity.RegisterActivity">
 
+
+
     <ImageView
         android:id="@+id/icon_profile_id"
         android:layout_margin="32dp"
@@ -15,6 +17,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/icon_profile"
         android:layout_gravity="center"/>
+
+
 
 
     <android.support.design.widget.TextInputLayout

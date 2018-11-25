@@ -132,6 +132,14 @@
                 android:paddingLeft="17dp"
                 />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:id="@+id/btn_logout_id"
+                android:backgroundTint="@color/harvard"
+                android:textColor="#ffffff"/>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
