@@ -1,9 +1,15 @@
 package com.example.andreza.harvardmuseums;
 
+import com.example.andreza.harvardmuseums.pojo.Artwork;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private List<Artwork> artworkList = new ArrayList<>();
 
     public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -34,5 +40,13 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Artwork> getArtworkList() {
+        return artworkList;
+    }
+
+    public void setArtworkList(List<Artwork> artworkList) {
+        this.artworkList = artworkList;
     }
 }
