@@ -99,46 +99,50 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="-------------------- or --------------------"
+                android:text="------------------------------- or -------------------------------"
                 android:textAllCaps="true"
                 android:textColor="@color/cinza" />
 
-            <Button
-                android:id="@+id/login_google_id"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="345dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/google"
-                android:layout_gravity="center_horizontal"
-                android:drawableLeft="@drawable/ic_google"
-                android:text="login with google"
-                android:textSize="18sp"/>
+            <!--<Button-->
+                <!--android:id="@+id/login_google_id"-->
+                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                <!--android:layout_width="345dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:backgroundTint="@color/google"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:drawableLeft="@drawable/ic_google"-->
+                <!--android:text="login with google"-->
+                <!--android:textSize="18sp"/>-->
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/login_gmail_id"
                 android:layout_width="345dp"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textAlignment="center"/>
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_facebook"
                 android:layout_width="340dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginBottom="30dp"
                 android:textSize="18sp"
                 android:paddingLeft="17dp"
                 />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Logout"
-                android:id="@+id/btn_logout_id"
-                android:backgroundTint="@color/harvard"
-                android:textColor="#ffffff"/>
+
 
         </LinearLayout>
     </ScrollView>

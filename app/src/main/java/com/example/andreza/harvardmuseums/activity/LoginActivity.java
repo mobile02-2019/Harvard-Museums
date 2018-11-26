@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginButton loginFacebook;
     private GoogleSignInClient mGoogleSignInClient;
     private CallbackManager callbackManager;
+    private Button Logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordDigitado = findViewById(R.id.login_password_id);
         final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
         final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
+//        Logout = findViewById(R.id.btn_logout_id);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -89,15 +91,15 @@ public class LoginActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        //TODO Google Login
-        Button buttonGoogle = findViewById(R.id.login_google_id);
-        buttonGoogle.setOnClickListener(new OnClickListener() {
-             @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-                    startActivity(intent);
-             }
-        });
+//        //TODO Google Login
+//        Button buttonGoogle = findViewById(R.id.login_google_id);
+//        buttonGoogle.setOnClickListener(new OnClickListener() {
+//             @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+//                    startActivity(intent);
+//             }
+//        });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -111,6 +113,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signIn();
+                Toast.makeText(LoginActivity.this, "Login", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);
+
             }
         });
 
@@ -182,6 +188,10 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this,HomeActivity.class);
             startActivity(intent);
         }*/
+
+
+
+
     }
 
     @Override
