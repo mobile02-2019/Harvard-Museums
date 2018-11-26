@@ -10,9 +10,9 @@
     <ImageView
         android:id="@+id/imageView_museumDetail_id"
         android:layout_width="match_parent"
-        android:layout_height="138dp"
+        android:layout_height="199dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/image_museum" />
+        android:src="@drawable/busch_museum" />
 
     <TextView
         android:id="@+id/textView_museum2_title_id"
