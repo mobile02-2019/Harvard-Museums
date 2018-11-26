@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.example.andreza.harvardmuseums.R;
@@ -23,6 +25,7 @@ public class ExhibitionDetailFragment extends Fragment {
    private TextView titulo;
    private TextView descricao;
    private TextView data;
+   private WebView wv;
 
 
 
@@ -50,10 +53,19 @@ public class ExhibitionDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exhibition_detail, container, false);
        // setupRecyclerView(view);
-        titulo = view.findViewById(R.id.titulo_detailExhibition_id);
-        descricao = view.findViewById(R.id.descrition_detailex_id);
-        data = view.findViewById(R.id.date_exhibition_id);
-        settarExhibition();
+//        titulo = view.findViewById(R.id.titulo_detailExhibition_id);
+//        descricao = view.findViewById(R.id.descrition_detailex_id);
+//        data = view.findViewById(R.id.date_exhibition_id);
+        wv = view.findViewById(R.id.web_view_exibition_item_id);
+
+
+        WebSettings ws = wv.getSettings();
+        ws.setJavaScriptEnabled(true);
+        ws.setSupportZoom(false);
+        wv.loadUrl("https://www.harvardartmuseums.org/visit/exhibitions");
+
+
+//        settarExhibition();
         return view;
     }
 
@@ -103,13 +115,13 @@ public class ExhibitionDetailFragment extends Fragment {
         return galleryList;
     }*/
 
-   private void settarExhibition(){
-       titulo.setText(exhibition.getTitle());
-       descricao.setText(exhibition.getDescription());
-       data.setText(exhibition.getEndDate());
-
-
-   }
+//   private void settarExhibition(){
+//       titulo.setText(exhibition.getTitle());
+//       descricao.setText(exhibition.getDescription());
+//       data.setText(exhibition.getEndDate());
+//
+//
+//   }
 
 
 }

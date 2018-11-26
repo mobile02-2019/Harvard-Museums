@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
@@ -41,8 +43,15 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewExhibitionAdapter.ViewHolder viewHolder, int position) {
-         Exhibition exhibition = exhibitionList.get(position);
+         final Exhibition exhibition = exhibitionList.get(position);
         viewHolder.bind(exhibition);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listenerExhibiton.onExhibitionClicado(exhibition);
+            }
+        });
 
     }
 
@@ -63,6 +72,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
         private TextView name;
         private TextView begindate;
         private TextView endDate;
+        private WebView wv;
 
 
       //  private ImageView imagem;
@@ -73,6 +83,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
             begindate = itemView.findViewById(R.id.begin_date_set);
             endDate = itemView.findViewById(R.id.end_date_set);
             cardView = itemView.findViewById(R.id.card_exhibition);
+            wv = itemView.findViewById(R.id.web_view_exibition_item_id);
           //  imagem = itemView.findViewById(R.id.imageView_exhibition_id);
 
 
@@ -86,7 +97,14 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listenerExhibiton.onExhibitionClicado(exhibition);
+//                    todo: fazer um webview pra webpage do museu
+
+//                    WebSettings ws = wv.getSettings();
+//                    ws.setJavaScriptEnabled(true);
+//                    ws.setSupportZoom(false);
+//                    wv.loadUrl("https://www.harvardartmuseums.org/visit/exhibitions");
+
+
 
 
 
