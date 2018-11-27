@@ -13,7 +13,8 @@
     <string name="Login">Login</string>
 
     <!--Aqui se coloca o id pego no site developers.facebook >> O código do site já vem setado com o id-->
-    <string name="facebook_app_id">295659717955281</string> <string name="fb_login_protocol_scheme">fb295659717955281</string>
+    <string name="facebook_app_id">295659717955281</string>
+    <string name="fb_login_protocol_scheme">fb295659717955281</string>
 
     <string name="exhibition_detail">
 
@@ -42,6 +43,9 @@
         intermingling of traditions.
 
     </string>
-    <string name="hello_blank_fragment">Hello World</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

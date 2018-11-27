@@ -14,6 +14,7 @@ import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionDetailFragment;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
 import com.example.andreza.harvardmuseums.fragment.FilterFragment;
+import com.example.andreza.harvardmuseums.fragment.FloorPlanWebFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum1DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum2DetailFragment;
 import com.example.andreza.harvardmuseums.fragment.Museum3DetailFragment;
@@ -60,10 +61,15 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
                         fragment = new ArtworkFragment();
                         showFragment(fragment);
                         break;
+                    case R.id.navigation_floor_plan_id:
+                        fragment = new FloorPlanWebFragment();
+                        showFragment(fragment);
+                        break;
                     case R.id.navigation_user:
                         fragment = new UserFragment();
                         showFragment(fragment);
                         break;
+
                 }
                 return true;
             }

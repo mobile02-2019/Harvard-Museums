@@ -16,8 +16,15 @@
         android:title="Artwork"/>
 
     <item
+        android:id="@+id/navigation_floor_plan_id"
+        android:icon="@drawable/icons_floor_plan_96"
+        android:title="Floor Plan"/>
+
+    <item
         android:id="@+id/navigation_user"
         android:icon="@drawable/icon_user"
         android:title="User"/>
+
+
 
 </menu>
