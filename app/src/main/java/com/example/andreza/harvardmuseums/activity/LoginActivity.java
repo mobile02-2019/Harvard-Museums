@@ -27,6 +27,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -109,13 +110,14 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
         //Botão oficial do google
-        findViewById(R.id.login_gmail_id).setOnClickListener(new OnClickListener() {
+        SignInButton signInButton = findViewById(R.id.login_gmail_id);
+        signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
-                Toast.makeText(LoginActivity.this, "Login", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);
+//                Toast.makeText(LoginActivity.this, "Login", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+//                startActivity(intent);
 
             }
         });
