@@ -23,6 +23,38 @@
           }
         },
         {
+          "client_id": "934920320628-brrqlmfqn5989hq6k90v58abtmok4eat.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.andreza.harvardmuseums",
+            "certificate_hash": "b154b49d9fd58c1f1ddf5b38ca3267125f599461"
+          }
+        },
+        {
+          "client_id": "934920320628-jjjvuiv863ejqft9j2s74nh9qg0k9vgb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.andreza.harvardmuseums",
+            "certificate_hash": "5892b7cbf7905af451c367cacef71277a290deb3"
+          }
+        },
+        {
+          "client_id": "934920320628-3v38ullm2es13e39jrgihsm7cr9tc1me.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.andreza.harvardmuseums",
+            "certificate_hash": "7c138a9ca498e8345f840a9608ea225786b4631a"
+          }
+        },
+        {
+          "client_id": "934920320628-p8bosic0nu62alfjthsmkqt1jko8srhg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.andreza.harvardmuseums",
+            "certificate_hash": "e83b7e9e9889c368c2d140f30ff0ba6b5d1be18d"
+          }
+        },
+        {
           "client_id": "934920320628-frlac96hd1tce8q4h11go8megjshp2o2.apps.googleusercontent.com",
           "client_type": 3
         }
