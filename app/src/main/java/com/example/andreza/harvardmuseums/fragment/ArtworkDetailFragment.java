@@ -1,6 +1,8 @@
 package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.User;
 import com.example.andreza.harvardmuseums.activity.HomeActivity;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
 import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
@@ -18,7 +21,23 @@ import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.model.dao.ArtworkDAO;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 import static com.example.andreza.harvardmuseums.activity.HomeActivity.OBJ_ARTWORK;
 
@@ -34,9 +53,15 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
     private TextView places;
     private TextView period;
     private TextView culture;
-
+    private ImageView share;
+    private ImageView favorito;
+    private List<Artwork> artworkList = new ArrayList<>();
     private ArtworkDAO dao;
     private ServiceListener listener;
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
+    private User user;
+    private FirebaseAuth firebaseAuth;
 
     public ArtworkDetailFragment() {
     }
@@ -53,16 +78,94 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_artwork_detail, container, false);
 
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
         title = view.findViewById(R.id.text_title_detail_artwork_id);
         imageDetail = view.findViewById(R.id.image_detail_artwork_id);
         date = view.findViewById(R.id.text_date_detail_artwork_id);
         classification = view.findViewById(R.id.text_classification_detail_artwork_id);
         period = view.findViewById(R.id.text_period_detail_artwork_id);
         culture = view.findViewById(R.id.text_culture_detail_artwork_id);
+        share = view.findViewById(R.id.image_share_id);
+        favorito = view.findViewById(R.id.image_favorito_id);
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onShareClicado(artwork);
+            }
+        });
+
+        favorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                salvarArtes(artwork);
+            }
+        });
 
         setArtworkDetail();
 
         return view;
+    }
+
+    private void salvarArtes(Artwork artwork) {
+
+        //this.artwork = new Artwork();
+
+       // artworkList.push(artwork);
+
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+
+        mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
+
+        Query query = mFirebaseDatabase.child("users/").orderByChild("date");
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                GenericTypeIndicator<Map<String, Artwork>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Artwork>>() {
+                };
+                if (dataSnapshot.getValue(genericTypeIndicator) != null) {
+                    Collection<Artwork> artworkCollection = dataSnapshot.getValue(genericTypeIndicator).values();
+
+                    List<Artwork> artworkList = new ArrayList<>(artworkCollection);
+
+                    // Ordenar lista de usuarios
+                    Collections.sort(artworkList, new Comparator<Artwork>() {
+                        @Override
+                        public int compare(Artwork item1, Artwork item2) {
+                            return item2.getDate().compareTo(item1.getDate());
+                        }
+                    });
+                    //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                   // for (Artwork artwork : artworkList) {
+                        //text.setText(text.getText() + "\nPeso: " + user.getPeso() + "\nAltura: " + user.getAltura() + "\nData: " +   sdf.format(user.getDate()) + "\n");
+                   // }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        mFirebaseDatabase.setValue(artworkList);
+
+
+
+
+    }
+
+    private void onShareClicado(Artwork artwork) {
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_SUBJECT, artwork.getTitle());
+        share.putExtra(Intent.EXTRA_TEXT, artwork.getPicture());
+        startActivity(Intent.createChooser(share, artwork.getDate()));
     }
 
     private void setArtworkDetail(){

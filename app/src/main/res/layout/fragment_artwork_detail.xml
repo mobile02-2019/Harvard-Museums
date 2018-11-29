@@ -25,6 +25,29 @@
             android:layout_height="480dp"
             android:src="@drawable/loading_harvard" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:gravity="right"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="24dp"
+            android:id="@+id/image_share_id"
+            android:src="@drawable/icon_share_black"
+            />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_favorito_id"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/icon_favorito"
+                />
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/title_detail_artwork_id"
             android:layout_width="match_parent"
