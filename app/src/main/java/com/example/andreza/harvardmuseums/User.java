@@ -11,6 +11,14 @@ public class User {
     private String email;
     private List<Artwork> artworkList = new ArrayList<>();
 
+    public User(){
+
+    }
+
+    public User(List<Artwork> artworkList) {
+        this.artworkList = artworkList;
+    }
+
     public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
