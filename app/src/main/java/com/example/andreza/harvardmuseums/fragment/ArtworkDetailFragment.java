@@ -116,44 +116,46 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
 
        // artworkList.push(artwork);
 
+        artworkList.add(artwork);
+
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
         mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
 
-        Query query = mFirebaseDatabase.child("users/").orderByChild("date");
+        mFirebaseDatabase.child("users/").push().setValue(artworkList);
 
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                GenericTypeIndicator<Map<String, Artwork>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Artwork>>() {
-                };
-                if (dataSnapshot.getValue(genericTypeIndicator) != null) {
-                    Collection<Artwork> artworkCollection = dataSnapshot.getValue(genericTypeIndicator).values();
-
-                    List<Artwork> artworkList = new ArrayList<>(artworkCollection);
+//        query.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                GenericTypeIndicator<Map<String, Artwork>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Artwork>>() {
+//                };
+//                if (dataSnapshot.getValue(genericTypeIndicator) != null) {
+//                    Collection<Artwork> artworkCollection = dataSnapshot.getValue(genericTypeIndicator).values();
+//
+//                    List<Artwork> artworkList = new ArrayList<>(artworkCollection);
 
                     // Ordenar lista de usuarios
-                    Collections.sort(artworkList, new Comparator<Artwork>() {
-                        @Override
-                        public int compare(Artwork item1, Artwork item2) {
-                            return item2.getDate().compareTo(item1.getDate());
-                        }
-                    });
+//                    Collections.sort(artworkList, new Comparator<Artwork>() {
+//                        @Override
+//                        public int compare(Artwork item1, Artwork item2) {
+//                            return item2.getDate().compareTo(item1.getDate());
+//                        }
+//                    });
                     //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                    // for (Artwork artwork : artworkList) {
                         //text.setText(text.getText() + "\nPeso: " + user.getPeso() + "\nAltura: " + user.getAltura() + "\nData: " +   sdf.format(user.getDate()) + "\n");
                    // }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        mFirebaseDatabase.setValue(artworkList);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//        mFirebaseDatabase.setValue(artworkList);
 
 
 
