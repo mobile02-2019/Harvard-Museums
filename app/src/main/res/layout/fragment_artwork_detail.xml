@@ -22,13 +22,14 @@
         <ImageView
             android:id="@+id/image_detail_artwork_id"
             android:layout_width="match_parent"
-            android:layout_height="480dp"
+            android:layout_height="476dp"
             android:src="@drawable/loading_harvard" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
            android:gravity="right"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:orientation="horizontal">
 
         <ImageView
