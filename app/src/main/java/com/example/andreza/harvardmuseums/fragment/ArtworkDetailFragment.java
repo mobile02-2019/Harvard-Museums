@@ -1,4 +1,5 @@
 package com.example.andreza.harvardmuseums.fragment;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +17,11 @@ import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.User;
 import com.example.andreza.harvardmuseums.activity.HomeActivity;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
+import com.example.andreza.harvardmuseums.database.AppDatabase;
 import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
 import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
+import com.example.andreza.harvardmuseums.pojo.ArtworkRoom;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.model.dao.ArtworkDAO;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,6 +65,7 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
     private FirebaseDatabase mFirebaseInstance;
     private User user;
     private FirebaseAuth firebaseAuth;
+    private AppDatabase db;
 
     public ArtworkDetailFragment() {
     }
@@ -107,6 +111,9 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
 
         setArtworkDetail();
 
+        db = Room.databaseBuilder(getActivity().getApplicationContext(),
+                AppDatabase.class, "harvardmuseusmsdb-room").build();
+
         return view;
     }
 
@@ -123,6 +130,21 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
         mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
 
         mFirebaseDatabase.child("users/").push().setValue(artworkList);
+
+
+        final ArtworkRoom artworkRoom = new ArtworkRoom();
+
+        artworkRoom.setId(artwork.getId());
+        artworkRoom.setTitle(artwork.getTitle());
+        artworkRoom.setPicture(artwork.getPicture());
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                db.artworkRoomDao().insertAll(artworkRoom);
+
+            }
+        }).start();
 
 //        query.addValueEventListener(new ValueEventListener() {
 //            @Override
