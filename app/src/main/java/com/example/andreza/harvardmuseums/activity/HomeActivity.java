@@ -137,7 +137,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
 
 
     @Override
-    public void iniciarExhibitioDetail(Exhibition exhibition) {
+    public void iniciarExhibitionDetail(Exhibition exhibition) {
         ExhibitionDetailFragment exhibitionDetailFragment = new ExhibitionDetailFragment();
 
         Bundle bundle = new Bundle();

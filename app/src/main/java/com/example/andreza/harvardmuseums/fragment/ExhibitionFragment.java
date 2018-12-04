@@ -82,7 +82,7 @@ public class ExhibitionFragment extends Fragment implements ServiceListener,Recy
 
     @Override
     public void onExhibitionClicado(Exhibition exhibition) {
-        listener.iniciarExhibitioDetail(exhibition);
+        listener.iniciarExhibitionDetail(exhibition);
 
     }
 
