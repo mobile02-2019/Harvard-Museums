@@ -1,7 +1,11 @@
 package com.example.andreza.harvardmuseums.fragment;
+import android.arch.lifecycle.Observer;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,13 +22,21 @@ import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.activity.HomeActivity;
 import com.example.andreza.harvardmuseums.activity.LoginActivity;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewUserAdapter;
+import com.example.andreza.harvardmuseums.database.AppDatabase;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
+import com.example.andreza.harvardmuseums.pojo.ArtworkRoom;
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -37,6 +49,12 @@ public class UserFragment extends Fragment {
     private TextView username;
     private TextView userEmail;
     private FirebaseAuth mAuth;
+    private AppDatabase db;
+    private FirebaseDatabase mFirebaseInstance;
+    private FirebaseAuth firebaseAuth;
+    private List<ArtworkRoom> artworkRoomList = new ArrayList<>();
+    private DatabaseReference mFirebaseDatabase;
+    private RecyclerViewUserAdapter adapter;
 
     public interface Listener {
         void goToArtworkDetail();
@@ -74,6 +92,9 @@ public class UserFragment extends Fragment {
             userEmail.setText(user.getEmail());
         }
 
+        db = Room.databaseBuilder(getActivity().getApplicationContext(),
+                AppDatabase.class, "harvardmuseusmsdb-room").build();
+
         setupRecyclerView(view);
 
         Button buttonLogout = view.findViewById(R.id.user_logout_button_id);
@@ -85,6 +106,9 @@ public class UserFragment extends Fragment {
                 goToLogin();
             }
         });
+
+
+
         return view;
     }
 
@@ -104,10 +128,43 @@ public class UserFragment extends Fragment {
 
     public void setupRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_user_id);
-        RecyclerViewUserAdapter adapter = new RecyclerViewUserAdapter(createFavoriteList(), listener);
+        adapter = new RecyclerViewUserAdapter(artworkRoomList, listener);
         recyclerView.setAdapter(adapter);
         int columns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),columns));
+
+
+        db.artworkRoomDao().getAll().observe(getActivity(), new Observer<List<ArtworkRoom>>() {
+            @Override
+            public void onChanged(@Nullable List<ArtworkRoom> artworkRoomList) {
+                adapter.setFavoriteList(artworkRoomList);
+            }
+        });
+
+    }
+
+    private void buscarFavoritos(final Artwork artwork){
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+
+        mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
+
+        mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Artwork artwork1 = dataSnapshot.getValue(Artwork.class);
+                artwork.setId(artwork1.getId());
+                artwork.setTitle(artwork1.getTitle());
+                artwork.setPicture(artwork1.getPicture());
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

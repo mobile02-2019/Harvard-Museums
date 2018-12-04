@@ -11,17 +11,23 @@ import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
+import com.example.andreza.harvardmuseums.pojo.ArtworkRoom;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class RecyclerViewUserAdapter extends RecyclerView.Adapter<RecyclerViewUserAdapter.ViewHolder> {
 
     private UserFragment.Listener listener;
-    private List<Artwork> favoriteList;
+    private List<ArtworkRoom> favoriteList;
 
-    public RecyclerViewUserAdapter(List<Artwork> favoriteList, UserFragment.Listener listener) {
+    public RecyclerViewUserAdapter(List<ArtworkRoom> favoriteList, UserFragment.Listener listener) {
         this.favoriteList = favoriteList;
         this.listener = listener;
+    }
+
+    public void setFavoriteList(List<ArtworkRoom> favoriteList) {
+        this.favoriteList = favoriteList;
     }
 
     @NonNull
@@ -33,8 +39,8 @@ public class RecyclerViewUserAdapter extends RecyclerView.Adapter<RecyclerViewUs
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewUserAdapter.ViewHolder viewHolder, int position) {
-        Artwork artwork = favoriteList.get(position);
-        viewHolder.bind(artwork);
+        ArtworkRoom artworkRoom = favoriteList.get(position);
+        viewHolder.bind(artworkRoom);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,8 +66,9 @@ public class RecyclerViewUserAdapter extends RecyclerView.Adapter<RecyclerViewUs
             picture = itemView.findViewById(R.id.imagem_obra_fav_id);
         }
 
-        public void bind (Artwork artwork){
-            title.setText(artwork.getTitle());
+        public void bind (ArtworkRoom artworkRoom){
+            title.setText(artworkRoom.getTitle());
+            Picasso.get().load(artworkRoom.getPicture()).into(picture);
         }
     }
 }
