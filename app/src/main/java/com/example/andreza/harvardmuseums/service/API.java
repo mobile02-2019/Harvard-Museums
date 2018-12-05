@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 
 public interface API {
 
-    @GET("/exhibition"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3")
+    @GET("/exhibition"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3&sort=chronological&sortorder=desc")
     Call<ExhibitionResponse> getExhibition();
 
     @GET("/object"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3")

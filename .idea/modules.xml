@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Harvard-Museums.iml" filepath="$PROJECT_DIR$/Harvard-Museums.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Harvard-Museums-app.iml" filepath="$PROJECT_DIR$/app/Harvard-Museums-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Projeto Integrador-Harvard-Museums.iml" filepath="$PROJECT_DIR$/Projeto Integrador-Harvard-Museums.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
