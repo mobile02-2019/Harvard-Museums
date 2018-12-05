@@ -1,11 +1,10 @@
 package com.example.andreza.harvardmuseums.fragment;
-import android.arch.lifecycle.Observer;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.UnicodeMatcher;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,19 +15,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
-import com.example.andreza.harvardmuseums.activity.HomeActivity;
 import com.example.andreza.harvardmuseums.activity.LoginActivity;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewUserAdapter;
 import com.example.andreza.harvardmuseums.database.AppDatabase;
+import com.example.andreza.harvardmuseums.interfaces.ComunicadorRecyclerUser;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.example.andreza.harvardmuseums.pojo.ArtworkRoom;
-import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
-import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,9 +35,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
-public class UserFragment extends Fragment {
+public class UserFragment extends Fragment implements ComunicadorRecyclerUser {
 
     private Listener listener;
     private ImageView imageProfile;
@@ -50,11 +47,13 @@ public class UserFragment extends Fragment {
     private TextView userEmail;
     private FirebaseAuth mAuth;
     private AppDatabase db;
-    private FirebaseDatabase mFirebaseInstance;
-    private FirebaseAuth firebaseAuth;
-    private List<ArtworkRoom> artworkRoomList = new ArrayList<>();
-    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase database;
+    private List<Artwork> artworkList = new ArrayList<>();
+    private DatabaseReference mref;
     private RecyclerViewUserAdapter adapter;
+    private Artwork artwork = new Artwork();
+
+
 
     public interface Listener {
         void goToArtworkDetail();
@@ -128,34 +127,30 @@ public class UserFragment extends Fragment {
 
     public void setupRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_user_id);
-        adapter = new RecyclerViewUserAdapter(artworkRoomList, listener);
+        adapter = new RecyclerViewUserAdapter(artworkList, listener, this);
         recyclerView.setAdapter(adapter);
-        int columns = 3;
+        int columns = 2;
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),columns));
 
+        database = FirebaseDatabase.getInstance();
 
-        db.artworkRoomDao().getAll().observe(getActivity(), new Observer<List<ArtworkRoom>>() {
-            @Override
-            public void onChanged(@Nullable List<ArtworkRoom> artworkRoomList) {
-                adapter.setFavoriteList(artworkRoomList);
-            }
-        });
+        mref = database.getReference("users/" + mAuth.getCurrentUser().getUid());
 
-    }
-
-    private void buscarFavoritos(final Artwork artwork){
-        mFirebaseInstance = FirebaseDatabase.getInstance();
-
-        mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
-
-        mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
+        mref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Artwork artwork1 = dataSnapshot.getValue(Artwork.class);
-                artwork.setId(artwork1.getId());
-                artwork.setTitle(artwork1.getTitle());
-                artwork.setPicture(artwork1.getPicture());
+                GenericTypeIndicator<Map<String, Artwork>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Artwork>>() {
+                };
+                if (dataSnapshot.getValue(genericTypeIndicator) != null) {
+                    Collection<Artwork> artworkCollection = dataSnapshot.getValue(genericTypeIndicator).values();
+
+                    List<Artwork> artworkList = new ArrayList<>(artworkCollection);
+
+
+                    adapter.setFavoriteList(artworkList);
+
+                }
 
 
             }
@@ -164,10 +159,21 @@ public class UserFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+
+        });}
+
+//        db.artworkRoomDao().getAll().observe(getActivity(), new Observer<List<ArtworkRoom>>() {
+//            @Override
+//            public void onChanged(@Nullable List<ArtworkRoom> artworkRoomList) {
+//                adapter.setFavoriteList(artworkRoomList);
+//            }
+//        });
+
+
+
+    private void buscarFavoritos(final Artwork artwork) {
 
     }
-
     public List<Artwork> createFavoriteList() {
         List<Artwork> favoriteList = new ArrayList<>();
 
@@ -189,5 +195,11 @@ public class UserFragment extends Fragment {
 
         return favoriteList;
 
+}
+
+    @Override
+    public void exluirFavorito(Artwork artwork) {
+        adapter.excluirFavoritado(artwork);
+        adapter.notifyDataSetChanged();
     }
 }

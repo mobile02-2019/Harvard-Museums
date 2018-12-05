@@ -1,4 +1,5 @@
 package com.example.andreza.harvardmuseums.fragment;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -105,6 +106,7 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
             @Override
             public void onClick(View v) {
                 salvarArtes(artwork);
+                Toast.makeText(getContext(), "Favorite art", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -118,68 +120,29 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
 
     private void salvarArtes(Artwork artwork) {
 
-        //this.artwork = new Artwork();
-
-       // artworkList.push(artwork);
-
         artworkList.add(artwork);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
         mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
 
-        mFirebaseDatabase.child("users/").push().setValue(artworkList);
+        mFirebaseDatabase.push().setValue(artwork);
 
-
-        final ArtworkRoom artworkRoom = new ArtworkRoom();
-
-        artworkRoom.setId(artwork.getId());
-        artworkRoom.setTitle(artwork.getTitle());
-        artworkRoom.setPicture(artwork.getPicture());
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                db.artworkRoomDao().insertAll(artworkRoom);
-
-            }
-        }).start();
-
-//        query.addValueEventListener(new ValueEventListener() {
+        // Metodo para utilizar o Room
+//        final ArtworkRoom artworkRoom = new ArtworkRoom();
+//
+//        artworkRoom.setId(artwork.getId());
+//        artworkRoom.setTitle(artwork.getTitle());
+//        artworkRoom.setPicture(artwork.getPicture());
+//
+//        new Thread(new Runnable() {
 //            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                GenericTypeIndicator<Map<String, Artwork>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Artwork>>() {
-//                };
-//                if (dataSnapshot.getValue(genericTypeIndicator) != null) {
-//                    Collection<Artwork> artworkCollection = dataSnapshot.getValue(genericTypeIndicator).values();
-//
-//                    List<Artwork> artworkList = new ArrayList<>(artworkCollection);
-
-                    // Ordenar lista de usuarios
-//                    Collections.sort(artworkList, new Comparator<Artwork>() {
-//                        @Override
-//                        public int compare(Artwork item1, Artwork item2) {
-//                            return item2.getDate().compareTo(item1.getDate());
-//                        }
-//                    });
-                    //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                   // for (Artwork artwork : artworkList) {
-                        //text.setText(text.getText() + "\nPeso: " + user.getPeso() + "\nAltura: " + user.getAltura() + "\nData: " +   sdf.format(user.getDate()) + "\n");
-                   // }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//            public void run() {
+//                db.artworkRoomDao().insertAll(artworkRoom);
 //
 //            }
-//        });
-//
-//        mFirebaseDatabase.setValue(artworkList);
-
-
-
+//        }).start();
+        // Termina aqui o metodo Room
 
     }
 
