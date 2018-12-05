@@ -7,11 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.UserFragment;
+import com.example.andreza.harvardmuseums.interfaces.ComunicadorRecyclerUser;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.example.andreza.harvardmuseums.pojo.ArtworkRoom;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,15 +24,21 @@ import java.util.List;
 public class RecyclerViewUserAdapter extends RecyclerView.Adapter<RecyclerViewUserAdapter.ViewHolder> {
 
     private UserFragment.Listener listener;
-    private List<ArtworkRoom> favoriteList;
+    private List<Artwork> favoriteList;
+    private ComunicadorRecyclerUser comunicador;
+    private FirebaseAuth mAuth;
 
-    public RecyclerViewUserAdapter(List<ArtworkRoom> favoriteList, UserFragment.Listener listener) {
+
+
+    public RecyclerViewUserAdapter(List<Artwork> favoriteList, UserFragment.Listener listener, ComunicadorRecyclerUser comunicador) {
         this.favoriteList = favoriteList;
         this.listener = listener;
+        this.comunicador = comunicador;
     }
 
-    public void setFavoriteList(List<ArtworkRoom> favoriteList) {
+    public void setFavoriteList(List<Artwork> favoriteList) {
         this.favoriteList = favoriteList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -39,8 +50,8 @@ public class RecyclerViewUserAdapter extends RecyclerView.Adapter<RecyclerViewUs
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewUserAdapter.ViewHolder viewHolder, int position) {
-        ArtworkRoom artworkRoom = favoriteList.get(position);
-        viewHolder.bind(artworkRoom);
+        Artwork artwork = favoriteList.get(position);
+        viewHolder.bind(artwork);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,20 +66,38 @@ public class RecyclerViewUserAdapter extends RecyclerView.Adapter<RecyclerViewUs
         return favoriteList.size();
     }
 
+    public void excluirFavoritado(Artwork artwork){
+        mAuth = FirebaseAuth.getInstance();
+        favoriteList.remove(artwork);
+        notifyDataSetChanged();
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users/"+mAuth.getUid());
+        myRef.removeValue();
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView title;
         private ImageView picture;
+        private ImageView trash;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.titulo_obra_fav_id);
             picture = itemView.findViewById(R.id.imagem_obra_fav_id);
+            trash = itemView.findViewById(R.id.image_trash_id);
         }
 
-        public void bind (ArtworkRoom artworkRoom){
-            title.setText(artworkRoom.getTitle());
-            Picasso.get().load(artworkRoom.getPicture()).into(picture);
+        public void bind (final Artwork artwork){
+            title.setText(artwork.getTitle());
+            Picasso.get().load(artwork.getPicture()).into(picture);
+
+            trash.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    comunicador.exluirFavorito(artwork);
+                    Toast.makeText(itemView.getContext(), "Excluir", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
