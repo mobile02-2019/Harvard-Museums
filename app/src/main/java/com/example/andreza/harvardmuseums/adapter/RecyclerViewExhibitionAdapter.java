@@ -80,8 +80,8 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textView_nameExhibition_id);
-//            begindate = itemView.findViewById(R.id.begin_date_set);
-//            endDate = itemView.findViewById(R.id.end_date_set);
+            begindate = itemView.findViewById(R.id.begin_date_set);
+            endDate = itemView.findViewById(R.id.end_date_set);
             cardView = itemView.findViewById(R.id.card_exhibition);
             wv = itemView.findViewById(R.id.web_view_exibition_item_id);
           //  imagem = itemView.findViewById(R.id.imageView_exhibition_id);
@@ -91,8 +91,8 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
 
         public void bind (final Exhibition exhibition) {
             name.setText(exhibition.getTitle());
-//           begindate.setText(exhibition.getBeginDate());
-//           endDate.setText(exhibition.getEndDate());
+           begindate.setText(exhibition.getBeginDate());
+           endDate.setText(exhibition.getEndDate());
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override

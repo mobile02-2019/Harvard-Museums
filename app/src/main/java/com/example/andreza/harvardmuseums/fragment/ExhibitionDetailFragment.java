@@ -52,7 +52,7 @@ public class ExhibitionDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exhibition_detail, container, false);
-       // setupRecyclerView(view);
+//        setupRecyclerView(view);
 //        titulo = view.findViewById(R.id.titulo_detailExhibition_id);
 //        descricao = view.findViewById(R.id.descrition_detailex_id);
 //        data = view.findViewById(R.id.date_exhibition_id);
