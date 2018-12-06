@@ -69,6 +69,13 @@ public class ExhibitionFragment extends Fragment implements ServiceListener,Recy
     public void onSucess(Object object) {
         ExhibitionResponse exhibitionResponse = (ExhibitionResponse) object;
         exhibitionList = exhibitionResponse.getRecords();
+
+        //TODO:  isso que é um teste
+//        for(Exhibition e: exhibitionList) {
+//            e.setDescription("");
+//        }
+        //Fim apaga
+
         adapter.setExhibitionList(exhibitionList);
 
 

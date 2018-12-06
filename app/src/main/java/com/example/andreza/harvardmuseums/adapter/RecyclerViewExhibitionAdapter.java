@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
+import com.example.andreza.harvardmuseums.calendar.CalendarHandler;
 import com.example.andreza.harvardmuseums.fragment.ExhibitionFragment;
 import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerExhibiton;
 import com.example.andreza.harvardmuseums.model.ExhibitionResponse;
@@ -73,7 +75,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
         private TextView begindate;
         private TextView endDate;
         private WebView wv;
-
+        private Button addToCalendar;
 
       //  private ImageView imagem;
 
@@ -84,15 +86,19 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
             endDate = itemView.findViewById(R.id.end_date_set);
             cardView = itemView.findViewById(R.id.card_exhibition);
             wv = itemView.findViewById(R.id.web_view_exibition_item_id);
+            addToCalendar = itemView.findViewById(R.id.btn_add_to_my_calendar_id);
           //  imagem = itemView.findViewById(R.id.imageView_exhibition_id);
 
 
         }
 
+
+
+
         public void bind (final Exhibition exhibition) {
             name.setText(exhibition.getTitle());
-           begindate.setText(exhibition.getBeginDate());
-           endDate.setText(exhibition.getEndDate());
+            begindate.setText(exhibition.getBeginDate());
+            endDate.setText(exhibition.getEndDate());
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,15 +109,17 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
 //                    ws.setJavaScriptEnabled(true);
 //                    ws.setSupportZoom(false);
 //                    wv.loadUrl("https://www.harvardartmuseums.org/visit/exhibitions");
-
-
-
-
-
                 }
             });
 
-           // Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
+            // Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
+
+            addToCalendar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
+                }
+            });
 
         }
 
