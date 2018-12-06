@@ -23,22 +23,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="3dp"
-            android:layout_marginRight="3dp"
             android:layout_marginBottom="8dp"
             android:adjustViewBounds="true"
             android:cropToPadding="false"
             android:maxWidth="180dp"
             android:minWidth="180dp"
             android:scaleType="fitStart"
+            app:layout_constraintBottom_toTopOf="@+id/titulo_obra_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/loading_harvard"
-            app:layout_constraintBottom_toTopOf="@+id/titulo_obra_id"
-             />
+            app:srcCompat="@drawable/loading_harvard" />
 
         <TextView
             android:id="@+id/titulo_obra_id"
@@ -51,6 +48,7 @@
             android:layout_marginRight="50dp"
             android:layout_marginBottom="8dp"
             android:text="Titulo Obra"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
