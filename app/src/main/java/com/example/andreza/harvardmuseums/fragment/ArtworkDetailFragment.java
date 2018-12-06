@@ -106,7 +106,7 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
             @Override
             public void onClick(View v) {
                 salvarArtes(artwork);
-                Toast.makeText(getContext(), "Favorite art", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Artwork saved!", Toast.LENGTH_SHORT).show();
             }
         });
 

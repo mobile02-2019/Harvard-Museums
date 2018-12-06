@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.activity.LoginActivity;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewUserAdapter;
+import com.example.andreza.harvardmuseums.adapter.SpacesItemDecoration;
 import com.example.andreza.harvardmuseums.database.AppDatabase;
 import com.example.andreza.harvardmuseums.interfaces.ComunicadorRecyclerUser;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
@@ -130,7 +132,9 @@ public class UserFragment extends Fragment implements ComunicadorRecyclerUser {
         adapter = new RecyclerViewUserAdapter(artworkList, listener, this);
         recyclerView.setAdapter(adapter);
         int columns = 2;
-        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),columns));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        recyclerView.addItemDecoration(decoration);
 
         database = FirebaseDatabase.getInstance();
 

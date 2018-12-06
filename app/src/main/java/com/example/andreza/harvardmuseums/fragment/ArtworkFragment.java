@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
 
         recyclerView.setAdapter(adapter);
         int columns = 2;
-        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), columns));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
     }
 
