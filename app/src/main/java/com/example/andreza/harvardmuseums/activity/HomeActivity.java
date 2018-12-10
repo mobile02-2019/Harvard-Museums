@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.andreza.harvardmuseums.MyFirebaseMessagingService;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkDetailFragment;
 import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
@@ -25,6 +26,7 @@ import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
 import com.example.andreza.harvardmuseums.interfaces.ExhibitionListener;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.example.andreza.harvardmuseums.pojo.Exhibition;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
         ExhibitionDetailFragment.Listener,
@@ -75,8 +77,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
             }
         });
         showFragment(new MuseumFragment());
-
-
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
     }
 
     public void showFragment(Fragment fragment) {
