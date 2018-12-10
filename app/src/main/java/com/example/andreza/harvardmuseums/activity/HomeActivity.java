@@ -77,6 +77,8 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
             }
         });
         showFragment(new MuseumFragment());
+
+        //parte que libera a notificacao push
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
     }
 
