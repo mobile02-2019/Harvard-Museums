@@ -36,6 +36,8 @@ public class ArtworkDAO {
 
         return new ArrayList<>();
     }
+
+
     public Artwork getArtDetailList (Context context, final ServiceListener listener,int size,int page){
 
         Call<ArtworkResponse> call = RetrofitService.getAPI().getArtworkPage(size,page);

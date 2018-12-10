@@ -14,8 +14,10 @@ public interface API {
     @GET("/exhibition"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3&sort=chronological&sortorder=desc")
     Call<ExhibitionResponse> getExhibition();
 
-    @GET("/object"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3")
-    Call<ArtworkResponse> getArtworks();
+
+    @GET("/exhibition"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3&sort=chronological&sortorder=desc")
+    Call<ExhibitionResponse> getExhibitionPage(@Query("size") int size,
+                                               @Query("page") int page);
 
 
     @GET("/object"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3")

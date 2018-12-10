@@ -26,6 +26,7 @@
             android:layout_gravity="right"
             />
 
+
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -34,11 +35,5 @@
         android:layout_height="match_parent"
         />
 
-    <ProgressBar
-        android:id="@+id/progress_bar_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
 
 </LinearLayout>

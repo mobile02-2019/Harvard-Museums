@@ -33,7 +33,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
     private ArtworkListenerDetail listenerArtwork;
     private int page = 1;
     private final int PAGE_SIZE = 20;
-    private ProgressBar progressBar;
+
 
 
     public ArtworkFragment() {
@@ -50,7 +50,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_artwork, container, false);
-        progressBar = view.findViewById(R.id.progress_bar_id);
+
 
         ImageView filtro = view.findViewById(R.id.imageView_filter_id);
         filtro.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +78,6 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (!recyclerView.canScrollVertically(1)) {
-                    // Tornar o progressBar visivel
-                  //  progressBar.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.VISIBLE);
 
                     // Aumentar o offset (quantidade de itens que são "pulados" na busca paginada
                     // O offset sempre aumenta de acordo com a constante POST_LIMIT definida no dao
