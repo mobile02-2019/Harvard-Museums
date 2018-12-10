@@ -1,6 +1,7 @@
 package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
 import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
+import com.example.andreza.harvardmuseums.model.dao.ArtworkRoomDao_Impl;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
@@ -28,6 +31,10 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
     private RecyclerView recyclerView;
     private RecyclerViewArtworkAdapter adapter;
     private ArtworkListenerDetail listenerArtwork;
+    private int page = 1;
+    private final int PAGE_SIZE = 20;
+    private ProgressBar progressBar;
+
 
     public ArtworkFragment() {
     }
@@ -43,6 +50,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_artwork, container, false);
+        progressBar = view.findViewById(R.id.progress_bar_id);
 
         ImageView filtro = view.findViewById(R.id.imageView_filter_id);
         filtro.setOnClickListener(new View.OnClickListener() {
@@ -61,12 +69,29 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
         recyclerView = view.findViewById(R.id.recyclerview_artwork_id);
 
         final ArtworkDAO dao = new ArtworkDAO();
-
-        adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(),this), this);
-
+        adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(),this,PAGE_SIZE,page), this);
         recyclerView.setAdapter(adapter);
         int columns = 2;
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!recyclerView.canScrollVertically(1)) {
+                    // Tornar o progressBar visivel
+                  //  progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
+
+                    // Aumentar o offset (quantidade de itens que são "pulados" na busca paginada
+                    // O offset sempre aumenta de acordo com a constante POST_LIMIT definida no dao
+                    page = page +1 ;
+
+                    // Chamar o método que busca Posts de forma paginada, porém com o novo offset
+                    ArtworkDAO dao = new ArtworkDAO();
+                    dao.getArtDetailList(getContext(),ArtworkFragment.this,page,PAGE_SIZE);
+                }
+            }
+        });
 
     }
 
