@@ -29,10 +29,10 @@
         android:textColor="@color/branco"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageMuseum1" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageMuseum1"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="10dp"
@@ -59,10 +59,10 @@
         android:textColor="@color/branco"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageMuseum2" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageMuseum2"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="20dp"
@@ -79,7 +79,7 @@
         android:layout_marginBottom="175dp"
         android:src="@drawable/icon_map_home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2" />
+        app:layout_constraintStart_toStartOf="@+id/imageMuseum3" />
 
     <TextView
         android:id="@+id/textView"
@@ -91,10 +91,10 @@
         android:textColor="@color/branco"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageMuseum3" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageMuseum3"
         android:layout_width="149dp"
         android:layout_height="110dp"
         android:layout_marginStart="200dp"

@@ -32,20 +32,53 @@ public class MuseumFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_museum, container, false);
         ImageView iconMap1 = view.findViewById(R.id.imageView_fogg_id);
+        ImageView imgMuseu1 = view.findViewById(R.id.imageMuseum1);
+
+
+        imgMuseu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.goToMuseumDetail(1);
+            }
+        });
+
+
         iconMap1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.goToMuseumDetail(1);
             }
         });
+
+
+        ImageView imgMuseu2 = view.findViewById(R.id.imageMuseum2);
         ImageView iconMap2 = view.findViewById(R.id.imageView_busch_id);
+
+
+        imgMuseu2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.goToMuseumDetail(2);
+            }
+        });
         iconMap2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.goToMuseumDetail(2);
             }
         });
+
+
+
+        ImageView imgMuseu3 = view.findViewById(R.id.imageMuseum3);
         ImageView iconMap3 = view.findViewById(R.id.imageView_arthur_id);
+
+        imgMuseu3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.goToMuseumDetail(3);
+            }
+        });
         iconMap3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
