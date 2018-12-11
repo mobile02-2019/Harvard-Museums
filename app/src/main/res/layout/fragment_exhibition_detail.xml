@@ -36,23 +36,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/view11"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorAccent"
-            android:focusable="false"
-            app:layout_constraintTop_toBottomOf="@+id/text_add_to_myCalendar_id"
-            />
-        <View
-            android:layout_width="fill_parent"
-            android:id="@+id/view22"
-            android:layout_height="1dp"
-            android:background="@color/colorAccent"
-            app:layout_constraintTop_toBottomOf="@+id/view11"
-            />
-            android:focusable="false" />
-
 
         <ImageView
             android:id="@+id/btn_add_to_my_calendar_id"
@@ -112,27 +95,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_add_to_myCalendar_id" />
 
-        <View
-            android:layout_width="fill_parent"
-            android:id="@+id/view99"
-            android:layout_height="1dp"
-            android:background="@color/colorAccent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_titulo_descricao"
-            android:focusable="false" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/scrollView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view88">
+            app:layout_constraintTop_toBottomOf="@+id/text_view_titulo_descricao">
 
             <TextView
                 android:id="@+id/descrition_detailex_id"
