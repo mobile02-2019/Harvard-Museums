@@ -93,7 +93,7 @@ public class ExhibitionDetailFragment extends Fragment {
                        new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
 
                    }else{
-                       Toast.makeText(getContext(),"Conecte com o google",Toast.LENGTH_LONG).show();
+                       Toast.makeText(getContext(),"You must sign in with Google to access the calendar",Toast.LENGTH_LONG).show();
                    }
                }
 
