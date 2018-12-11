@@ -16,9 +16,9 @@ import retrofit2.Response;
 
 public class ArtworkDAO {
 
-    public List<Artwork> getArtList (Context context, final ServiceListener listener){
+    public List<Artwork> getArtList (Context context, final ServiceListener listener,int size,int page){
 
-        Call<ArtworkResponse> call = RetrofitService.getAPI().getArtworks();
+        Call<ArtworkResponse> call = RetrofitService.getAPI().getArtworkPage(size,page);
 
         call.enqueue(new Callback<ArtworkResponse>() {
             @Override
@@ -36,9 +36,11 @@ public class ArtworkDAO {
 
         return new ArrayList<>();
     }
-    public Artwork getArtDetailList (Context context, final ServiceListener listener){
 
-        Call<ArtworkResponse> call = RetrofitService.getAPI().getArtworks();
+
+    public Artwork getArtDetailList (Context context, final ServiceListener listener,int size,int page){
+
+        Call<ArtworkResponse> call = RetrofitService.getAPI().getArtworkPage(size,page);
 
         call.enqueue(new Callback<ArtworkResponse>() {
             @Override

@@ -16,7 +16,6 @@ import com.example.andreza.harvardmuseums.pojo.Exhibition;
 
 public class ExhibitionDetailFragment extends Fragment {
 
-   private Listener listener;
    private Exhibition exhibition;
    private TextView titulo;
    private TextView tituloApi;
@@ -32,13 +31,6 @@ public class ExhibitionDetailFragment extends Fragment {
 
 
 
-
-
-   public interface Listener{
-       void goToArtworkDetail();
-
-   }
-
    public ExhibitionDetailFragment() {
 
     }
@@ -47,7 +39,6 @@ public class ExhibitionDetailFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.listener = (Listener) context;
         this.exhibition = (Exhibition) getArguments().getSerializable(HomeActivity.OBJ_EXHIBITION);
 
     }

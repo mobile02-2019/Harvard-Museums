@@ -29,8 +29,7 @@ import com.example.andreza.harvardmuseums.pojo.Exhibition;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class HomeActivity extends AppCompatActivity implements MuseumFragment.Listener,
-        ExhibitionDetailFragment.Listener,
-        UserFragment.Listener, ArtworkListenerDetail,ExhibitionListener {
+        ArtworkListenerDetail,ExhibitionListener {
 
     public static final String TITULO = "titulo";
     public static final String OBJ_ARTWORK = "artwork";
@@ -114,17 +113,6 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
 
     public void goToArtwork(){
         showFragment(new ArtworkFragment());
-    }
-
-    @Override //TODO pelo que entendi essa interface pode ser deletada agora "goToArtwork"
-    public void goToArtworkDetail() {
-        /*ArtworkDetailFragment detailFragment = new ArtworkDetailFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putString(OBJ_ARTWORK,obj);
-        detailFragment.setArguments(bundle);
-
-        showFragment(detailFragment);*/
     }
 
     @Override

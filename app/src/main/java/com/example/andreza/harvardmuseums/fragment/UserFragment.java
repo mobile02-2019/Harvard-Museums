@@ -22,6 +22,7 @@ import com.example.andreza.harvardmuseums.activity.LoginActivity;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewUserAdapter;
 import com.example.andreza.harvardmuseums.adapter.SpacesItemDecoration;
 import com.example.andreza.harvardmuseums.database.AppDatabase;
+import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
 import com.example.andreza.harvardmuseums.interfaces.ComunicadorRecyclerUser;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.example.andreza.harvardmuseums.pojo.ArtworkRoom;
@@ -43,7 +44,6 @@ import java.util.Map;
 
 public class UserFragment extends Fragment implements ComunicadorRecyclerUser {
 
-    private Listener listener;
     private ImageView imageProfile;
     private TextView username;
     private TextView userEmail;
@@ -54,12 +54,8 @@ public class UserFragment extends Fragment implements ComunicadorRecyclerUser {
     private DatabaseReference mref;
     private RecyclerViewUserAdapter adapter;
     private Artwork artwork = new Artwork();
+    private ArtworkListenerDetail listenerDetail;
 
-
-
-    public interface Listener {
-        void goToArtworkDetail();
-    }
 
     public UserFragment() {
     }
@@ -67,7 +63,7 @@ public class UserFragment extends Fragment implements ComunicadorRecyclerUser {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        listener = (Listener) context;
+        listenerDetail = (ArtworkListenerDetail) context;
 
 
     }
@@ -129,7 +125,7 @@ public class UserFragment extends Fragment implements ComunicadorRecyclerUser {
 
     public void setupRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_user_id);
-        adapter = new RecyclerViewUserAdapter(artworkList, listener, this);
+        adapter = new RecyclerViewUserAdapter(artworkList,this,listenerDetail);
         recyclerView.setAdapter(adapter);
         int columns = 2;
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -166,44 +162,16 @@ public class UserFragment extends Fragment implements ComunicadorRecyclerUser {
 
         });}
 
-//        db.artworkRoomDao().getAll().observe(getActivity(), new Observer<List<ArtworkRoom>>() {
-//            @Override
-//            public void onChanged(@Nullable List<ArtworkRoom> artworkRoomList) {
-//                adapter.setFavoriteList(artworkRoomList);
-//            }
-//        });
 
 
 
-    private void buscarFavoritos(final Artwork artwork) {
 
-    }
-    public List<Artwork> createFavoriteList() {
-        List<Artwork> favoriteList = new ArrayList<>();
 
-        Artwork artwork = new Artwork();
-        artwork.setTitle("Obra 1");
-        favoriteList.add(artwork);
-
-        Artwork artwork2 = new Artwork();
-        artwork2.setTitle("Obra 2");
-        favoriteList.add(artwork2);
-
-        Artwork artwork3 = new Artwork();
-        artwork3.setTitle("Obra 3");
-        favoriteList.add(artwork3);
-
-        Artwork artwork4 = new Artwork();
-        artwork4.setTitle("Obra 4");
-        favoriteList.add(artwork4);
-
-        return favoriteList;
-
-}
 
     @Override
     public void exluirFavorito(Artwork artwork) {
         adapter.excluirFavoritado(artwork);
         adapter.notifyDataSetChanged();
     }
+
 }

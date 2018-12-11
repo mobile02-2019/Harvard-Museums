@@ -13,12 +13,10 @@ import java.util.List;
 
 public class RecyclerViewExhibitionDetailAdapter extends RecyclerView.Adapter<RecyclerViewExhibitionDetailAdapter.ViewHolder> {
 
-    private ExhibitionDetailFragment.Listener listener;
     private List<Exhibition> galleryList;
 
-    public RecyclerViewExhibitionDetailAdapter(List<Exhibition> exhibitionList, ExhibitionDetailFragment.Listener listener) {
+    public RecyclerViewExhibitionDetailAdapter(List<Exhibition> exhibitionList) {
         this.galleryList = exhibitionList;
-        this.listener = listener;
     }
 
     @NonNull
@@ -32,12 +30,6 @@ public class RecyclerViewExhibitionDetailAdapter extends RecyclerView.Adapter<Re
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         Exhibition exhibition = galleryList.get(position);
         viewHolder.bind(exhibition);
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.goToArtworkDetail();
-            }
-        });
     }
 
     @Override

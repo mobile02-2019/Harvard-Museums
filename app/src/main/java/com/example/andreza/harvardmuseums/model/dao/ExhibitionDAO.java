@@ -16,10 +16,10 @@ import retrofit2.Response;
 
 public class ExhibitionDAO {
 
-    public List<Exhibition> getExhibitionList(Context context, final ServiceListener listener){
+    public List<Exhibition> getExhibitionList(Context context, final ServiceListener listener,int page,int size){
 
 
-        Call<ExhibitionResponse> call = RetrofitService.getAPI().getExhibition();
+        Call<ExhibitionResponse> call = RetrofitService.getAPI().getExhibitionPage(size,page);
 
         call.enqueue(new Callback<ExhibitionResponse>() {
 
