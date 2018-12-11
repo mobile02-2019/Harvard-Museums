@@ -126,7 +126,11 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
 
         mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
 
-        mFirebaseDatabase.push().setValue(artwork);
+        DatabaseReference push = mFirebaseDatabase.push();
+
+        artwork.setDatabaseKey(push.getKey());
+
+        push.setValue(artwork);
 
         // Metodo para utilizar o Room
 //        final ArtworkRoom artworkRoom = new ArtworkRoom();

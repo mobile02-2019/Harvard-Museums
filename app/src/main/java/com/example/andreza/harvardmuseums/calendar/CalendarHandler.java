@@ -15,11 +15,14 @@ public class CalendarHandler {
     private Context context;
     private String title;
     private String description;
+    private String eventLocation;
+    private String emails;
 
     public CalendarHandler(Context context, String title, String description) {
         this.context = context;
         this.title = title;
         this.description = description;
+        this.eventLocation = eventLocation;
     }
 
     public Date generateDate(int year, int month, int day, int hour, int minute, int second) {
@@ -38,7 +41,7 @@ public class CalendarHandler {
 //        Date startDate = generateDate(2018, 11, 6, 1, 0, 0);
 //        Date endDate = generateDate(2018, 11, 6, 2, 0, 0);
 //        String emails = "andreza@example.com,rafagan@example.com";
-        String locationDetails = "Harvard";
+//        String eventLocation = "Harvard";
 
 
         Intent intent = new Intent(Intent.ACTION_EDIT);
@@ -47,11 +50,11 @@ public class CalendarHandler {
         intent.putExtra(CalendarContract.Events.TITLE, this.title);
         intent.putExtra(CalendarContract.Events.ALL_DAY, false);
         intent.putExtra(CalendarContract.Events.DESCRIPTION, this.description);
-        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, locationDetails);
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, eventLocation);
 //        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startDate.getTime());
 //        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endDate.getTime());
-//        intent.putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
-//        intent.putExtra(Intent.EXTRA_EMAIL, emails);
+        intent.putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
+        intent.putExtra(Intent.EXTRA_EMAIL, emails);
 
         context.startActivity(intent);
     }

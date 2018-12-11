@@ -29,7 +29,7 @@
             android:gravity="center"
             android:text="TITULO"
             android:textAlignment="center"
-            android:textColor="@color/cinza"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,22 +40,22 @@
         <!--app:layout_constraintStart_toStartOf="parent"-->
         <!--app:layout_constraintTop_toTopOf="parent" />-->
 
-        <Button
-            android:id="@+id/btn_add_to_my_calendar_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/harvard"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:text="add to my calendar"
-            android:textColor="#ffffff"
-            android:textSize="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/end_date" />
+        <!--<Button-->
+            <!--android:id="@+id/btn_add_to_my_calendar_id"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="24dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:backgroundTint="@color/harvard"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:paddingBottom="5dp"-->
+            <!--android:text="add to my calendar"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:textSize="10dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/end_date" />-->
 
         <TextView
             android:id="@+id/textView_dateExhibition_id"
@@ -116,6 +116,23 @@
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/end_date"
             app:layout_constraintTop_toBottomOf="@+id/begin_date_set" />
+
+        <Button
+            android:id="@+id/btn_ver_mais_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="See More"
+            android:textSize="10dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="@color/branco"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/end_date" />
 
         <!--<WebView-->
         <!--android:id="@+id/web_view_exibition_item_id"-->

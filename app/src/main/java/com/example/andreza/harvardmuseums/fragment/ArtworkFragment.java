@@ -1,6 +1,7 @@
 package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.example.andreza.harvardmuseums.R;
@@ -32,6 +35,9 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
     private ArtworkListenerDetail listenerArtwork;
     private Toolbar filterToolbar;
     public static final String CHAVE_KEY = "chave_key";
+    private int page = 1;
+    private final int PAGE_SIZE = 20;
+
 
     public ArtworkFragment() {
     }
@@ -98,19 +104,33 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
         recyclerView = view.findViewById(R.id.recyclerview_artwork_id);
 
         final ArtworkDAO dao = new ArtworkDAO();
-
-        adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(),this), this);
-
+        adapter = new RecyclerViewArtworkAdapter(dao.getArtList(getContext(),this,PAGE_SIZE,page), this);
         recyclerView.setAdapter(adapter);
         int columns = 2;
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!recyclerView.canScrollVertically(1)) {
+
+                    // Aumentar o offset (quantidade de itens que são "pulados" na busca paginada
+                    // O offset sempre aumenta de acordo com a constante POST_LIMIT definida no dao
+                    page = page +1 ;
+
+                    // Chamar o método que busca Posts de forma paginada, porém com o novo offset
+                    ArtworkDAO dao = new ArtworkDAO();
+                    dao.getArtDetailList(getContext(),ArtworkFragment.this,page,PAGE_SIZE);
+                }
+            }
+        });
 
     }
 
     @Override
     public void onSucess(Object object) {
         List<Artwork> artworkList = (List<Artwork>) object;
-        adapter.setArtworkList(artworkList);
+        adapter.addArtworkList(artworkList);
     }
 
     @Override

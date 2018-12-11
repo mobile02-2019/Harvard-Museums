@@ -14,6 +14,7 @@ import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerViewArtworkAdapter.ViewHolder>{
@@ -49,8 +50,8 @@ public class RecyclerViewArtworkAdapter extends RecyclerView.Adapter<RecyclerVie
         return artworkList.size();
     }
 
-    public void setArtworkList (List<Artwork> artworkList){
-        this.artworkList = artworkList;
+    public void addArtworkList(List<Artwork> artworkList){
+        this.artworkList.addAll(artworkList);
         notifyDataSetChanged();
     }
 

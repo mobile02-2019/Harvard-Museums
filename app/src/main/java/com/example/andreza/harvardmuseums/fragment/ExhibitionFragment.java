@@ -1,6 +1,7 @@
 package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -29,8 +30,9 @@ public class ExhibitionFragment extends Fragment implements ServiceListener,Recy
     private RecyclerViewExhibitionAdapter adapter;
     private RecyclerView recyclerView;
     private List<Exhibition> exhibitionList = new ArrayList<>();
-
-
+    private int page = 1;
+    private final int PAGE_SIZE = 20;
+    final ExhibitionDAO dao = new ExhibitionDAO();
 
     public ExhibitionFragment(){
 
@@ -56,13 +58,30 @@ public class ExhibitionFragment extends Fragment implements ServiceListener,Recy
 
     private void setUpRecyclerView(View view){
         recyclerView = view.findViewById(R.id.recyclerview_exhibition_id);
-        ExhibitionDAO dao = new ExhibitionDAO();
-        adapter = new RecyclerViewExhibitionAdapter(dao.getExhibitionList(getContext(),this),this);
+        adapter = new RecyclerViewExhibitionAdapter( new ArrayList<Exhibition>(),this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
 
+        dao.getExhibitionList(getContext(),this,PAGE_SIZE,page);
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1)) {
+
+                    // Aumentar o offset (quantidade de itens que são "pulados" na busca paginada
+                    // O offset sempre aumenta de acordo com a constante POST_LIMIT definida no dao
+                    page = page +1 ;
+
+                    // Chamar o método que busca Posts de forma paginada, porém com o novo offset
+                    dao.getExhibitionList(getContext(),ExhibitionFragment.this,page,PAGE_SIZE);
+                }
+            }
+        });
     }
+
 
 
     @Override
@@ -76,7 +95,7 @@ public class ExhibitionFragment extends Fragment implements ServiceListener,Recy
 //        }
         //Fim apaga
 
-        adapter.setExhibitionList(exhibitionList);
+        adapter.addExhibitionList(exhibitionList);
 
 
     }
