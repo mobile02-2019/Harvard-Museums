@@ -118,6 +118,7 @@ public class ExhibitionDetailFragment extends Fragment {
     }*/
 
    private void settarExhibition(){
+
        titulo.setText(exhibition.getTitle());
        descricao.setText(exhibition.getDescription());
        dataInicioApi.setText(exhibition.getBeginDate());
