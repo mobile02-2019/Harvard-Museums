@@ -5,6 +5,8 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
+    //TODO (AQUI TEM A PARTE QUE ENVIA NOTIFICAO NAO APAGAR)
+
 
 
 

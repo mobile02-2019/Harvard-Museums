@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.activity.HomeActivity;
 import com.example.andreza.harvardmuseums.calendar.CalendarHandler;
 import com.example.andreza.harvardmuseums.pojo.Exhibition;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserInfo;
 
 public class ExhibitionDetailFragment extends Fragment {
 
@@ -28,6 +31,7 @@ public class ExhibitionDetailFragment extends Fragment {
    private WebView wv;
    private TextView localizacao;
    private ImageView calendar;
+    private FirebaseAuth firebaseAuth;
 
 
 
@@ -49,6 +53,7 @@ public class ExhibitionDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exhibition_detail, container, false);
 //        setupRecyclerView(view);
+        firebaseAuth = FirebaseAuth.getInstance();
         titulo = view.findViewById(R.id.titulo_detailExhibition_id);
         descricao = view.findViewById(R.id.descrition_detailex_id);
         dataInicioApi = view.findViewById(R.id.text_view_api_data_begin_id);
@@ -71,51 +76,7 @@ public class ExhibitionDetailFragment extends Fragment {
         return view;
     }
 
-   /* private void setupRecyclerView(View view) {
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_exhibitionDetail_id);
-        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        RecyclerViewExhibitionDetailAdapter adapter = new RecyclerViewExhibitionDetailAdapter(createGalleryList(), listener);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(horizontalLayoutManager);
-    }
-
-    private List<Exhibition> createGalleryList() {
-        List<Exhibition> galleryList = new ArrayList<>();
-
-        Exhibition exhibition1 = new Exhibition();
-        exhibition1.setImagemDetalhes(R.drawable.image_exhibition);
-        galleryList.add(exhibition1);
-
-        Exhibition exhibition2 = new Exhibition();
-        exhibition2.setImagemDetalhes(R.drawable.image_exhibition);
-        galleryList.add(exhibition2);
-
-        Exhibition exhibition3 = new Exhibition();
-        exhibition3.setImagemDetalhes(R.drawable.image_exhibition);
-        galleryList.add(exhibition3);
-
-        Exhibition exhibition4 = new Exhibition();
-        exhibition4.setImagemDetalhes(R.drawable.image_exhibition);
-        galleryList.add(exhibition4);
-
-        Exhibition exhibition5 = new Exhibition();
-        exhibition5.setImagemDetalhes(R.drawable.image_exhibition);
-        galleryList.add(exhibition5);
-
-        Exhibition exhibition6 = new Exhibition();
-        exhibition6.setImagemDetalhes(R.drawable.image_exhibition);
-        galleryList.add(exhibition6);
-
-        Exhibition exhibition7 = new Exhibition();
-        exhibition7.setImagemDetalhes(R.drawable.image_exhibition);
-        galleryList.add(exhibition7);
-
-        Exhibition exhibition8 = new Exhibition();
-        exhibition8.setImagemDetalhes(R.drawable.image_exhibition);
-        galleryList.add(exhibition8);
-
-        return galleryList;
-    }*/
+ 
 
    private void settarExhibition(){
 
@@ -127,7 +88,15 @@ public class ExhibitionDetailFragment extends Fragment {
        calendar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
+               for (UserInfo userInfo : firebaseAuth.getCurrentUser().getProviderData()) {
+                   if(userInfo.getProviderId().equals("google.com")){
+                       new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
+
+                   }else{
+                       Toast.makeText(getContext(),"Conecte com o google",Toast.LENGTH_LONG).show();
+                   }
+               }
+
            }
        });
    }
