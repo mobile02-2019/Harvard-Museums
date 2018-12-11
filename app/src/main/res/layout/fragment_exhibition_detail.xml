@@ -22,27 +22,36 @@
 
         <TextView
             android:id="@+id/titulo_detailExhibition_id"
-            android:layout_width="220dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
+            android:gravity="center"
             android:text="TextView"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.532"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Venue's Address:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titulo_detailExhibition_id" />
 
         <ImageView
             android:id="@+id/btn_add_to_my_calendar_id"
             android:layout_width="95dp"
             android:layout_height="47dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="14dp"
             android:src="@drawable/icon_calendar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_api_localizacao_id" />
@@ -82,13 +91,58 @@
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/titulo_detailExhibition_id" />
 
+
+        <TextView
+            android:id="@+id/text_view_api_data_end_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/text_view_titulo_date_end_id"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_titulo_date_begin_id" />
+
+
+        <TextView
+            android:id="@+id/text_view_api_data_begin_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/text_view_titulo_date_begin_id"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_api_localizacao_id" />
+
+        <TextView
+            android:id="@+id/text_add_to_myCalendar_id"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Click to add to calendar"
+            android:textSize="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_to_my_calendar_id" />
+
+        <View
+            android:id="@+id/line01"
+            app:layout_constraintTop_toBottomOf="@+id/text_add_to_myCalendar_id"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+
+
         <TextView
             android:id="@+id/text_view_titulo_descricao"
-            android:layout_width="470dp"
+            android:layout_width="0dp"
             android:layout_height="28dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:paddingTop="3dp"
             android:text="Ehxibiton Description"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,19 +150,82 @@
             app:layout_constraintTop_toBottomOf="@+id/text_add_to_myCalendar_id" />
 
 
+        <View
+            android:id="@+id/line02"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_titulo_descricao"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+
+        <View
+            android:id="@+id/line03"
+            app:layout_constraintTop_toBottomOf="@+id/line02"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+
+        <View
+            android:id="@+id/line04"
+            app:layout_constraintTop_toBottomOf="@+id/line03"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:focusable="false" />
+
+        <View
+            android:id="@+id/line05"
+            app:layout_constraintTop_toBottomOf="@+id/line04"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+
+        <View
+            android:id="@+id/line06"
+            app:layout_constraintTop_toBottomOf="@+id/line05"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+
+        <View
+            android:id="@+id/line07"
+            app:layout_constraintTop_toBottomOf="@+id/line06"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+
+        <View
+            android:id="@+id/line08"
+            app:layout_constraintTop_toBottomOf="@+id/line07"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+
+        <View
+            android:id="@+id/line09"
+            app:layout_constraintTop_toBottomOf="@+id/line08"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:focusable="false" />
+
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/scrollView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_titulo_descricao">
+            >
 
             <TextView
                 android:id="@+id/descrition_detailex_id"
@@ -123,46 +240,6 @@
 
         </ScrollView>
 
-        <TextView
-            android:id="@+id/text_view_api_data_end_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/text_view_titulo_date_end_id"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_titulo_date_begin_id" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Venue's Address:"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titulo_detailExhibition_id" />
-
-        <TextView
-            android:id="@+id/text_add_to_myCalendar_id"
-            android:layout_width="wrap_content"
-            android:layout_height="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Click to add to calendar"
-            android:textSize="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_add_to_my_calendar_id" />
-
-        <TextView
-            android:id="@+id/text_view_api_data_begin_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/text_view_titulo_date_begin_id"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_api_localizacao_id" />
 
 
         <!--<WebView-->
