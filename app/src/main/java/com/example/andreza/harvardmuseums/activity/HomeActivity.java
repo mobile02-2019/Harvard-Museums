@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.andreza.harvardmuseums.MyFirebaseMessagingService;
@@ -43,7 +45,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = findViewById(R.id.navigationView);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -79,6 +81,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         showFragment(new MuseumFragment());
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
     }
+
 
     public void showFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
