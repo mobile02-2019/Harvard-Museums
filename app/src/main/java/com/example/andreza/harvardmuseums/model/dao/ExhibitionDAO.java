@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class ExhibitionDAO {
 
-    public List<Exhibition> getExhibitionList(Context context, final ServiceListener listener,int page,int size){
+    public List<Exhibition> getExhibitionList(Context context, final ServiceListener listener,int size,int page){
 
 
         Call<ExhibitionResponse> call = RetrofitService.getAPI().getExhibitionPage(size,page);

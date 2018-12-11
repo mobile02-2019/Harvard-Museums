@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.activity.HomeActivity;
 import com.example.andreza.harvardmuseums.calendar.CalendarHandler;
 import com.example.andreza.harvardmuseums.pojo.Exhibition;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserInfo;
 
 public class ExhibitionDetailFragment extends Fragment {
 
@@ -28,6 +31,7 @@ public class ExhibitionDetailFragment extends Fragment {
    private WebView wv;
    private TextView localizacao;
    private ImageView calendar;
+    private FirebaseAuth firebaseAuth;
 
 
 
@@ -49,6 +53,7 @@ public class ExhibitionDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exhibition_detail, container, false);
 //        setupRecyclerView(view);
+        firebaseAuth = FirebaseAuth.getInstance();
         titulo = view.findViewById(R.id.titulo_detailExhibition_id);
         descricao = view.findViewById(R.id.descrition_detailex_id);
         dataInicioApi = view.findViewById(R.id.text_view_api_data_begin_id);
@@ -126,7 +131,15 @@ public class ExhibitionDetailFragment extends Fragment {
        calendar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
+               for (UserInfo userInfo : firebaseAuth.getCurrentUser().getProviderData()) {
+                   if(userInfo.getProviderId().equals("google.com")){
+                       new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
+
+                   }else{
+                       Toast.makeText(getContext(),"Conecte com o google",Toast.LENGTH_LONG).show();
+                   }
+               }
+
            }
        });
    }

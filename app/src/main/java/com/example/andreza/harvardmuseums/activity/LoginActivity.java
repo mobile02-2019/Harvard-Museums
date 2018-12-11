@@ -11,11 +11,9 @@ import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import com.example.andreza.harvardmuseums.User;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.andreza.harvardmuseums.BancoDeDados;
 import com.example.andreza.harvardmuseums.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;

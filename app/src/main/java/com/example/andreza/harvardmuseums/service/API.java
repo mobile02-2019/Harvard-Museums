@@ -11,9 +11,6 @@ import retrofit2.http.Query;
 
 public interface API {
 
-    @GET("/exhibition"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3&sort=chronological&sortorder=desc")
-    Call<ExhibitionResponse> getExhibition();
-
 
     @GET("/exhibition"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3&sort=chronological&sortorder=desc")
     Call<ExhibitionResponse> getExhibitionPage(@Query("size") int size,
