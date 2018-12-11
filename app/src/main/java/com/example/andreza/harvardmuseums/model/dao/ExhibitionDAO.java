@@ -16,13 +16,11 @@ import retrofit2.Response;
 
 public class ExhibitionDAO {
 
-    public List<Exhibition> getExhibitionList(Context context, final ServiceListener listener,int page,int size){
-
+    public void getExhibitionList(Context context, final ServiceListener listener,int size,int page){
 
         Call<ExhibitionResponse> call = RetrofitService.getAPI().getExhibitionPage(size,page);
 
         call.enqueue(new Callback<ExhibitionResponse>() {
-
 
             @Override
             public void onResponse(Call<ExhibitionResponse> call, Response <ExhibitionResponse> response) {
@@ -38,7 +36,6 @@ public class ExhibitionDAO {
 
             }
         });
-        return new ArrayList<>();
     }
 /*todo:
     private List<Exhibition> getLocalExhibition(Context context){

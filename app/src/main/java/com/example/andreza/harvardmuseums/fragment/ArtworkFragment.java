@@ -5,20 +5,17 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
 import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
-import com.example.andreza.harvardmuseums.model.dao.ArtworkRoomDao_Impl;
 import com.example.andreza.harvardmuseums.service.ServiceListener;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewArtworkAdapter;
 import com.example.andreza.harvardmuseums.pojo.Artwork;
@@ -95,7 +92,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
     @Override
     public void onSucess(Object object) {
         List<Artwork> artworkList = (List<Artwork>) object;
-        adapter.setArtworkList(artworkList);
+        adapter.addArtworkList(artworkList);
     }
 
     @Override

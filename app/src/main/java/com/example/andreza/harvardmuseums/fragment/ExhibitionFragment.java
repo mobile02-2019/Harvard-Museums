@@ -15,7 +15,6 @@ import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.adapter.RecyclerViewExhibitionAdapter;
 import com.example.andreza.harvardmuseums.interfaces.ExhibitionListener;
 import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerExhibiton;
-import com.example.andreza.harvardmuseums.model.dao.ArtworkDAO;
 import com.example.andreza.harvardmuseums.pojo.Exhibition;
 import com.example.andreza.harvardmuseums.model.ExhibitionResponse;
 import com.example.andreza.harvardmuseums.model.dao.ExhibitionDAO;
@@ -33,8 +32,7 @@ public class ExhibitionFragment extends Fragment implements ServiceListener,Recy
     private List<Exhibition> exhibitionList = new ArrayList<>();
     private int page = 1;
     private final int PAGE_SIZE = 20;
-
-
+    final ExhibitionDAO dao = new ExhibitionDAO();
 
     public ExhibitionFragment(){
 
@@ -60,10 +58,12 @@ public class ExhibitionFragment extends Fragment implements ServiceListener,Recy
 
     private void setUpRecyclerView(View view){
         recyclerView = view.findViewById(R.id.recyclerview_exhibition_id);
-        ExhibitionDAO dao = new ExhibitionDAO();
-        adapter = new RecyclerViewExhibitionAdapter(dao.getExhibitionList(getContext(),this,PAGE_SIZE,page),this);
+        adapter = new RecyclerViewExhibitionAdapter( new ArrayList<Exhibition>(),this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
+
+        dao.getExhibitionList(getContext(),this,PAGE_SIZE,page);
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -76,7 +76,6 @@ public class ExhibitionFragment extends Fragment implements ServiceListener,Recy
                     page = page +1 ;
 
                     // Chamar o método que busca Posts de forma paginada, porém com o novo offset
-                    ExhibitionDAO dao = new ExhibitionDAO();
                     dao.getExhibitionList(getContext(),ExhibitionFragment.this,page,PAGE_SIZE);
                 }
             }
@@ -96,7 +95,7 @@ public class ExhibitionFragment extends Fragment implements ServiceListener,Recy
 //        }
         //Fim apaga
 
-        adapter.setExhibitionList(exhibitionList);
+        adapter.addExhibitionList(exhibitionList);
 
 
     }

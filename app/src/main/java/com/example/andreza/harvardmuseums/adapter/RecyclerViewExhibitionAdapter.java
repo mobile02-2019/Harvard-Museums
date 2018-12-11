@@ -32,9 +32,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
     public RecyclerViewExhibitionAdapter(List<Exhibition> exhibitionList, RecyclerListenerExhibiton listenerExhibiton) {
         this.exhibitionList = exhibitionList;
         this.listenerExhibiton = listenerExhibiton;
-
     }
-
 
     @NonNull
     @Override
@@ -57,8 +55,8 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
 
     }
 
-    public void setExhibitionList (List<Exhibition> exhibitionList){
-        this.exhibitionList = exhibitionList;
+    public void addExhibitionList(List<Exhibition> exhibitionList){
+        this.exhibitionList.addAll(exhibitionList);
         notifyDataSetChanged();
     }
 
