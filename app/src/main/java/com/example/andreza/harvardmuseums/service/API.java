@@ -15,4 +15,5 @@ public interface API {
     Call<ArtworkResponse> getArtworks();
 
 
+
 }

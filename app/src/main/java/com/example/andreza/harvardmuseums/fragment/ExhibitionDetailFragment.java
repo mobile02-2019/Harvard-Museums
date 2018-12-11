@@ -2,30 +2,35 @@ package com.example.andreza.harvardmuseums.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.activity.HomeActivity;
-import com.example.andreza.harvardmuseums.adapter.RecyclerViewExhibitionDetailAdapter;
+import com.example.andreza.harvardmuseums.calendar.CalendarHandler;
 import com.example.andreza.harvardmuseums.pojo.Exhibition;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExhibitionDetailFragment extends Fragment {
 
    private Listener listener;
    private Exhibition exhibition;
    private TextView titulo;
+   private TextView tituloApi;
    private TextView descricao;
+   private TextView descricaoApi;
+   private TextView dataInicioApi;
+   private TextView dataInicio;
    private TextView data;
+   private TextView dataFimApi;
    private WebView wv;
+   private TextView localizacao;
+   private ImageView calendar;
+
+
 
 
 
@@ -53,19 +58,25 @@ public class ExhibitionDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exhibition_detail, container, false);
 //        setupRecyclerView(view);
-//        titulo = view.findViewById(R.id.titulo_detailExhibition_id);
-//        descricao = view.findViewById(R.id.descrition_detailex_id);
-//        data = view.findViewById(R.id.date_exhibition_id);
-        wv = view.findViewById(R.id.web_view_exibition_item_id);
+        titulo = view.findViewById(R.id.titulo_detailExhibition_id);
+        descricao = view.findViewById(R.id.descrition_detailex_id);
+        dataInicioApi = view.findViewById(R.id.text_view_api_data_begin_id);
+        dataFimApi = view.findViewById(R.id.text_view_api_data_end_id);
+        localizacao = view.findViewById(R.id.text_view_api_localizacao_id);
+        calendar = view.findViewById(R.id.btn_add_to_my_calendar_id);
 
 
-        WebSettings ws = wv.getSettings();
-        ws.setJavaScriptEnabled(true);
-        ws.setSupportZoom(false);
-        wv.loadUrl("https://www.harvardartmuseums.org/visit/exhibitions");
+
+//        wv = view.findViewById(R.id.web_view_exibition_item_id);
+
+//
+//        WebSettings ws = wv.getSettings();
+//        ws.setJavaScriptEnabled(true);
+//        ws.setSupportZoom(false);
+//        wv.loadUrl("https://www.harvardartmuseums.org/visit/exhibitions");
 
 
-//        settarExhibition();
+        settarExhibition();
         return view;
     }
 
@@ -115,13 +126,19 @@ public class ExhibitionDetailFragment extends Fragment {
         return galleryList;
     }*/
 
-//   private void settarExhibition(){
-//       titulo.setText(exhibition.getTitle());
-//       descricao.setText(exhibition.getDescription());
-//       data.setText(exhibition.getEndDate());
-//
-//
-//   }
+   private void settarExhibition(){
+       titulo.setText(exhibition.getTitle());
+       descricao.setText(exhibition.getDescription());
+       dataInicioApi.setText(exhibition.getBeginDate());
+       dataFimApi.setText(exhibition.getEndDate());
+       localizacao.setText(exhibition.getAddress().get(0).toString());
+       calendar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
+           }
+       });
+   }
 
 
 }

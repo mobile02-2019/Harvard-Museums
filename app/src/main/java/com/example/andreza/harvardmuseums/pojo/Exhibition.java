@@ -12,12 +12,34 @@ public class Exhibition implements Serializable {
     private String title;
     @SerializedName("begindate")
     private String beginDate;
-    @SerializedName( "enddate")
+    @SerializedName("enddate")
     private String endDate;
+//    @SerializedName("")
     private String local;
+    @SerializedName("textiledescription")
     private String description;
+    @SerializedName("primaryimageurl")
+    private String imagemDaExibicao;
     @SerializedName("images")
     private List<ImageExhibition> image;
+    @SerializedName("venues")
+    private List<VenueAddress> address;
+
+    public String getImagemDaExibicao() {
+        return imagemDaExibicao;
+    }
+
+    public void setImagemDaExibicao(String imagemDaExibicao) {
+        this.imagemDaExibicao = imagemDaExibicao;
+    }
+
+    public List<VenueAddress> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<VenueAddress> address) {
+        this.address = address;
+    }
 
     private int imagemDetalhes;
 

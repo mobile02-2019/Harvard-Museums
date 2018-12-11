@@ -40,7 +40,7 @@ public class ExhibitionDAO {
         });
         return new ArrayList<>();
     }
-/*
+/*todo:
     private List<Exhibition> getLocalExhibition(Context context){
         try{
             AssetManager manager = context.getAssets();

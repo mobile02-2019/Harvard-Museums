@@ -76,6 +76,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
         private TextView endDate;
         private WebView wv;
         private Button addToCalendar;
+        private Button btnVerMais;
 
       //  private ImageView imagem;
 
@@ -85,8 +86,9 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
             begindate = itemView.findViewById(R.id.begin_date_set);
             endDate = itemView.findViewById(R.id.end_date_set);
             cardView = itemView.findViewById(R.id.card_exhibition);
-            wv = itemView.findViewById(R.id.web_view_exibition_item_id);
-            addToCalendar = itemView.findViewById(R.id.btn_add_to_my_calendar_id);
+            btnVerMais = itemView.findViewById(R.id.btn_ver_mais_id);
+//            wv = itemView.findViewById(R.id.web_view_exibition_item_id);
+//  todo:          addToCalendar = itemView.findViewById(R.id.btn_add_to_my_calendar_id);
           //  imagem = itemView.findViewById(R.id.imageView_exhibition_id);
 
 
@@ -99,6 +101,12 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
             name.setText(exhibition.getTitle());
             begindate.setText(exhibition.getBeginDate());
             endDate.setText(exhibition.getEndDate());
+            btnVerMais.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerExhibiton.onExhibitionClicado(exhibition);
+                }
+            });
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -113,13 +121,14 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
             });
 
             // Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
-
-            addToCalendar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
-                }
-            });
+//
+///todo:mudar p a proxima tela
+//                 addToCalendar.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
+//                }
+//            });
 
         }
 
