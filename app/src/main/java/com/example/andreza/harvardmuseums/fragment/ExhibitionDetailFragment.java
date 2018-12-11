@@ -28,10 +28,10 @@ public class ExhibitionDetailFragment extends Fragment {
    private TextView dataInicio;
    private TextView data;
    private TextView dataFimApi;
-   private WebView wv;
+//   private WebView wv;
    private TextView localizacao;
    private ImageView calendar;
-    private FirebaseAuth firebaseAuth;
+   private FirebaseAuth firebaseAuth;
 
 
 
@@ -98,16 +98,16 @@ public class ExhibitionDetailFragment extends Fragment {
        calendar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               for (UserInfo userInfo : firebaseAuth.getCurrentUser().getProviderData()) {
-                   if(userInfo.getProviderId().equals("google.com")){
+//               for (UserInfo userInfo : firebaseAuth.getCurrentUser().getProviderData()) {
+//                   if(userInfo.getProviderId().equals("google.com")){
                        new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
 
-                   }else{
-                       Toast.makeText(getContext(),"You must sign in with Google to access the calendar",Toast.LENGTH_LONG).show();
-                   }
+//                   }else{
+//                       Toast.makeText(getContext(),"You must sign in with Google to access the calendar",Toast.LENGTH_LONG).show();
+//                   }
                }
 
-           }
+//           }
        });
    }
 
