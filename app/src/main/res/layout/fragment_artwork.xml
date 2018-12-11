@@ -32,8 +32,9 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="0dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:visibility="invisible">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"

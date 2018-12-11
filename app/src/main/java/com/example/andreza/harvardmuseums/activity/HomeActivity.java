@@ -6,13 +6,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.andreza.harvardmuseums.MyFirebaseMessagingService;
-import com.example.andreza.harvardmuseums.OpcoesFiltroArtworkFragment;
+import com.example.andreza.harvardmuseums.fragment.OpcoesFiltroArtworkFragment;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkDetailFragment;
 import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
@@ -143,7 +140,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
 
     @Override
     public void openFragment(String title) {
-        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
         FragmentManager manager = getSupportFragmentManager();
         OpcoesFiltroArtworkFragment opcoesFiltroArtworkFragment = new OpcoesFiltroArtworkFragment();
         Bundle bundle = new Bundle();
