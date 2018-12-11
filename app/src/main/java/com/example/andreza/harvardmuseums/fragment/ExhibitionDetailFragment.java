@@ -80,11 +80,21 @@ public class ExhibitionDetailFragment extends Fragment {
 
    private void settarExhibition(){
 
-       titulo.setText(exhibition.getTitle());
-       descricao.setText(exhibition.getDescription());
-       dataInicioApi.setText(exhibition.getBeginDate());
-       dataFimApi.setText(exhibition.getEndDate());
-       localizacao.setText(exhibition.getAddress().get(0).toString());
+       if (exhibition.getTitle()!=null)
+           titulo.setText(exhibition.getTitle());
+
+       if (exhibition.getDescription()!=null)
+           descricao.setText(exhibition.getDescription());
+
+       if (exhibition.getBeginDate()!=null)
+           dataInicioApi.setText(exhibition.getBeginDate());
+
+       if (exhibition.getEndDate() != null)
+           dataFimApi.setText(exhibition.getEndDate());
+
+       if(exhibition.getAddress() != null)
+           localizacao.setText(exhibition.getAddress().get(0).toString());
+
        calendar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

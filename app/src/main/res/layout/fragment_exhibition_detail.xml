@@ -23,12 +23,13 @@
         <TextView
             android:id="@+id/titulo_detailExhibition_id"
             android:layout_width="0dp"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="TextView"
+            android:text="Title not availiable"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,10 +49,10 @@
 
         <ImageView
             android:id="@+id/btn_add_to_my_calendar_id"
-            android:layout_width="95dp"
-            android:layout_height="47dp"
+            android:layout_width="91dp"
+            android:layout_height="37dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="14dp"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/icon_calendar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_api_localizacao_id" />
@@ -61,8 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="17dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="From: "
+            android:layout_marginTop="16dp"
+            android:text="From:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_api_localizacao_id" />
 
@@ -80,13 +81,13 @@
         <TextView
             android:id="@+id/text_view_api_localizacao_id"
             android:layout_width="0dp"
-            android:layout_height="37dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="TextView"
+            android:text="Location not availiable"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/titulo_detailExhibition_id" />
@@ -98,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="End date not availiable"
             app:layout_constraintStart_toEndOf="@+id/text_view_titulo_date_end_id"
             app:layout_constraintTop_toBottomOf="@+id/text_view_titulo_date_begin_id" />
 
@@ -108,8 +109,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:layout_marginTop="16dp"
+            android:text="Begin date not availiable"
             app:layout_constraintStart_toEndOf="@+id/text_view_titulo_date_begin_id"
             app:layout_constraintTop_toBottomOf="@+id/text_view_api_localizacao_id" />
 
@@ -117,8 +118,7 @@
             android:id="@+id/text_add_to_myCalendar_id"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="4dp"
             android:text="Click to add to calendar"
             android:textSize="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -215,17 +215,17 @@
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/scrollView2"
+            android:layout_marginTop="8dp"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/line09">
 
             <TextView
                 android:id="@+id/descrition_detailex_id"
