@@ -29,7 +29,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="Title not availiable"
+            android:text="Title not available"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Location not availiable"
+            android:text="Location not available"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/titulo_detailExhibition_id" />
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="End date not availiable"
+            android:text="End date not available"
             app:layout_constraintStart_toEndOf="@+id/text_view_titulo_date_end_id"
             app:layout_constraintTop_toBottomOf="@+id/text_view_titulo_date_begin_id" />
 
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Begin date not availiable"
+            android:text="Begin date not available"
             app:layout_constraintStart_toEndOf="@+id/text_view_titulo_date_begin_id"
             app:layout_constraintTop_toBottomOf="@+id/text_view_api_localizacao_id" />
 
@@ -143,7 +143,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:paddingTop="3dp"
-            android:text="Ehxibiton Description"
+            android:text="Exhibition Description"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -229,6 +229,8 @@
 
             <TextView
                 android:id="@+id/descrition_detailex_id"
+                android:text="Description not available"
+                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
