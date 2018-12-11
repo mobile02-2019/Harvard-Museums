@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,8 +24,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
+import android.support.v4.app.FragmentManager;
 
 
+import com.example.andreza.harvardmuseums.OpcoesFiltroArtworkFragment;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
 import com.example.andreza.harvardmuseums.interfaces.RecyclerListenerArtwork;
@@ -38,6 +44,7 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
     private RecyclerViewArtworkAdapter adapter;
     private ArtworkListenerDetail listenerArtwork;
     private Toolbar filterToolbar;
+    public static final String CHAVE_KEY = "chave_key";
 
     public ArtworkFragment() {
     }
@@ -77,8 +84,28 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_filtro, menu);
-
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        listenerArtwork.openFragment(item.getTitle().toString());
+
+
+
+        return true;
+    }
+
+
+//    private void openFragment() {
+//        FragmentManager manager = getContext().getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        fragment = new CriarContatoFragment();
+//        transaction.replace(R.id.container_id, fragment);
+//        transaction.commit();
+//    }
+
 
     private void setupRecyclerView(View view) {
         recyclerView = view.findViewById(R.id.recyclerview_artwork_id);
@@ -109,3 +136,4 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
         listenerArtwork.iniciarFragmentArtworkDetail(artwork);
     }
 }
+
