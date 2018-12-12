@@ -17,11 +17,6 @@ public interface API {
     Call<ExhibitionResponse> getExhibitionPage(@Query("size") int size,
                                                @Query("page") int page);
 
-
-    @GET("/object"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3&hasimage=1")
-    Call<ArtworkResponse> getArtworks();
-
-
     @GET("/object"+"?apikey=8b3bae80-bb8c-11e8-888b-13edf83f81a3")
     Call<ArtworkResponse> getArtworkPage(@Query("size") int size,
                                                 @Query("page") int page);
