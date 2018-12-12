@@ -40,7 +40,7 @@ public class Museum2DetailFragment extends Fragment {
 
         description = view.findViewById(R.id.textView_museum2_description_id);
         description.setText(museum.getDescription());
-        description.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+//        description.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
 
         return view;
     }

@@ -23,6 +23,16 @@ public class Artwork implements Serializable {
     @SerializedName("culture")
     private String culture;
 
+    private String databaseKey;
+
+    public String getDatabaseKey() {
+        return databaseKey;
+    }
+
+    public void setDatabaseKey(String databaseKey) {
+        this.databaseKey = databaseKey;
+    }
+
     public int getId() {
         return id;
     }

@@ -7,8 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.example.andreza.harvardmuseums.MyFirebaseMessagingService;
+import com.example.andreza.harvardmuseums.fragment.OpcoesFiltroArtworkFragment;
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.fragment.ArtworkDetailFragment;
 import com.example.andreza.harvardmuseums.fragment.ArtworkFragment;
@@ -42,7 +43,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = findViewById(R.id.navigationView);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -80,6 +81,7 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         //parte que libera a notificacao push
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
     }
+
 
     public void showFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
@@ -124,6 +126,20 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
         detailFragment.setArguments(bundle);
 
         showFragment(detailFragment);
+    }
+
+    @Override
+    public void openFragment(String title) {
+//        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+        FragmentManager manager = getSupportFragmentManager();
+        OpcoesFiltroArtworkFragment opcoesFiltroArtworkFragment = new OpcoesFiltroArtworkFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("title", title);
+        opcoesFiltroArtworkFragment.setArguments(bundle);
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.container_id, opcoesFiltroArtworkFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 

@@ -1,0 +1,28 @@
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/classification"
+        android:orderInCategory="100"
+        android:title="Classification"
+        app:showAsAction="never" />
+
+
+     <item
+     android:id="@+id/culture"
+     android:orderInCategory="100"
+     android:title="Culture"
+     app:showAsAction="never" />
+
+     <item
+     android:id="@+id/gallery"
+     android:orderInCategory="100"
+     android:title="Gallery"
+     app:showAsAction="never" />
+
+
+
+</menu>

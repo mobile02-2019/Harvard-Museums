@@ -3,32 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ArtworkFragment"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/frame_frag_artwork_id"
+    <!--<FrameLayout-->
+        <!--android:id="@+id/frame_frag_artwork_id"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="@color/colorPrimary"/>-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageView_filter_id"-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginRight="12.5dp"-->
+            <!--android:src="@drawable/icon_filter_white"-->
+            <!--android:layout_gravity="right"-->
+            <!--/>-->
+
+
+    <!--</FrameLayout>-->
+
+
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:visibility="invisible">
 
-        <TextView
+        <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/filter_toolbar"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
-        <ImageView
-            android:id="@+id/imageView_filter_id"
-            android:layout_width="25dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="12.5dp"
-            android:src="@drawable/icon_filter_white"
-            android:layout_gravity="right"
-            />
+        </android.support.v7.widget.Toolbar>
 
-
-    </FrameLayout>
-
+    </android.support.design.widget.AppBarLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_artwork_id"
         android:layout_width="match_parent"

@@ -29,17 +29,14 @@ public class ExhibitionDetailFragment extends Fragment {
    private TextView dataInicio;
    private TextView data;
    private TextView dataFimApi;
-   private WebView wv;
+//   private WebView wv;
    private TextView localizacao;
    private ImageView calendar;
-    private FirebaseAuth firebaseAuth;
-
-
+   private FirebaseAuth firebaseAuth;
 
    public ExhibitionDetailFragment() {
 
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -47,7 +44,6 @@ public class ExhibitionDetailFragment extends Fragment {
         this.exhibition = (Exhibition) getArguments().getSerializable(HomeActivity.OBJ_EXHIBITION);
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,30 +77,35 @@ public class ExhibitionDetailFragment extends Fragment {
 
    private void settarExhibition(){
 
-       titulo.setText(exhibition.getTitle());
-       descricao.setText(exhibition.getDescription());
-       dataInicioApi.setText(exhibition.getBeginDate());
-       dataFimApi.setText(exhibition.getEndDate());
-       localizacao.setText(exhibition.getAddress().get(0).toString());
+       if (exhibition.getTitle()!=null)
+           titulo.setText(exhibition.getTitle());
+
+       if (exhibition.getDescription()!=null)
+           descricao.setText(exhibition.getDescription());
+
+       if (exhibition.getBeginDate()!=null)
+           dataInicioApi.setText(exhibition.getBeginDate());
+
+       if (exhibition.getEndDate() != null)
+           dataFimApi.setText(exhibition.getEndDate());
+
+       if(exhibition.getAddress() != null)
+           localizacao.setText(exhibition.getAddress().get(0).toString());
+
        calendar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               for (UserInfo userInfo : firebaseAuth.getCurrentUser().getProviderData()) {
-                   if(userInfo.getProviderId().equals("google.com")){
-                      try{
-                          new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
-                      }
-                      catch(RuntimeException e){
-                          Log.d("RuntimeException","Exception " + e);
-                          }
 
+//               for (UserInfo userInfo : firebaseAuth.getCurrentUser().getProviderData()) {
+//                   if(userInfo.getProviderId().equals("google.com")){
+                       new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
 
-                   }else{
-                       Toast.makeText(getContext(),"You must sign in with Google to access the calendar",Toast.LENGTH_LONG).show();
-                   }
+//                   }else{
+//                       Toast.makeText(getContext(),"You must sign in with Google to access the calendar",Toast.LENGTH_LONG).show();
+//                   }
                }
 
-           }
+//           }
        });
    }
 

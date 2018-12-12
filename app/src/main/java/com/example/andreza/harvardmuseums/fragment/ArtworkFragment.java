@@ -8,10 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import com.example.andreza.harvardmuseums.R;
 import com.example.andreza.harvardmuseums.interfaces.ArtworkListenerDetail;
@@ -28,9 +33,10 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
     private RecyclerView recyclerView;
     private RecyclerViewArtworkAdapter adapter;
     private ArtworkListenerDetail listenerArtwork;
+    private Toolbar filterToolbar;
+    public static final String CHAVE_KEY = "chave_key";
     private int page = 1;
     private final int PAGE_SIZE = 20;
-
 
 
     public ArtworkFragment() {
@@ -43,24 +49,56 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_artwork, container, false);
+//
+//        ImageView filtro = view.findViewById(R.id.imageView_filter_id);
+//
+//        filtro.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+////                Toast.makeText(getContext(), "Está funcionando!", Toast.LENGTH_SHORT).show();
+//
+//                }
+//        });
 
-
-        ImageView filtro = view.findViewById(R.id.imageView_filter_id);
-        filtro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Está funcionando!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        filterToolbar = view.findViewById(R.id.filter_toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(filterToolbar);
 
         setupRecyclerView(view);
-
+        this.setHasOptionsMenu(true);
         return view;
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_filtro, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        listenerArtwork.openFragment(item.getTitle().toString());
+
+
+
+        return true;
+    }
+
+
+//    private void openFragment() {
+//        FragmentManager manager = getContext().getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        fragment = new CriarContatoFragment();
+//        transaction.replace(R.id.container_id, fragment);
+//        transaction.commit();
+//    }
+
 
     private void setupRecyclerView(View view) {
         recyclerView = view.findViewById(R.id.recyclerview_artwork_id);
@@ -105,3 +143,4 @@ public class ArtworkFragment extends Fragment implements ServiceListener, Recycl
         listenerArtwork.iniciarFragmentArtworkDetail(artwork);
     }
 }
+
