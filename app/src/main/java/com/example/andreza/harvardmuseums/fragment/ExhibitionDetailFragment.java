@@ -33,12 +33,9 @@ public class ExhibitionDetailFragment extends Fragment {
    private ImageView calendar;
    private FirebaseAuth firebaseAuth;
 
-
-
    public ExhibitionDetailFragment() {
 
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -46,7 +43,6 @@ public class ExhibitionDetailFragment extends Fragment {
         this.exhibition = (Exhibition) getArguments().getSerializable(HomeActivity.OBJ_EXHIBITION);
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

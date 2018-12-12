@@ -109,8 +109,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    todo: fazer um webview pra webpage do museu
-
+///
 //                    WebSettings ws = wv.getSettings();
 //                    ws.setJavaScriptEnabled(true);
 //                    ws.setSupportZoom(false);
@@ -120,7 +119,7 @@ public class RecyclerViewExhibitionAdapter extends RecyclerView.Adapter<Recycler
 
             // Picasso.get().load(exhibition.getImage().get(0).getUrl()).into(imagem);
 //
-///todo:mudar p a proxima tela
+///todo:mudar p a proxima tela p o exhibiton detail
 //                 addToCalendar.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
