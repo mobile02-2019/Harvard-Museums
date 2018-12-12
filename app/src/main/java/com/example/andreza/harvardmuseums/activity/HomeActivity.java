@@ -93,13 +93,17 @@ public class HomeActivity extends AppCompatActivity implements MuseumFragment.Li
 
     @Override
     public void goToMuseumDetail(int museumID) {
-
+//      museu 1 = fogg
         if (museumID == 1) {
             showFragment(new Museum1DetailFragment());
         }
+
+//        museu 2 = busch
         if (museumID == 2) {
             showFragment(new Museum2DetailFragment());
         }
+
+//        museu 3 = arthur
         if (museumID == 3) {
             showFragment(new Museum3DetailFragment());
         }

@@ -91,12 +91,11 @@ public class RegisterActivity extends AppCompatActivity {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-            goToHomeActivity();
 
         } else {
             Toast.makeText(RegisterActivity.this, "Both passwords must match.", Toast.LENGTH_SHORT).show();

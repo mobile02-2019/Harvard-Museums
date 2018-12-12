@@ -66,7 +66,7 @@ public class RecyclerViewUserAdapter extends RecyclerView.Adapter<RecyclerViewUs
         favoriteList.remove(artwork);
         notifyDataSetChanged();
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users/"+mAuth.getUid());
-        myRef.child(artwork.getDatabaseKey()).removeValue();
+        myRef.child(artwork.getId()+ "").removeValue();
     }
 
 
