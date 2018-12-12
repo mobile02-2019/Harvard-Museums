@@ -18,7 +18,7 @@ public class CalendarHandler {
     private String eventLocation;
     private String emails;
 
-    public CalendarHandler(Context context, String title, String description) {
+    public CalendarHandler(Context context, String title, String description, String eventLocation) {
         this.context = context;
         this.title = title;
         this.description = description;

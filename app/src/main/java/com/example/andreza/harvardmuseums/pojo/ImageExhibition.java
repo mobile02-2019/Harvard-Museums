@@ -2,7 +2,9 @@ package com.example.andreza.harvardmuseums.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ImageExhibition {
+import java.io.Serializable;
+
+public class ImageExhibition implements Serializable {
     @SerializedName("baseimageurl")
     private String url;
 
