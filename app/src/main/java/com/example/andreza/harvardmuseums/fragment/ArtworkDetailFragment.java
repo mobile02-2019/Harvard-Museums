@@ -1,4 +1,5 @@
 package com.example.andreza.harvardmuseums.fragment;
+
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
@@ -106,7 +107,7 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
             @Override
             public void onClick(View v) {
                 salvarArtes(artwork);
-                Toast.makeText(getContext(), "Artwork saved!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -120,17 +121,11 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
 
     private void salvarArtes(Artwork artwork) {
 
-        artworkList.add(artwork);
 
-        mFirebaseInstance = FirebaseDatabase.getInstance();
+     /*   DatabaseReference user = mFirebaseDatabase.getDatabase().getReference("user");
+        artworkList =  user.child()*/
 
-        mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
-
-        DatabaseReference push = mFirebaseDatabase.push();
-
-        artwork.setDatabaseKey(push.getKey());
-
-        push.setValue(artwork);
+                    salvarNoFav(artwork);
 
         // Metodo para utilizar o Room
 //        final ArtworkRoom artworkRoom = new ArtworkRoom();
@@ -150,6 +145,20 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
 
     }
 
+    private void salvarNoFav(Artwork artwork) {
+        artworkList.add(artwork);
+
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+
+        mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
+
+        mFirebaseDatabase.child(artwork.getId()+ "").setValue(artwork);
+
+
+        Toast.makeText(getContext(), "Artwork saved!", Toast.LENGTH_SHORT).show();
+
+    }
+
     private void onShareClicado(Artwork artwork) {
         Intent share = new Intent(Intent.ACTION_SEND);
         share.setType("text/plain");
@@ -158,9 +167,9 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
         startActivity(Intent.createChooser(share, artwork.getDate()));
     }
 
-    private void setArtworkDetail(){
+    private void setArtworkDetail() {
         title.setText(artwork.getTitle());
-        if (artwork.getPicture() != null){
+        if (artwork.getPicture() != null) {
             Picasso.get().load(artwork.getPicture()).into(imageDetail);
         }
         date.setText(artwork.getDate());
@@ -178,6 +187,6 @@ public class ArtworkDetailFragment extends Fragment implements ServiceListener {
 
     @Override
     public void onError(Throwable throwable) {
-        Toast.makeText(getContext(),"Erro",Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Erro", Toast.LENGTH_LONG).show();
     }
 }
