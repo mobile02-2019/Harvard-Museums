@@ -96,16 +96,10 @@ public class ExhibitionDetailFragment extends Fragment {
            @Override
            public void onClick(View v) {
 
-//               for (UserInfo userInfo : firebaseAuth.getCurrentUser().getProviderData()) {
-//                   if(userInfo.getProviderId().equals("google.com")){
-                       new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription()).execute();
-
-//                   }else{
-//                       Toast.makeText(getContext(),"You must sign in with Google to access the calendar",Toast.LENGTH_LONG).show();
-//                   }
+                       new CalendarHandler(v.getContext(), exhibition.getTitle(), exhibition.getDescription(), localizacao.getText().toString()).execute();
                }
 
-//           }
+
        });
    }
 

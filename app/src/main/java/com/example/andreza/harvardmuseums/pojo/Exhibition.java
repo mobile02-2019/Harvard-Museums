@@ -14,7 +14,7 @@ public class Exhibition implements Serializable {
     private String beginDate;
     @SerializedName("enddate")
     private String endDate;
-//    @SerializedName("")
+    @SerializedName("address1")
     private String local;
     @SerializedName("textiledescription")
     private String description;
