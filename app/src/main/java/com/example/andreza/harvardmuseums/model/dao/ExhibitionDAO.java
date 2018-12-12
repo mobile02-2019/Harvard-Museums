@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class ExhibitionDAO {
 
-    
+
     public void getExhibitionList(Context context, final ServiceListener listener,int size,int page){
 
 
