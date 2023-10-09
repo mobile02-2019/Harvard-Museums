@@ -15,7 +15,7 @@ O objetivo deste projeto é criar uma plataforma de acesso fácil e amigável pa
 - Integração de Mapa: Mostrar a localização de cada museu no campus de Harvard.
 
 # 🛠 Tecnologias
-The following tools were used in building the project:
+As seguintes ferramentas foram utilizadas na construção do projeto:
 
 - RecyclerView
 - Database
